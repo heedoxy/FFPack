@@ -11,6 +11,12 @@
   * extension=php_sqlsrv_74_ts_x64.dll
 
 4 - Set DB : SQL Server
+  * DB_CONNECTION=sqlsrv
+  * DB_HOST="DESKTOP-xxxxxxx"
+  * DB_PORT=null
+  * DB_DATABASE=FFPack
+  * DB_USERNAME=sa
+  * DB_PASSWORD=password
 
 5 - Run Migration : php artisan migrate
 
