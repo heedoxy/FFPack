@@ -1,23 +1,50 @@
 # Start : 4 Tir 1401
 
-1 - Install Laravel or get from Github
-  * https://github.com/HadBoard/FFPack
+01 - Install PHP 7.4 or XAMPP
+   * https://www.apachefriends.org/download.html
 
-2 - install SQL Server adn SSMS
+02 - Install Composer
+   * https://getcomposer.org
 
-3 - install SQL Server driver for PHP (ts version for php 7.4)
-  * https://docs.microsoft.com/en-us/iis/application-frameworks/install-and-configure-php-on-iis/install-the-sql-server-driver-for-php
-  * extension=php_pdo_sqlsrv_74_ts_x64.dll
-  * extension=php_sqlsrv_74_ts_x64.dll
+03 - Install Laravel or get from Github
+   * https://laravel.com/docs/9.x/installation
+   * https://github.com/HadBoard/FFPack
 
-4 - Set DB : SQL Server
-  * DB_CONNECTION=sqlsrv
-  * DB_HOST="DESKTOP-xxxxxxx"
-  * DB_PORT=null
-  * DB_DATABASE=FFPack
-  * DB_USERNAME=sa
-  * DB_PASSWORD=password
+04 - Add environment file
+   * cp .env.example .env
 
-5 - Run Migration : php artisan migrate
+05 - Generate Laravel KEY
+   * php artisan key:generate
+
+06 - install SQL Server adn SSMS
+
+07 - install SQL Server driver for PHP (ts version for php 7.4)
+   * https://docs.microsoft.com/en-us/iis/application-frameworks/install-and-configure-php-on-iis/install-the-sql-server-driver-for-php
+   * extension=php_pdo_sqlsrv_74_ts_x64.dll
+   * extension=php_sqlsrv_74_ts_x64.dll
+
+08 - Set DB : SQL Server
+   * DB_CONNECTION=sqlsrv
+   * DB_HOST="DESKTOP-xxxxxxx"
+   * DB_PORT=null
+   * DB_DATABASE=FFPack
+   * DB_USERNAME=sa
+   * DB_PASSWORD=password
+
+09 - Run Migration
+   * php artisan migrate
+
+10 - Install Auth dependency
+   * composer require laravel/ui
+   * php artisan ui vue --auth
+   * php artisan migrate
+
+11 - Install NPM and run it
+   * https://nodejs.org/en/download/
+   * In case of error (--global) -> https://stackoverflow.com/questions/72401421/npm-warn-config-global-global-local-are-deprecated-use-location-glo
+   * npm install
+   * npm install -g npm@8.13.1
+   * npm run dev | npm run watch
+
 
 # HadBoard :)
