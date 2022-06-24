@@ -1,0 +1,7 @@
+* Start : 4 Tir 1401
+
+1 - Get from Github : https://github.com/HadBoard/FFPack
+2 - Set DB : SQL Server
+3 - Run Migration : php artisan migrate
+
+** HadBoard :)
