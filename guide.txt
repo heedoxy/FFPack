@@ -1,7 +1,17 @@
-* Start : 4 Tir 1401
+# Start : 4 Tir 1401
 
-1 - Get from Github : https://github.com/HadBoard/FFPack
-2 - Set DB : SQL Server
-3 - Run Migration : php artisan migrate
+1 - Install Laravel or get from Github
+  * https://github.com/HadBoard/FFPack
 
-** HadBoard :)
+2 - install SQL Server adn SSMS
+
+3 - install SQL Server driver for PHP (ts version for php 7.4)
+  * https://docs.microsoft.com/en-us/iis/application-frameworks/install-and-configure-php-on-iis/install-the-sql-server-driver-for-php
+  * extension=php_pdo_sqlsrv_74_ts_x64.dll
+  * extension=php_sqlsrv_74_ts_x64.dll
+
+4 - Set DB : SQL Server
+
+5 - Run Migration : php artisan migrate
+
+# HadBoard :)
