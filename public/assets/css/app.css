@@ -9170,7 +9170,7 @@ body.error-page .display-1 {
 }
 
 body.form-membership {
-    background: url(/image/bg.jpg) white;
+    background: url(/assets/image/bg.jpg) white;
     background-attachment: fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
