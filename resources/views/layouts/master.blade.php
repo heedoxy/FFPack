@@ -5,9 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="https://ffpack.com/wp-content/uploads/2019/07/favffpack.png">
     <title>@yield('title')</title>
-    <!-- Theme Color -->
-    <meta name="theme-color" content="#5867dd">
     <!-- Plugin styles -->
     <link rel="stylesheet" href="/assets/vendors/bundle.css" type="text/css">
     <!-- Datepicker -->
@@ -122,5 +121,3 @@
 </body>
 
 </html>
-
-
