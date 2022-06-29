@@ -27,11 +27,11 @@ class LoginController extends Controller
             return redirect('/');
         }
         // if failed login
-        return redirect('/login');
+        return redirect()->back()->withErrors(['danger' => 'نام کاربری و یا رمز عبور اشتباه است .']);
     }
 
     public function logout() {
         Auth::logout();
-        return redirect('/login');
+        return redirect('/login')->withErrors(['success' => 'با موفقیت خارج شدید .']);
     }
 }

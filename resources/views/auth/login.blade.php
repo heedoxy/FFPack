@@ -9,6 +9,15 @@
                 <img src="https://ffpack.com/wp-content/uploads/2019/07/logo-fastfood.png">
             </div>
         </div>
+
+        @error('danger')
+        <p class="text-center text-danger">{{ $message }}</p>
+        @enderror
+
+        @error('success')
+        <p class="text-center text-success">{{ $message }}</p>
+        @enderror
+
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-5 text-center">
                 <div class="login-wrap p-4 p-md-5">
