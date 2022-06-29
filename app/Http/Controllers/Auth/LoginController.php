@@ -24,9 +24,14 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             // if success login
-            return redirect('/');
+            return redirect('/login');
         }
         // if failed login
+        return redirect('/login');
+    }
+
+    public function logout() {
+        Auth::logout();
         return redirect('/login');
     }
 }
