@@ -16,7 +16,7 @@
                         <span class="fa fa-user-o"></span>
                     </div>
                     <h3 class="text-center mb-4">اطلاعات کاربری</h3>
-                    <form action="/login" class="login-form">
+                    <form action="/login" method="post" class="login-form">
                         @csrf
                         <div class="form-group">
                             <input type="text" name="phone" class="form-control rounded-left" autocomplete="off"
