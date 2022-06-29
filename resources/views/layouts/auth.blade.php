@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="https://ffpack.com/wp-content/uploads/2019/07/favffpack.png">
+    <title>@yield('title')</title>
+    <!-- App styles -->
+    <link rel="stylesheet" href="assets/css/app.css" type="text/css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet"
+          href="https://preview.colorlib.com/theme/bootstrap/login-form-18/css/A.style.css.pagespeed.cf.EsokhafFue.css">
+
+    <style>
+
+        .ftco-section {
+            padding: unset;
+        }
+
+        body {
+            font-family: "secondary-font", serif !important;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: "secondary-font", serif !important;
+        }
+        input {
+            text-align: right !important;
+        }
+        .checkmark {
+            right: 0;
+            left: unset;
+        }
+        .checkbox-wrap {
+            padding-right: 30px;
+        }
+
+        .btn.btn-primary {
+            background: #AF2629 !important;
+            border: 1px solid #AF2629 !important;
+        }
+
+        .login-wrap h3 {
+            color: #AF2629;
+        }
+
+        .checkbox-primary {
+            color: #AF2629;
+        }
+
+        .checkbox-primary input:checked ~ .checkmark::after {
+            color: #AF2629;
+        }
+
+        .login-wrap .icon {
+            background: #AF2629;
+        }
+
+    </style>
+
+</head>
+<body>
+<section class="ftco-section">
+    @yield('main')
+</section>
+</body>
+</html>
