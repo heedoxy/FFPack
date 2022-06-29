@@ -17,9 +17,11 @@ class UserTableSeeder extends Seeder
     {
         $phone = "09218248954";
         DB::table('users')->insert([
-            "name" => "Seyed Hadi Ranjbar",
+            "name" => "سید هادی",
+            "family" => "رنجبر",
             "phone" => $phone,
             "password" => Hash::make($phone),
+            "access" => 0,
             "created_at" => now(),
             "updated_at" => now(),
             "phone_verified_at" => now(),
