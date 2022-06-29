@@ -8,9 +8,11 @@ use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     public function index() {
-        $username = Auth::user()->name;
+        $username = Auth::user()->name . " " . Auth::user()->family;
+        $access = 0;
         return view('index', [
-            "username" => $username
+            "username" => $username,
+            "access" => $access,
         ]);
     }
 }
