@@ -44,7 +44,7 @@
         <li>
             <a href="/" class="{{ ($sub_active == 1) ? "active" : "" }}">داشبورد</a>
         </li>
-        @if($access)
+        @if(in_array($access, [0, 1]))
             <li>
                 <a href="/user-list" class="{{ ($sub_active == 2) ? "active" : "" }}">تعریف کاربر</a>
             </li>
