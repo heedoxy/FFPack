@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="https://ffpack.com/wp-content/uploads/2019/07/favffpack.png">
     <title>فست فوت پک | ورود</title>
     <!-- Theme Color -->
     <meta name="theme-color" content="#5867dd">
@@ -12,42 +13,104 @@
     <link rel="stylesheet" href="assets/vendors/bundle.css" type="text/css">
     <!-- App styles -->
     <link rel="stylesheet" href="assets/css/app.css" type="text/css">
+
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet"
+          href="https://preview.colorlib.com/theme/bootstrap/login-form-18/css/A.style.css.pagespeed.cf.EsokhafFue.css">
+    <style>
+
+        .ftco-section {
+            padding: unset;
+        }
+
+        body {
+            font-family: "secondary-font", serif !important;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: "secondary-font", serif !important;
+        }
+        input {
+            text-align: right !important;
+        }
+        .checkmark {
+            right: 0;
+            left: unset;
+        }
+        .checkbox-wrap {
+            padding-right: 30px;
+        }
+
+        .btn.btn-primary {
+            background: #AF2629 !important;
+            border: 1px solid #AF2629 !important;
+        }
+
+        .login-wrap h3 {
+            color: #AF2629;
+        }
+
+        .checkbox-primary {
+            color: #AF2629;
+        }
+
+        .checkbox-primary input:checked ~ .checkmark::after {
+            color: #AF2629;
+        }
+
+        .login-wrap .icon {
+            background: #AF2629;
+        }
+
+    </style>
+
 </head>
-
-<body class="form-membership">
-
-<!-- begin::page loader-->
-<div class="page-loader">
-    <div class="spinner-border"></div>
-</div>
-<!-- end::page loader -->
-
-<div class="form-wrapper">
-    <h5>پنل مدیریت</h5>
-    <!-- form -->
-    <form method="POST" action="/login">
-        @csrf
-        <div class="form-group">
-            <input type="text" class="form-control text-left" name="phone" placeholder="نام کاربری" dir="ltr" required
-                   autocomplete="off" autofocus>
+<body>
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+                <img src="https://ffpack.com/wp-content/uploads/2019/07/logo-fastfood.png">
+            </div>
         </div>
-        <div class="form-group">
-            <input type="password" class="form-control text-left" name="password" placeholder="رمز عبور" dir="ltr"
-                   autocomplete="off" required>
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5 text-center">
+                <div class="login-wrap p-4 p-md-5">
+                    <div class="icon d-flex align-items-center justify-content-center">
+                        <span class="fa fa-user-o"></span>
+                    </div>
+                    <h3 class="text-center mb-4">اطلاعات کاربری</h3>
+                    <form action="/login" class="login-form">
+                        @csrf
+                        <div class="form-group">
+                            <input type="text" name="phone" class="form-control rounded-left" autocomplete="off"
+                                   placeholder="شماره تماس" required>
+                        </div>
+                        <div class="form-group d-flex">
+                            <input type="password" name="password" class="form-control rounded-left" autocomplete="off"
+                                   placeholder="رمز عبور" required>
+                        </div>
+                        <div class="form-group d-flex">
+                            <div class="w-50">
+                                <label class="checkbox-wrap checkbox-primary">مرا به خاطر بسپار
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                            <div class="w-50 text-left">
+                                <a>فراموشی رمز عبور</a>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary rounded submit p-3 px-5">ورود</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        <button type="submit" name="submit" class="btn btn-primary btn-block">ورود</button>
-        <hr>
-        <a href="https://ffpack.com" class="btn" style="background: #ffb300">مشاهده وب سایت</a>
-    </form>
-    <!-- ./ form -->
-
-</div>
-
-<!-- Plugin scripts -->
-<script src="assets/vendors/bundle.js"></script>
-
-<!-- App scripts -->
-<script src="assets/js/app.js"></script>
+    </div>
+</section>
 </body>
-
 </html>
