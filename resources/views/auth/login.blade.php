@@ -25,7 +25,8 @@
 <div class="form-wrapper">
     <h5>پنل مدیریت</h5>
     <!-- form -->
-    <form method="post">
+    <form method="POST" action="/login">
+        @csrf
         <div class="form-group">
             <input type="text" class="form-control text-left" name="phone" placeholder="نام کاربری" dir="ltr" required
                    autocomplete="off" autofocus>
