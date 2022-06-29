@@ -9632,10 +9632,14 @@ body.form-membership .form-wrapper hr {
     opacity: 1;
 }
 
+.custom-toggle-menu .ti-menu::before {
+    color: white;
+}
+
 .navigation .navigation-icon-menu ul li a .icon {
-    color: black;
-    font-size: 18px;
-    opacity: .6;
+    color: white;
+    font-size: 25px;
+    opacity: 1;
 }
 
 .navigation .navigation-icon-menu ul li a .badge {
@@ -11104,13 +11108,13 @@ body.dark .nav a.nav-link:not(.active):active {
         -moz-box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.15);
         box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.15);
         right: -80%;
-        top: 0;
+        top: -10px;
         opacity: 0;
         -webkit-transition: right .2s;
         -o-transition: right .2s;
         -moz-transition: right .2s;
         transition: right .2s;
-        height: 100vh;
+        height: 110vh;
         padding-bottom: 0;
     }
 
