@@ -44,7 +44,7 @@
         <li><a href="/" class="{{ ($sub_active == 1) ? "active" : "" }}">داشبورد</a></li>
         @if(in_array($access, [0, 1]))
             <li><a href="/user/add" class="{{ ($sub_active == 2) ? "active" : "" }}">ثبت کاربر</a></li>
-            <li><a href="/user/list" class="{{ ($sub_active == 2) ? "active" : "" }}">لیست کاربر</a></li>
+            <li><a href="/user/list" class="{{ ($sub_active == 3) ? "active" : "" }}">لیست کاربر</a></li>
         @endif
     </ul>
 </div>
