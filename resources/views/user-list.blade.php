@@ -38,11 +38,11 @@
                                         <th scope="row">1</th>
                                         <td>{{ $user->name . " " . $user->family }}</td>
                                         <td>
-                                            @if($user->name == 0)
+                                            @if($user->access == 0)
                                                 <span class="badge badge-danger">مدیر کل</span>
-                                            @elseif($user->name == 1)
+                                            @elseif($user->access == 1)
                                                 <span class="badge badge-success">فروشنده</span>
-                                            @elseif($user->name == 2)
+                                            @elseif($user->access == 2)
                                                 <span class="badge badge-warning">تولید کننده</span>
                                             @else
                                                 <span class="badge badge-info">مشتری</span>
