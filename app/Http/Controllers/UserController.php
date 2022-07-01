@@ -24,6 +24,14 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'name' => 'required',
+            'family' => 'required',
+            'phone' => 'required|unique:users',
+            'password' => 'required',
+            'access' => 'required',
+        ]);
+
         $user = new User();
         $user->name = $request->name;
         $user->family = $request->family;

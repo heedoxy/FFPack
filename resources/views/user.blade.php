@@ -10,6 +10,11 @@
 
 @section('main')
     <main class="main-content">
+        @if($errors->any())
+            @foreach($errors->all() as $message)
+                <p class="text-left text-danger">{{ $message }}</p>
+            @endforeach
+        @endif
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
