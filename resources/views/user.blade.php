@@ -1,7 +1,8 @@
 @php
     $menu_active = 1;
     $sub_active = 2;
-    $action = "/user/" . (isset($id) ? "edit" : "add");
+    $edit = isset($id);
+    $action = "/user/" . ($edit ? "edit" : "add");
 @endphp
 
 @extends('layouts.master')
@@ -19,23 +20,23 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <h6 class="card-title">نمای کلی</h6>
+                        <h6 class="card-title text-primary">{{ $edit ? "ویرایش کاربر" : "ثبت کاربر" }}</h6>
                         <form method="post" action="{{ $action }}">
                             @csrf
                             <div class="form-group">
                                 <label for="name">نام</label>
                                 <input type="text" class="form-control text-left" name="name" id="name"
-                                       placeholder="نام" required>
+                                       placeholder="نام" value="{{ $edit ? $user->name : '' }}" required>
                             </div>
                             <div class="form-group">
                                 <label for="family">نام خانوادگی</label>
                                 <input type="text" class="form-control text-left" name="family" id="family"
-                                       placeholder="نام خانوادگی" required>
+                                       placeholder="نام خانوادگی" value="{{ $edit ? $user->family : '' }}" required>
                             </div>
                             <div class="form-group">
                                 <label for="phone">شماره همراه</label>
                                 <input type="text" class="form-control text-left" name="phone" id="phone"
-                                       placeholder="شماره همراه" required>
+                                       placeholder="شماره همراه" value="{{ $edit ? $user->phone : '' }}" required>
                                 <small id="passwordHelpBlock" class="form-text text-muted">
                                     از شماره همراه به عنوان نام کاربری استفاده میشود !
                                 </small>
@@ -55,14 +56,14 @@
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="access"
-                                           id="access2" value="2">
+                                           id="access2" value="2" {{ $edit && $user->access == 2 ? 'checked' : '' }}>
                                     <label class="form-check-label" for="access2">
                                         دسترسی تولید کننده
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="access"
-                                           id="access3" value="3">
+                                           id="access3" value="3" {{ $edit && $user->access == 3 ? 'checked' : '' }}>
                                     <label class="form-check-label" for="access3">
                                         دسترسی مشتری
                                     </label>
