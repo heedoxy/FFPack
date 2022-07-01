@@ -26,6 +26,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/show/{id?}', [UserController::class, 'add']);
         Route::post('add', [UserController::class, 'store']);
         Route::post('edit', [UserController::class, 'update']);
-        Route::get('remove/{id}', [UserController::class, 'remove']);
+        Route::delete('remove/{id}', [UserController::class, 'remove']);
     });
 });
