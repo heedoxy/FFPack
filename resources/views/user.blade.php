@@ -45,7 +45,7 @@
                             <div class="form-group">
                                 <label for="password">رمز عبور</label>
                                 <input type="password" class="form-control text-left" name="password" id="password"
-                                       placeholder="رمز عبور" required>
+                                       placeholder="رمز عبور" {{ $edit ? '' : 'required' }}>
                             </div>
                             <div class="form-group">
                                 <div class="form-check">
