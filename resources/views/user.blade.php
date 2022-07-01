@@ -23,6 +23,7 @@
                         <h6 class="card-title text-primary">{{ $edit ? "ویرایش کاربر" : "ثبت کاربر" }}</h6>
                         <form method="post" action="{{ $action }}">
                             @csrf
+                            <input type="hidden" name="id" value="{{ $edit ? $id : 0 }}">
                             <div class="form-group">
                                 <label for="name">نام</label>
                                 <input type="text" class="form-control text-left" name="name" id="name"
