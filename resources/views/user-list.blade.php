@@ -9,6 +9,15 @@
 
 @section('main')
     <main class="main-content">
+
+        @error('danger')
+        <p class="text-center text-danger">{{ $message }}</p>
+        @enderror
+
+        @error('success')
+        <p class="text-center text-success">{{ $message }}</p>
+        @enderror
+
         <div class="row">
             <div class="col-md-12">
                 <div class="card">

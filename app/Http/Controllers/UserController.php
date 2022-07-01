@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+
 //use Illuminate\Support\Facades\Request
 
 class UserController extends Controller
@@ -20,11 +22,13 @@ class UserController extends Controller
         return view('user');
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $user = new User();
         $user->name = $request->name;
         $user->family = $request->family;
-        $user->password = $request->password;
+        $user->phone = $request->phone;
+        $user->password = Hash::make($request->password);
         $user->access = $request->access;
         $user->save();
         return redirect('/user/list')->withErrors(['success' => 'با موفقیت ثبت شد .']);
