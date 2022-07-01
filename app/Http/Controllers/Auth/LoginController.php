@@ -29,8 +29,8 @@ class LoginController extends Controller
             // if success login
             $username = Auth::user()->name . " " . Auth::user()->family;
             $access = Auth::user()->access;
-            Session::set('username', $username);
-            Session::set('access', $access);
+            Session::put('username', $username);
+            Session::put('access', $access);
             return redirect('/');
         }
         // if failed login
