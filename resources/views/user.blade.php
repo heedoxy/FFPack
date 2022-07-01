@@ -1,7 +1,7 @@
 @php
     $menu_active = 1;
     $sub_active = 2;
-    $action = "/user/" . isset($id) ? "add" : "edit";
+    $action = "/user/" . (isset($id) ? "edit" : "add");
 @endphp
 
 @extends('layouts.master')
