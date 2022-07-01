@@ -5,15 +5,18 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
 
-    public function username() {
+    public function username()
+    {
         return 'phone';
     }
 
-    public function login_show() {
+    public function login_show()
+    {
         return view('auth.login');
     }
 
@@ -24,13 +27,18 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             // if success login
+            $username = Auth::user()->name . " " . Auth::user()->family;
+            $access = Auth::user()->access;
+            Session::set('username', $username);
+            Session::set('access', $access);
             return redirect('/');
         }
         // if failed login
         return redirect()->back()->withErrors(['danger' => 'نام کاربری و یا رمز عبور اشتباه است .']);
     }
 
-    public function logout() {
+    public function logout()
+    {
         Auth::logout();
         return redirect('/login')->withErrors(['success' => 'با موفقیت خارج شدید .']);
     }
