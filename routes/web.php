@@ -20,12 +20,15 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::get('/logout', [LoginController::class, 'logout']);
 
 Route::middleware(['auth'])->group(function () {
+
     Route::get('/', [HomeController::class, 'index']);
-    Route::prefix('user')->group(function () {
-        Route::get('list', [UserController::class, 'index']);
+
+    Route::prefix('/user')->group(function () {
+        Route::get('/list', [UserController::class, 'index']);
         Route::get('/show/{id?}', [UserController::class, 'add']);
-        Route::post('add', [UserController::class, 'store']);
-        Route::post('edit', [UserController::class, 'update']);
-        Route::delete('remove/{id}', [UserController::class, 'remove']);
+        Route::post('/add', [UserController::class, 'store']);
+        Route::post('/edit', [UserController::class, 'update']);
+        Route::delete('/remove/{id}', [UserController::class, 'remove']);
     });
+
 });
