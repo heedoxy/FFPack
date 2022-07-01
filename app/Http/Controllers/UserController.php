@@ -17,9 +17,9 @@ class UserController extends Controller
         return view('user-list', ['users' => $users]);
     }
 
-    public function add()
+    public function add($id = null)
     {
-        return view('user');
+        return view('user', ['id' => $id]);
     }
 
     public function store(Request $request)

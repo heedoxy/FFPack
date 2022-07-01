@@ -55,7 +55,7 @@
                                                     <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                    <a href="/user/{{ $user->id }}" class="dropdown-item" type="button">ویرایش</a>
+                                                    <a href="/user/show/{{ $user->id }}" class="dropdown-item" type="button">ویرایش</a>
                                                     <a class="dropdown-item text-danger" type="button">حذف</a>
                                                 </div>
                                             </div>
