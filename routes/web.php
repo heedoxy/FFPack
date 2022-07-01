@@ -24,5 +24,6 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('user')->group(function () {
         Route::get('list', [UserController::class, 'index']);
         Route::get('add', [UserController::class, 'add']);
+        Route::post('add', [UserController::class, 'store']);
     });
 });
