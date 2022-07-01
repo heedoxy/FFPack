@@ -1,7 +1,7 @@
 @php
     $menu_active = $menu_active ?? 1;
     $sub_active = $sub_active ?? 1;
-    $access = $access ?? 1;
+    $access = Auth::user()->access;
 @endphp
 
 <style>
