@@ -26,12 +26,12 @@
             </a>
         </li>
         <li data-toggle="tooltip">
-            <a href="profile" class="go-to-page" title="پروفایل">
+            <a href="/profile" class="go-to-page" title="پروفایل">
                 <i class="icon ti-user"></i>
             </a>
         </li>
         <li data-toggle="tooltip">
-            <a href="logout" class="go-to-page" title="خروج">
+            <a href="/logout" class="go-to-page" title="خروج">
                 <i class="icon ti-power-off"></i>
             </a>
         </li>
