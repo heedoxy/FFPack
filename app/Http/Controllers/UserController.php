@@ -66,4 +66,10 @@ class UserController extends Controller
         $user->save();
         return redirect('/user/list')->withErrors(['success' => 'با موفقیت ثبت شد .']);
     }
+
+    public function remove($id) {
+        $user = User::find($id);
+        $user->delete();
+        return redirect('/user/list')->withErrors(['danger' => 'با موفقیت حذف شد .']);
+    }
 }
