@@ -56,9 +56,33 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     <a href="/user/show/{{ $user->id }}" class="dropdown-item" type="button">ویرایش</a>
-                                                    <a class="dropdown-item text-danger" type="button">حذف</a>
+                                                    <button type="button" class="dropdown-item text-danger" data-toggle="modal"
+                                                            data-target=".bd-example-modal-sm">حذف</button>
                                                 </div>
                                             </div>
+
+
+                                            <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+                                                <div class="modal-dialog modal-sm">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h6 class="modal-title text-light">اخطار</h6>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="بستن">
+                                                                <i class="ti-close"></i>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body text-left">
+                                                            آیا  مورد حذف شود ؟
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+                                                            <a href="/user/remove/{{ $user->id }}" class="btn btn-primary text-light">حذف</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
                                         </td>
                                     </tr>
                                 @endforeach
