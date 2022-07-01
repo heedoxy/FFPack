@@ -21,4 +21,8 @@ Route::get('/logout', [LoginController::class, 'logout']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/', [HomeController::class, 'index']);
+    Route::prefix('user')->group(function () {
+        Route::get('add', [UserController::class, 'index']);
+        Route::get('list', [UserController::class, 'store']);
+    });
 });
