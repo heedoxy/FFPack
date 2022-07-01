@@ -43,4 +43,27 @@ class UserController extends Controller
         $user->save();
         return redirect('/user/list')->withErrors(['success' => 'با موفقیت ثبت شد .']);
     }
+
+    public function update(Request $request)
+    {
+        $id = $request->id;
+
+        $this->validate($request, [
+            'id' => 'required',
+            'name' => 'required',
+            'family' => 'required',
+            'phone' => "required|unique:users,phone,$id,id",
+            'access' => 'required',
+        ]);
+
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->family = $request->family;
+        $user->phone = $request->phone;
+        if ($request->password)
+            $user->password = Hash::make($request->password);
+        $user->access = $request->access;
+        $user->save();
+        return redirect('/user/list')->withErrors(['success' => 'با موفقیت ثبت شد .']);
+    }
 }
