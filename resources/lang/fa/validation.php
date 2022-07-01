@@ -98,6 +98,7 @@ return array(
     */
     'attributes' => array(
         "name" => "نام",
+        "family" => "نام خانوادگی",
         "username" => "نام کاربری",
         "email" => "پست الکترونیکی",
         "first_name" => "نام",
