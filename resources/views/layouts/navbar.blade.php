@@ -10,7 +10,7 @@
         <img class="small-logo" src="https://ffpack.com/wp-content/uploads/2019/07/favffpack.png" alt="image">
         <img class="dark-logo" src="https://ffpack.com/wp-content/uploads/2019/07/favffpack.png" alt="image">
         <p class="d-none d-lg-block d-md-block h4 ml-2">
-            {{ $username ?? "کاربر سیستم" }}
+            {{ Auth::user()->name . " " . Auth::user()->family }}
         </p>
     </a>
 </div>
