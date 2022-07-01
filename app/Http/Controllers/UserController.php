@@ -19,7 +19,9 @@ class UserController extends Controller
 
     public function add($id = null)
     {
-        return view('user', ['id' => $id]);
+        $user = null;
+        if ($id) $user = User::find($id);
+        return view('user', ['id' => $id, 'user' => $user]);
     }
 
     public function store(Request $request)
