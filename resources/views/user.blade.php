@@ -38,7 +38,7 @@
                                 <label for="phone">شماره همراه</label>
                                 <input type="text" class="form-control text-left" name="phone" id="phone"
                                        placeholder="شماره همراه" value="{{ $edit ? $user->phone : '' }}" required>
-                                <small id="passwordHelpBlock" class="form-text text-muted">
+                                <small class="form-text text-danger">
                                     از شماره همراه به عنوان نام کاربری استفاده میشود !
                                 </small>
                             </div>

@@ -43,7 +43,7 @@
                                 <label for="description">توضیحات</label>
                                 <textarea class="form-control text-left" name="description" id="description"
                                 >{{ $edit ? $product->description : '' }}</textarea>
-                                <small id="passwordHelpBlock" class="form-text text-muted">
+                                <small class="form-text text-warning">
                                     توضیحات محصول اختیاری میباشد !
                                 </small>
                             </div>
