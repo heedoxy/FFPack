@@ -23,6 +23,7 @@
 
         body {
             font-family: "secondary-font", serif !important;
+            padding-top: 20px;
         }
         h1, h2, h3, h4, h5, h6 {
             font-family: "secondary-font", serif !important;
@@ -39,24 +40,24 @@
         }
 
         .btn.btn-primary {
-            background: #AF2629 !important;
-            border: 1px solid #AF2629 !important;
+            background: #643e81 !important;
+            border: 1px solid #643e81 !important;
         }
 
         .login-wrap h3 {
-            color: #AF2629;
+            color: #643e81;
         }
 
         .checkbox-primary {
-            color: #AF2629;
+            color: #643e81;
         }
 
         .checkbox-primary input:checked ~ .checkmark::after {
-            color: #AF2629;
+            color: #643e81;
         }
 
         .login-wrap .icon {
-            background: #AF2629;
+            background: #643e81;
         }
 
     </style>

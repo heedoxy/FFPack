@@ -4,11 +4,11 @@
 @endphp
 
     <!-- begin::header logo -->
-<div class="header-logo">
+<div class="header-logo" style="justify-content: right;">
     <a href="/">
-        <img class="large-logo" src="https://ffpack.com/wp-content/uploads/2019/07/favffpack.png" alt="image">
-        <img class="small-logo" src="https://ffpack.com/wp-content/uploads/2019/07/favffpack.png" alt="image">
-        <img class="dark-logo" src="https://ffpack.com/wp-content/uploads/2019/07/favffpack.png" alt="image">
+        <img class="large-logo" src="/assets/image/logo.png" alt="image" style="width: 50px; margin-right: 20px">
+        <img class="small-logo" src="/assets/image/logo.png" alt="image">
+        <img class="dark-logo" src="/assets/image/logo.png" alt="image">
         <p class="d-none d-lg-block d-md-block h4 ml-2">
             {{ Auth::user()->name . " " . Auth::user()->family }}
         </p>
@@ -46,7 +46,7 @@
                 <a href="profile" class="nav-link bg-none">
                     <div>
                         <figure class="avatar avatar-state-success avatar-sm">
-                            <img style=" border-radius: 50%;" src="https://ffpack.com/wp-content/uploads/2019/07/favffpack.png" class="rounded-circle" alt="image">
+                            <img style=" border-radius: 50%;" src="assets/image/logo.png" class="rounded-circle" alt="image">
                         </figure>
                     </div>
                 </a>

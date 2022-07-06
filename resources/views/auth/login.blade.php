@@ -4,9 +4,10 @@
 
 @section('main')
     <div class="container">
+
         <div class="row justify-content-center">
-            <div class="col-md-6 text-center mb-5">
-                <img src="https://ffpack.com/wp-content/uploads/2019/07/logo-fastfood.png">
+            <div class="col-md-6 text-center mb-3">
+                <img src="assets/image/FastFoodPack.png" style="width: 200px">
             </div>
         </div>
 
@@ -24,7 +25,7 @@
                     <div class="icon d-flex align-items-center justify-content-center">
                         <span class="fa fa-user-o"></span>
                     </div>
-                    <h3 class="text-center mb-4">اطلاعات کاربری</h3>
+                    <h3 class="text-center mb-4">فست فوت پک</h3>
                     <form action="/login" method="post" class="login-form">
                         @csrf
                         <div class="form-group">
