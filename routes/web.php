@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -29,6 +30,14 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/add', [UserController::class, 'store']);
         Route::post('/edit', [UserController::class, 'update']);
         Route::delete('/remove/{id}', [UserController::class, 'remove']);
+    });
+
+    Route::prefix('/product')->group(function () {
+        Route::get('/list', [ProductController::class, 'index']);
+        Route::get('/show/{id?}', [ProductController::class, 'add']);
+        Route::post('/add', [ProductController::class, 'store']);
+        Route::post('/edit', [ProductController::class, 'update']);
+        Route::delete('/remove/{id}', [ProductController::class, 'remove']);
     });
 
 });
