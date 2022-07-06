@@ -46,7 +46,7 @@
                 <a href="profile" class="nav-link bg-none">
                     <div>
                         <figure class="avatar avatar-state-success avatar-sm">
-                            <img style=" border-radius: 50%;" src="assets/image/logo.png" class="rounded-circle" alt="image">
+                            <img style=" border-radius: 50%;" src="/assets/image/logo.png" class="rounded-circle" alt="image">
                         </figure>
                     </div>
                 </a>
