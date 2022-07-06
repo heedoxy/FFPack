@@ -45,7 +45,7 @@
         @if(in_array($access, [0, 1]))
             <li><a href="/user/show" class="{{ ($sub_active == 2) ? "active" : "" }}">ثبت کاربر</a></li>
             <li><a href="/user/list" class="{{ ($sub_active == 3) ? "active" : "" }}">لیست کاربر</a></li>
-            <li><a href="/product/list" class="{{ ($sub_active == 4) ? "active" : "" }}">ثبت کالا</a></li>
+            <li><a href="/product/show" class="{{ ($sub_active == 4) ? "active" : "" }}">ثبت کالا</a></li>
             <li><a href="/product/list" class="{{ ($sub_active == 5) ? "active" : "" }}">لیست کالا</a></li>
         @endif
     </ul>
