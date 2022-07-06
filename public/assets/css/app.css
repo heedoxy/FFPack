@@ -3141,9 +3141,6 @@
     }
 
     body.small-navigation:not(.hidden-navigation) .navigation:hover {
-        -webkit-box-shadow: 0px 0px 15px -10px black;
-        -moz-box-shadow: 0px 0px 15px -10px black;
-        box-shadow: 0px 0px 15px -10px black;
         width: 300px;
     }
 
@@ -3161,10 +3158,6 @@
 
     body.hidden-navigation .header .header-logo {
         width: 35px;
-        -webkit-box-pack: left;
-        -webkit-justify-content: left;
-        -moz-box-pack: left;
-        -ms-flex-pack: left;
         justify-content: left;
         background-color: inherit;
     }
@@ -3282,7 +3275,6 @@
     width: 40px;
     height: 40px;
     line-height: 40px;
-    display: -webkit-inline-box;
     display: -webkit-inline-flex;
     display: -moz-inline-box;
     display: -ms-inline-flexbox;
@@ -3864,7 +3856,6 @@ textarea {
 .card.purple {
     height: 120px;
     background: -webkit-linear-gradient(-250deg, #8a8ded, #9c9dc6);
-    background: -moz- oldlinear-gradient(-250deg, #8a8ded, #9c9dc6);
     background: -o-linear-gradient(-250deg, #8a8ded, #9c9dc6);
     background: linear-gradient(-200deg, #8a8ded, #9c9dc6);
 }
@@ -3872,7 +3863,6 @@ textarea {
 .card.blue {
     height: 120px;
     background: -webkit-linear-gradient(-250deg, #6bc5e7, #bcd7ff);
-    background: -moz- oldlinear-gradient(-250deg, #6bc5e7, #bcd7ff);
     background: -o-linear-gradient(-250deg, #6bc5e7, #bcd7ff);
     background: linear-gradient(-200deg, #6bc5e7, #bcd7ff);
 }
@@ -3880,7 +3870,6 @@ textarea {
 .card.green {
     height: 120px;
     background: -webkit-linear-gradient(-250deg, #77df75, #b5e7a0);
-    background: -moz- oldlinear-gradient(-250deg, #77df75, #b5e7a0);
     background: -o-linear-gradient(-250deg, #77df75, #b5e7a0);
     background: linear-gradient(-200deg, #77df75, #b5e7a0);
 }
@@ -3888,7 +3877,6 @@ textarea {
 .card.orange {
     height: 120px;
     background: -webkit-linear-gradient(-250deg, #ffc033, #ffc49d);
-    background: -moz- oldlinear-gradient(-250deg, #ffc033, #ffc49d);
     background: -o-linear-gradient(-250deg, #ffc033, #ffc49d);
     background: linear-gradient(-200deg, #ffc033, #ffc49d);
 }
@@ -3920,7 +3908,6 @@ textarea {
 
 .bg-primary-gradient {
     background: -webkit-linear-gradient(-220deg, #643e81, #808fff) !important;
-    background: -moz- oldlinear-gradient(-220deg, #643e81, #808fff) !important;
     background: -o-linear-gradient(-220deg, #643e81, #808fff) !important;
     background: linear-gradient(-230deg, #643e81, #808fff) !important;
     color: white !important;
@@ -3959,7 +3946,6 @@ textarea {
 
 .bg-info-gradient {
     background: -webkit-linear-gradient(-220deg, #000068, #7dceff) !important;
-    background: -moz- oldlinear-gradient(-220deg, #000068, #7dceff) !important;
     background: -o-linear-gradient(-220deg, #000068, #7dceff) !important;
     background: linear-gradient(-230deg, #000068, #7dceff) !important;
     color: white !important;
@@ -3998,7 +3984,6 @@ textarea {
 
 .bg-secondary-gradient {
     background: -webkit-linear-gradient(-220deg, #6a6e92, #9296ba) !important;
-    background: -moz- oldlinear-gradient(-220deg, #6a6e92, #9296ba) !important;
     background: -o-linear-gradient(-220deg, #6a6e92, #9296ba) !important;
     background: linear-gradient(-230deg, #6a6e92, #9296ba) !important;
     color: white !important;
@@ -4037,7 +4022,6 @@ textarea {
 
 .bg-success-gradient {
     background: -webkit-linear-gradient(-220deg, #0abb87, #32e3af) !important;
-    background: -moz- oldlinear-gradient(-220deg, #0abb87, #32e3af) !important;
     background: -o-linear-gradient(-220deg, #0abb87, #32e3af) !important;
     background: linear-gradient(-230deg, #0abb87, #32e3af) !important;
     color: white !important;
@@ -4076,7 +4060,6 @@ textarea {
 
 .bg-danger-gradient {
     background: -webkit-linear-gradient(-220deg, #e04b4b, #ff7373) !important;
-    background: -moz- oldlinear-gradient(-220deg, #e04b4b, #ff7373) !important;
     background: -o-linear-gradient(-220deg, #e04b4b, #ff7373) !important;
     background: linear-gradient(-230deg, #e04b4b, #ff7373) !important;
     color: white !important;
@@ -4119,7 +4102,6 @@ textarea {
 
 .bg-warning-gradient {
     background: -webkit-linear-gradient(-220deg, #643e81, #ffe04a) !important;
-    background: -moz- oldlinear-gradient(-220deg, #643e81, #ffe04a) !important;
     background: -o-linear-gradient(-220deg, #643e81, #ffe04a) !important;
     background: linear-gradient(-230deg, #643e81, #ffe04a) !important;
     color: white !important;
@@ -4162,7 +4144,6 @@ textarea {
 
 .bg-dark-gradient {
     background: -webkit-linear-gradient(-220deg, #242328, #424146) !important;
-    background: -moz- oldlinear-gradient(-220deg, #242328, #424146) !important;
     background: -o-linear-gradient(-220deg, #242328, #424146) !important;
     background: linear-gradient(-230deg, #242328, #424146) !important;
     color: white !important;
@@ -4482,7 +4463,6 @@ a.btn:focus {
 .btn {
     font-size: 14px;
     width: auto;
-    display: -webkit-inline-box;
     display: -webkit-inline-flex;
     display: -moz-inline-box;
     display: -ms-inline-flexbox;
@@ -4646,7 +4626,6 @@ a.btn:hover[href="#previous"] {
 
 .btn.btn-gradient-primary {
     background: -webkit-linear-gradient(-70deg, #808fff, #4958ce);
-    background: -moz- oldlinear-gradient(-70deg, #808fff, #4958ce);
     background: -o-linear-gradient(-70deg, #808fff, #4958ce);
     background: linear-gradient(-20deg, #808fff, #4958ce);
     border-color: transparent;
@@ -4657,7 +4636,6 @@ a.btn:hover[href="#previous"] {
 .btn.btn-gradient-primary:not(:disabled):not(.disabled):focus,
 .btn.btn-gradient-primary:not(:disabled):not(.disabled):active {
     background: -webkit-linear-gradient(-70deg, #643e81, #4958ce);
-    background: -moz- oldlinear-gradient(-70deg, #643e81, #4958ce);
     background: -o-linear-gradient(-70deg, #643e81, #4958ce);
     background: linear-gradient(-20deg, #643e81, #4958ce);
     border-color: transparent;
@@ -4778,7 +4756,6 @@ a.btn:hover[href="#previous"] {
 
 .btn.btn-gradient-secondary {
     background: -webkit-linear-gradient(-70deg, #9296ba, #5b5f83);
-    background: -moz- oldlinear-gradient(-70deg, #9296ba, #5b5f83);
     background: -o-linear-gradient(-70deg, #9296ba, #5b5f83);
     background: linear-gradient(-20deg, #9296ba, #5b5f83);
     border-color: transparent;
@@ -4789,7 +4766,6 @@ a.btn:hover[href="#previous"] {
 .btn.btn-gradient-secondary:not(:disabled):not(.disabled):focus,
 .btn.btn-gradient-secondary:not(:disabled):not(.disabled):active {
     background: -webkit-linear-gradient(-70deg, #6a6e92, #5b5f83);
-    background: -moz- oldlinear-gradient(-70deg, #6a6e92, #5b5f83);
     background: -o-linear-gradient(-70deg, #6a6e92, #5b5f83);
     background: linear-gradient(-20deg, #6a6e92, #5b5f83);
     border-color: transparent;
@@ -4910,7 +4886,6 @@ a.btn:hover[href="#previous"] {
 
 .btn.btn-gradient-success {
     background: -webkit-linear-gradient(-70deg, #32e3af, #00ac78);
-    background: -moz- oldlinear-gradient(-70deg, #32e3af, #00ac78);
     background: -o-linear-gradient(-70deg, #32e3af, #00ac78);
     background: linear-gradient(-20deg, #32e3af, #00ac78);
     border-color: transparent;
@@ -4921,7 +4896,6 @@ a.btn:hover[href="#previous"] {
 .btn.btn-gradient-success:not(:disabled):not(.disabled):focus,
 .btn.btn-gradient-success:not(:disabled):not(.disabled):active {
     background: -webkit-linear-gradient(-70deg, #0abb87, #00ac78);
-    background: -moz- oldlinear-gradient(-70deg, #0abb87, #00ac78);
     background: -o-linear-gradient(-70deg, #0abb87, #00ac78);
     background: linear-gradient(-20deg, #0abb87, #00ac78);
     border-color: transparent;
@@ -5042,7 +5016,6 @@ a.btn:hover[href="#previous"] {
 
 .btn.btn-gradient-danger {
     background: -webkit-linear-gradient(-70deg, #ff7373, #d13c3c);
-    background: -moz- oldlinear-gradient(-70deg, #ff7373, #d13c3c);
     background: -o-linear-gradient(-70deg, #ff7373, #d13c3c);
     background: linear-gradient(-20deg, #ff7373, #d13c3c);
     border-color: transparent;
@@ -5053,7 +5026,6 @@ a.btn:hover[href="#previous"] {
 .btn.btn-gradient-danger:not(:disabled):not(.disabled):focus,
 .btn.btn-gradient-danger:not(:disabled):not(.disabled):active {
     background: -webkit-linear-gradient(-70deg, #e04b4b, #d13c3c);
-    background: -moz- oldlinear-gradient(-70deg, #e04b4b, #d13c3c);
     background: -o-linear-gradient(-70deg, #e04b4b, #d13c3c);
     background: linear-gradient(-20deg, #e04b4b, #d13c3c);
     border-color: transparent;
@@ -5175,7 +5147,6 @@ a.btn:hover[href="#previous"] {
 
 .btn.btn-gradient-warning {
     background: -webkit-linear-gradient(-70deg, #ffe04a, #f0a913);
-    background: -moz- oldlinear-gradient(-70deg, #ffe04a, #f0a913);
     background: -o-linear-gradient(-70deg, #ffe04a, #f0a913);
     background: linear-gradient(-20deg, #ffe04a, #f0a913);
     border-color: transparent;
@@ -5187,7 +5158,6 @@ a.btn:hover[href="#previous"] {
 .btn.btn-gradient-warning:not(:disabled):not(.disabled):focus,
 .btn.btn-gradient-warning:not(:disabled):not(.disabled):active {
     background: -webkit-linear-gradient(-70deg, #643e81, #f0a913);
-    background: -moz- oldlinear-gradient(-70deg, #643e81, #f0a913);
     background: -o-linear-gradient(-70deg, #643e81, #f0a913);
     background: linear-gradient(-20deg, #643e81, #f0a913);
     border-color: transparent;
@@ -5315,7 +5285,6 @@ a.btn:hover[href="#previous"] {
 
 .btn.btn-gradient-info {
     background: -webkit-linear-gradient(-70deg, #7dceff, #4697dc);
-    background: -moz- oldlinear-gradient(-70deg, #7dceff, #4697dc);
     background: -o-linear-gradient(-70deg, #7dceff, #4697dc);
     background: linear-gradient(-20deg, #7dceff, #4697dc);
     border-color: transparent;
@@ -5326,7 +5295,6 @@ a.btn:hover[href="#previous"] {
 .btn.btn-gradient-info:not(:disabled):not(.disabled):focus,
 .btn.btn-gradient-info:not(:disabled):not(.disabled):active {
     background: -webkit-linear-gradient(-70deg, #000068, #4697dc);
-    background: -moz- oldlinear-gradient(-70deg, #000068, #4697dc);
     background: -o-linear-gradient(-70deg, #000068, #4697dc);
     background: linear-gradient(-20deg, #000068, #4697dc);
     border-color: transparent;
@@ -5447,7 +5415,6 @@ a.btn:hover[href="#previous"] {
 
 .btn.btn-gradient-light {
     background: -webkit-linear-gradient(-70deg, white, lightgray);
-    background: -moz- oldlinear-gradient(-70deg, white, lightgray);
     background: -o-linear-gradient(-70deg, white, lightgray);
     background: linear-gradient(-20deg, white, lightgray);
     border-color: transparent;
@@ -5459,7 +5426,6 @@ a.btn:hover[href="#previous"] {
 .btn.btn-gradient-light:not(:disabled):not(.disabled):focus,
 .btn.btn-gradient-light:not(:disabled):not(.disabled):active {
     background: -webkit-linear-gradient(-70deg, #e2e2e2, lightgray);
-    background: -moz- oldlinear-gradient(-70deg, #e2e2e2, lightgray);
     background: -o-linear-gradient(-70deg, #e2e2e2, lightgray);
     background: linear-gradient(-20deg, #e2e2e2, lightgray);
     border-color: transparent;
@@ -5557,7 +5523,6 @@ a.btn:hover[href="#previous"] {
 
 .btn.btn-gradient-dark {
     background: -webkit-linear-gradient(-70deg, #4c4b50, #151419);
-    background: -moz- oldlinear-gradient(-70deg, #4c4b50, #151419);
     background: -o-linear-gradient(-70deg, #4c4b50, #151419);
     background: linear-gradient(-20deg, #4c4b50, #151419);
     border-color: transparent;
@@ -5568,7 +5533,6 @@ a.btn:hover[href="#previous"] {
 .btn.btn-gradient-dark:not(:disabled):not(.disabled):focus,
 .btn.btn-gradient-dark:not(:disabled):not(.disabled):active {
     background: -webkit-linear-gradient(-70deg, #242328, #151419);
-    background: -moz- oldlinear-gradient(-70deg, #242328, #151419);
     background: -o-linear-gradient(-70deg, #242328, #151419);
     background: linear-gradient(-20deg, #242328, #151419);
     border-color: transparent;
@@ -6671,7 +6635,6 @@ a.btn:hover[href="#previous"] {
 
 .progress .progress-bar.progress-bar-striped {
     background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
-    background-image: -moz- oldlinear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
     background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
     background-image: linear-gradient(-45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent) !important;
     -webkit-background-size: 1rem 1rem !important;
@@ -7756,7 +7719,6 @@ figure.avatar.avatar-state-dark:before {
 }
 
 .avatar-group {
-    display: -webkit-inline-box;
     display: -webkit-inline-flex;
     display: -moz-inline-box;
     display: -ms-inline-flexbox;
@@ -8116,7 +8078,6 @@ figure.avatar.avatar-state-dark:before {
     left: 0;
     background: -webkit-gradient(linear, right top, right bottom, from(transparent), to(rgba(0, 0, 0, 0.65)));
     background: -webkit-linear-gradient(transparent, rgba(0, 0, 0, 0.65));
-    background: -moz- oldlinear-gradient(transparent, rgba(0, 0, 0, 0.65));
     background: -o-linear-gradient(transparent, rgba(0, 0, 0, 0.65));
     background: linear-gradient(transparent, rgba(0, 0, 0, 0.65));
     color: white;
@@ -8130,15 +8091,12 @@ figure.avatar.avatar-state-dark:before {
 }
 
 .chat-app-wrapper .chat-app .chat-body .chat-body-messages .message-items .message-item.message-item-media ul a:hover {
-    cursor: -webkit-zoom-in;
-    cursor: -moz-zoom-in;
     cursor: zoom-in;
 }
 
 .chat-app-wrapper .chat-app .chat-body .chat-body-messages .message-items .message-item.message-item-media ul a:hover span {
     background: -webkit-gradient(linear, right top, right bottom, from(transparent), to(rgba(0, 0, 0, 0.75)));
     background: -webkit-linear-gradient(transparent, rgba(0, 0, 0, 0.75));
-    background: -moz- oldlinear-gradient(transparent, rgba(0, 0, 0, 0.75));
     background: -o-linear-gradient(transparent, rgba(0, 0, 0, 0.75));
     background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
 }
@@ -9023,7 +8981,6 @@ body.error-page .display-1 {
 }
 
 .bootstrap-tagsinput .tag {
-    display: -webkit-inline-box;
     display: -webkit-inline-flex;
     display: -moz-inline-box;
     display: -ms-inline-flexbox;
@@ -9170,7 +9127,6 @@ body.error-page .display-1 {
 }
 
 body.form-membership {
-    background: url(/assets/image/bg.jpg) white;
     background-attachment: fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -10991,7 +10947,6 @@ body.dark .nav a.nav-link:not(.active):active {
     }
 
     .chat-app-wrapper .btn-chat-sidebar-open {
-        display: -webkit-inline-box;
         display: -webkit-inline-flex;
         display: -moz-inline-box;
         display: -ms-inline-flexbox;
@@ -11096,7 +11051,6 @@ body.dark .nav a.nav-link:not(.active):active {
         width: auto !important;
         -webkit-transform: inherit !important;
         -moz-transform: inherit !important;
-        -ms-transform: inherit !important;
         -o-transform: inherit !important;
         transform: inherit !important;
     }
@@ -12020,7 +11974,6 @@ body.dark .ui-datepicker select {
 .count-product a {
     width: 44px;
     border: 1px solid #ced4da;
-    padding: ;
     text-align: center;
     font-size: 20px;
     line-height: 1;
@@ -12361,7 +12314,6 @@ button.fkAccordion.fkActive {
     height: 64px;
     border-radius: 50%;
     border: 1px solid #ddd;
-    background-color: var(--color);
 }
 
 .colorpicker .body {
