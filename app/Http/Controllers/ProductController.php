@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -18,7 +17,7 @@ class ProductController extends Controller
     {
         $product = null;
         if ($id) $product = Product::find($id);
-        return view('user', ['id' => $id, 'product' => $product]);
+        return view('product', ['id' => $id, 'product' => $product]);
     }
 
     public function store(Request $request)
