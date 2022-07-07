@@ -28,7 +28,7 @@ class FactorTableSeeder extends Seeder
             "user" => 1,
             "factor" => 0,
             "product" => "15000",
-            "number" => "test",
+            "number" => 3,
             "price" => "15000",
             "comment" => "test",
             "status" => 0,
