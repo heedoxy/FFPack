@@ -8,4 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class FactorDetail extends Model
 {
     use HasFactory;
+    protected $table = "factor_detail";
 }
