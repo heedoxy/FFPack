@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\FactorController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -38,6 +39,14 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/add', [ProductController::class, 'store']);
         Route::post('/edit', [ProductController::class, 'update']);
         Route::delete('/remove/{id}', [ProductController::class, 'remove']);
+    });
+
+    Route::prefix('/factor')->group(function () {
+        Route::get('/list', [FactorController::class, 'index']);
+        Route::get('/show/{id?}', [FactorController::class, 'add']);
+        Route::post('/add', [FactorController::class, 'store']);
+        Route::post('/edit', [FactorController::class, 'update']);
+        Route::delete('/remove/{id}', [FactorController::class, 'remove']);
     });
 
 });
