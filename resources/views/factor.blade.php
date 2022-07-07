@@ -53,8 +53,12 @@
                                     </span>
                                         </figure>
                                         <div>
-                                            <h6 class="m-b-0 primary-font">اما واتسون</h6>
-                                            <small class="text-muted">{{ $detail->price }}</small>
+                                            <h6 class="m-b-0 primary-font">{{ $detail->name }}</h6>
+                                            <small class="text-muted">
+                                                {{ $detail->number }} عدد
+                                                |
+                                                {{ number_format($detail->price) }} تومان
+                                            </small>
                                             @php($total += $detail->price)
                                         </div>
                                         <span class="badge badge-danger ml-auto">حذف</span>
