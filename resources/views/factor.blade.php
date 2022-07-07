@@ -75,7 +75,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                @if(is_array($details) && sizeof($details)))
+                                @if($details->isNotEmpty())
                                     <div class="col-5 col-md-6 text-right mt-4">
                                         <button class="btn btn-primary" type="button"
                                                 data-toggle="modal" data-target="#submitModal">
@@ -103,7 +103,8 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="message-text" class="col-form-label">یادداشت :</label>
-                                <textarea class="form-control" id="message-text"></textarea>
+                                <textarea class="form-control"
+                                          id="message-text">{{ $edit ? $detail->comment : "" }}</textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
