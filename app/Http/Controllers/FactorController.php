@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Factor;
 use App\Models\FactorDetail;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -29,7 +30,14 @@ class FactorController extends Controller
                 ->where('factor_detail.status', '=', 0)
                 ->get();
         }
-        return view('factor', ['id' => $id, 'details' => $details]);
+
+        $products = Product::all();
+
+        return view('factor', [
+            'id' => $id,
+            'details' => $details,
+            'products' => $products
+        ]);
     }
 
     public function store(Request $request)
