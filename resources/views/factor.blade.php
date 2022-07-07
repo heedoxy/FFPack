@@ -131,10 +131,13 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form method="post" action="">
                             <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">محصول :</label>
-                                <select class="form-control">
+                                <label for="product" class="col-form-label">محصول :</label>
+                                <select class="form-control" name="product" id="product" autocomplete="off" required>
+                                    <option value="" data-price="" selected>
+                                        محصول مورد نظر را انتخاب فرمایید .
+                                    </option>
                                     @foreach ($products as $product)
                                         <option value="{{ $product->id }}" data-price="{{ $product->price }}">
                                             {{ $product->name }}
@@ -143,23 +146,31 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">قیمت :</label>
-                                <input type="text" class="form-control" id="recipient-name">
-                                </select>
+                                <label for="product-price" class="col-form-label">قیمت :</label>
+                                <input type="text" class="form-control" id="product-price" autocomplete="off"
+                                       required>
                             </div>
                             <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">تعداد :</label>
-                                <input type="text" class="form-control" id="recipient-name">
+                                <label for="product-number" class="col-form-label">تعداد :</label>
+                                <input type="text" class="form-control" id="product-number" autocomplete="off"
+                                       required>
                             </div>
                         </form>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
-                        <button type="button" class="btn btn-primary">ثبت</button>
+                        <button type="submit" class="btn btn-primary">ثبت</button>
                     </div>
                 </div>
             </div>
         </div>
 
     </main>
+
+    <script>
+        $('#product').change(function (e) {
+            $('#product-price').val($('#product').find(":selected").data('price'));
+        });
+    </script>
+
 @endsection
