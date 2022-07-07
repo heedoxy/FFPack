@@ -17,14 +17,18 @@ class FactorController extends Controller
 
     public function add($id = null)
     {
-
-        if ($id) $details = FactorDetail::where('factor', '=', $id)->get();
-        else $details = FactorDetail::where('status', '=', 0)->get();
-
-        $details = DB::table('factor_detail')
-            ->join('products', 'factor_detail.product', '=', 'products.id')
-            ->get();
-
+        if ($id) {
+            $details = DB::table('factor_detail')
+                ->join('factors', 'factor_detail.factor', '=', 'factors.id')
+                ->join('products', 'factor_detail.product', '=', 'products.id')
+                ->where('factor', '=', $id)
+                ->get();
+        } else {
+            $details = DB::table('factor_detail')
+                ->join('products', 'factor_detail.product', '=', 'products.id')
+                ->where('factor_detail.status', '=', 0)
+                ->get();
+        }
         return view('factor', ['id' => $id, 'details' => $details]);
     }
 
