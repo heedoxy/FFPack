@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Factor;
+use App\Models\FactorDetail;
 use Illuminate\Http\Request;
 
 class FactorController extends Controller
@@ -15,7 +16,9 @@ class FactorController extends Controller
 
     public function add($id = null)
     {
-        return view('factor');
+        if ($id) $details = FactorDetail::where('factor', '=', $id);
+        else $details = FactorDetail::where('status', '=', '0');
+        return view('factor', ['id' => $id, 'details' => $details]);
     }
 
     public function store(Request $request)
