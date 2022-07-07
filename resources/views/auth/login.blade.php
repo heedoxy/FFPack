@@ -7,7 +7,7 @@
 
         <div class="row justify-content-center">
             <div class="col-md-6 text-center mb-3">
-                <img src="assets/image/FastFoodPack.png" style="width: 200px">
+                <img src="assets/image/FastFoodPack.png" style="width: 150px">
             </div>
         </div>
 
