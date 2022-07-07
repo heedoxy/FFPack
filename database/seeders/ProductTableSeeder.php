@@ -14,7 +14,7 @@ class ProductTableSeeder extends Seeder
     public function run()
     {
         DB::table('products')->insert([
-            "name" => "سید هادی",
+            "name" => "محصول تست",
             "barcode" => "2020",
             "price" => "15000",
             "comment" => "test",
