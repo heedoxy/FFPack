@@ -1,7 +1,7 @@
 <?php
 
 namespace Database\Seeders;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 
 class ProductTableSeeder extends Seeder
@@ -16,7 +16,7 @@ class ProductTableSeeder extends Seeder
         DB::table('products')->insert([
             "name" => "سید هادی",
             "barcode" => "2020",
-            "prise" => "15000",
+            "price" => "15000",
             "comment" => "test",
             "created_at" => now(),
             "updated_at" => now(),
