@@ -1,6 +1,6 @@
 @php
     $menu_active = 1;
-    $sub_active = 2;
+    $sub_active = 4;
     $edit = isset($id);
     $action = "/product/" . ($edit ? "edit" : "add");
 @endphp
