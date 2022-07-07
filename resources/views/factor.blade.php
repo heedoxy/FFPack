@@ -94,7 +94,7 @@
                                 </li>
                             </ul>
                             <div class="row mt-3">
-                                <div class="col-md-4">
+                                <div class="col-7 col-md-6">
                                     <div class="d-flex align-items-center m-b-20">
                                         <div
                                             class="icon-block m-r-15 icon-block-lg icon-block-outline-warning text-warning">
@@ -106,7 +106,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-5 col-md-6 text-right mt-4">
                                     <button class="btn btn-primary" type="button"
                                             data-toggle="modal" data-target="#submitModal">
                                     <span class="spinner-border spinner-border-sm mr-2" role="status"
