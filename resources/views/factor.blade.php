@@ -135,6 +135,11 @@
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">محصول :</label>
                                 <select class="form-control">
+                                    @foreach ($products as $product)
+                                        <option value="{{ $product->id }}" data-price="{{ $product->price }}">
+                                            {{ $product->name }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="form-group">
