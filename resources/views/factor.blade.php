@@ -4,6 +4,7 @@
     $edit = isset($id);
     $action = "/factor/" . ($edit ? "edit" : "add");
     $factor = false;
+    $total = 0;
 @endphp
 
 @extends('layouts.master')
@@ -44,54 +45,21 @@
                         </div>
                         <div class="card-body pt-2">
                             <ul class="list-group list-group-flush">
-                                <li class="list-group-item d-flex align-items-center p-l-r-0">
-                                    <figure class="avatar avatar-sm m-r-15">
+                                @foreach ($details as $detail)
+                                    <li class="list-group-item d-flex align-items-center p-l-r-0">
+                                        <figure class="avatar avatar-sm m-r-15">
                                     <span class="avatar-title bg-light rounded-circle">
                                         <i class="fa fa-chevron-left"></i>
                                     </span>
-                                    </figure>
-                                    <div>
-                                        <h6 class="m-b-0 primary-font">اما واتسون</h6>
-                                        <small class="text-muted">مهندس</small>
-                                    </div>
-                                    <span class="badge badge-danger ml-auto">حذف</span>
-                                </li>
-                                <li class="list-group-item d-flex align-items-center p-l-r-0">
-                                    <figure class="avatar avatar-sm m-r-15">
-                                    <span class="avatar-title bg-light rounded-circle">
-                                        <i class="fa fa-chevron-left"></i>
-                                    </span>
-                                    </figure>
-                                    <div>
-                                        <h6 class="m-b-0 primary-font">اما واتسون</h6>
-                                        <small class="text-muted">مهندس</small>
-                                    </div>
-                                    <span class="badge badge-danger ml-auto">حذف</span>
-                                </li>
-                                <li class="list-group-item d-flex align-items-center p-l-r-0">
-                                    <figure class="avatar avatar-sm m-r-15">
-                                    <span class="avatar-title bg-light rounded-circle">
-                                        <i class="fa fa-chevron-left"></i>
-                                    </span>
-                                    </figure>
-                                    <div>
-                                        <h6 class="m-b-0 primary-font">اما واتسون</h6>
-                                        <small class="text-muted">مهندس</small>
-                                    </div>
-                                    <span class="badge badge-danger ml-auto">حذف</span>
-                                </li>
-                                <li class="list-group-item d-flex align-items-center p-l-r-0">
-                                    <figure class="avatar avatar-sm m-r-15">
-                                    <span class="avatar-title bg-light rounded-circle">
-                                        <i class="fa fa-chevron-left"></i>
-                                    </span>
-                                    </figure>
-                                    <div>
-                                        <h6 class="m-b-0 primary-font">اما واتسون</h6>
-                                        <small class="text-muted">مهندس</small>
-                                    </div>
-                                    <span class="badge badge-danger ml-auto">حذف</span>
-                                </li>
+                                        </figure>
+                                        <div>
+                                            <h6 class="m-b-0 primary-font">اما واتسون</h6>
+                                            <small class="text-muted">{{ $detail->price }}</small>
+                                            @php($total += $detail->price)
+                                        </div>
+                                        <span class="badge badge-danger ml-auto">حذف</span>
+                                    </li>
+                                @endforeach
                             </ul>
                             <div class="row mt-3">
                                 <div class="col-7 col-md-6">
@@ -102,18 +70,21 @@
                                         </div>
                                         <div>
                                             <h6 class="font-size-13 primary-font">قیمت کل</h6>
-                                            <h4 class="m-b-0 primary-font line-height-28">1,608,469 تومان</h4>
+                                            <h4 class="m-b-0 primary-font line-height-28">{{ number_format($total) }}
+                                                تومان </h4>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-5 col-md-6 text-right mt-4">
-                                    <button class="btn btn-primary" type="button"
-                                            data-toggle="modal" data-target="#submitModal">
+                                @if(is_array($details) && sizeof($details)))
+                                    <div class="col-5 col-md-6 text-right mt-4">
+                                        <button class="btn btn-primary" type="button"
+                                                data-toggle="modal" data-target="#submitModal">
                                     <span class="spinner-border spinner-border-sm mr-2" role="status"
                                           aria-hidden="true"></span>
-                                        ثبت فاکتور
-                                    </button>
-                                </div>
+                                            ثبت فاکتور
+                                        </button>
+                                    </div>
+                                @endif
                             </div>
                         </div>
                     </div>
