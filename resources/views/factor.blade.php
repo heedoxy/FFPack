@@ -3,6 +3,7 @@
     $sub_active = 2;
     $edit = isset($id);
     $action = "/factor/" . ($edit ? "edit" : "add");
+    $factor = false;
 @endphp
 
 @extends('layouts.master')

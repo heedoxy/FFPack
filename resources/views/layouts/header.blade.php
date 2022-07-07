@@ -1,4 +1,8 @@
-<!-- begin::navigation -->
+@php
+    $factor = $factor ?? true;
+@endphp
+
+    <!-- begin::navigation -->
 <div class="navigation">
     @include('layouts.sidebar')
 </div>
@@ -29,26 +33,30 @@
     <h3 class="alert alert-danger text-center">لطفا با دسکتاپ وارد شوید</h3>
 </div>
 
-<style>
-    #factor {
-        width: 50px;
-        height: 50px;
-        bottom: 10px;
-        border-radius: 1000px;
-        position: fixed;
-        left: 10px;
-        background-color: #643E81;
-        text-align: center;
-        justify-content: center;
-        padding-top: 10px;
-        cursor: pointer;
-        z-index: 1000;
-        color: white;
-    }
-</style>
+@if($factor)
 
-<a href="/factor/show">
-    <div id="factor">
-        <i class="fa fa-plus-circle"></i>
-    </div>
-</a>
+    <style>
+        #factor {
+            width: 50px;
+            height: 50px;
+            bottom: 10px;
+            border-radius: 1000px;
+            position: fixed;
+            left: 10px;
+            background-color: #643E81;
+            text-align: center;
+            justify-content: center;
+            padding-top: 10px;
+            cursor: pointer;
+            z-index: 1000;
+            color: white;
+        }
+    </style>
+
+    <a href="/factor/show">
+        <div id="factor">
+            <i class="fa fa-plus-circle"></i>
+        </div>
+    </a>
+
+@endif
