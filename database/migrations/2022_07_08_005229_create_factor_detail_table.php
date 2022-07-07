@@ -18,6 +18,7 @@ class CreateFactorDetailTable extends Migration
             $table->integer('user');
             $table->integer('factor');
             $table->integer('product');
+            $table->integer('number');
             $table->string('price', 15);
             $table->string('comment', 500);
             $table->smallInteger('status');
