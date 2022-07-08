@@ -3,7 +3,7 @@
     $sub_active = 2;
     $edit = isset($id);
     $action = "/factor/" . ($edit ? "edit" : "add");
-    $factor = false;
+    $factorBTN = false;
     $total = 0;
 @endphp
 
@@ -157,7 +157,7 @@
                             <div class="form-group">
                                 <label for="message-text" class="col-form-label">یادداشت :</label>
                                 <textarea class="form-control" name="comment"
-                                          id="message-text">{{ $edit ? $detail->comment : "" }}</textarea>
+                                          id="message-text">{{ $edit ? $factor->comment : "" }}</textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
