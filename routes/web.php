@@ -50,11 +50,12 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/edit', [FactorController::class, 'update']);
         Route::delete('/remove/{id}', [FactorController::class, 'remove']);
 
-        // MessageController
-        Route::get('/message/{id}', [MessageController::class, 'list']);
-
         Route::delete('/detail/remove/{id}', [FactorController::class, 'remove_detail']);
         Route::post('/detail/add', [FactorController::class, 'store_detail']);
+
+        // MessageController
+        Route::get('/message/{id}', [MessageController::class, 'list']);
+        Route::post('/add', [MessageController::class, 'send']);
 
     });
 
