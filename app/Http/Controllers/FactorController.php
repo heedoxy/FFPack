@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Factor;
 use App\Models\FactorDetail;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class FactorController extends Controller
@@ -18,6 +20,9 @@ class FactorController extends Controller
 
     public function add($id = null)
     {
+
+        $user = Auth::id();
+
         if ($id) {
             $details = DB::table('factor_detail')
                 ->join('factors', 'factor_detail.factor', '=', 'factors.id')
@@ -26,17 +31,21 @@ class FactorController extends Controller
                 ->get();
         } else {
             $details = DB::table('factor_detail')
+                ->select('*','factor_detail.id as id')
                 ->join('products', 'factor_detail.product', '=', 'products.id')
+                ->where('factor_detail.user', '=', $user)
                 ->where('factor_detail.status', '=', 0)
                 ->get();
         }
 
         $products = Product::all();
+        $users = User::all()->where('access', '=', 3);
 
         return view('factor', [
             'id' => $id,
             'details' => $details,
-            'products' => $products
+            'products' => $products,
+            'users' => $users
         ]);
     }
 
@@ -55,6 +64,7 @@ class FactorController extends Controller
         ]);
 
         $detali = new FactorDetail();
+        $detali->user = Auth::id();
         $detali->factor = $request->factor;
         $detali->product = $request->product;
         $detali->price = $request->price;
@@ -76,7 +86,7 @@ class FactorController extends Controller
 
     public function remove_detail($id)
     {
-        $detail = FactorDetail::find($id);
+        $detail = FactorDetail::findOrFail($id);
         $detail->delete();
         return redirect('/factor/show')->withErrors(['danger' => 'با موفقیت حذف شد .']);
     }
