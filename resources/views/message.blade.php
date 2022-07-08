@@ -75,7 +75,7 @@
                                     <div class="message-item {{ $me ? ' text-left' : 'outgoing-message  text-right' }}">
                                         {{ $message->content }}
                                         <small class="message-item-date text-muted">
-                                            {{ $message->created_at->format('Y-m-d') }}
+                                            {{ (new \Hekmatinasser\Verta\Verta($message->created_at))->format('Y-n-j') }}
                                         </small>
                                     </div>
                                 @endif
@@ -106,4 +106,13 @@
             </div>
         </div>
     </main>
+
+    <script>
+        $(document).ready(function () {
+            let elem = document.querySelector(".chat-body-messages");
+            elem.scrollTop = elem.scrollHeight;
+        });
+    </script>
+    
 @endsection
+
