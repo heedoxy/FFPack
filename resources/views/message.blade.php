@@ -73,7 +73,7 @@
                     </div>
 
                     <div class="chat-body-footer">
-                        <form method="post" action="/factor/message/send/text" class="d-flex align-items-center">
+                        <form method="post" action="/factor/message/text" class="d-flex align-items-center">
                             @csrf
                             <input type="hidden" name="factor" value="{{ $factor }}">
                             <input type="text" name="text" class="form-control" placeholder="پیام ...">
