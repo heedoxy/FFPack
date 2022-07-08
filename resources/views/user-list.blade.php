@@ -1,6 +1,7 @@
 @php
     $menu_active = 1;
     $sub_active = 7;
+    $counter = 1;
 @endphp
 
 @extends('layouts.master')
@@ -35,7 +36,7 @@
                                 <tbody>
                                 @foreach ($users as $user)
                                     <tr>
-                                        <th scope="row">1</th>
+                                        <th scope="row">{{ $counter++ }}</th>
                                         <td>{{ $user->name . " " . $user->family }}</td>
                                         <td>
                                             @if($user->access == 0)
