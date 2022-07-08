@@ -57,6 +57,8 @@
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     <a href="/factor/show/{{ $factor->id }}" class="dropdown-item"
                                                        type="button">ویرایش</a>
+                                                    <a href="/factor/message/{{ $factor->id }}" class="dropdown-item"
+                                                       type="button">پیام ها</a>
                                                     <button type="button" class="dropdown-item text-danger"
                                                             data-toggle="modal"
                                                             data-target=".bd-example-modal-sm">حذف

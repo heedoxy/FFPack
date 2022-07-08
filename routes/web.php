@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FactorController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -48,6 +49,9 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/add', [FactorController::class, 'store']);
         Route::post('/edit', [FactorController::class, 'update']);
         Route::delete('/remove/{id}', [FactorController::class, 'remove']);
+
+        // MessageController
+        Route::get('/message/{id}', [MessageController::class, 'list']);
 
         Route::delete('/detail/remove/{id}', [FactorController::class, 'remove_detail']);
         Route::post('/detail/add', [FactorController::class, 'store_detail']);
