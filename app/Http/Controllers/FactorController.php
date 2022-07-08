@@ -30,7 +30,7 @@ class FactorController extends Controller
         if ($id) {
 
             $details = DB::table('factor_detail')
-                ->select('*', 'factor_detail.id as id')
+                ->select('*', 'factor_detail.id as id', 'factor_detail.price as price')
                 ->join('factors', 'factor_detail.factor', '=', 'factors.id')
                 ->join('products', 'factor_detail.product', '=', 'products.id')
                 ->where('factor', '=', $id)
@@ -40,7 +40,7 @@ class FactorController extends Controller
 
         } else {
             $details = DB::table('factor_detail')
-                ->select('*', 'factor_detail.id as id')
+                ->select('*', 'factor_detail.id as id', 'factor_detail.price as price')
                 ->join('products', 'factor_detail.product', '=', 'products.id')
                 ->where('factor_detail.user', '=', $user)
                 ->where('factor_detail.status', '=', 0)
