@@ -8,6 +8,13 @@
 @section('title', 'لیست فاکتور ها')
 
 @section('main')
+
+    <style>
+        td {
+            font-size: 14px !important;
+        }
+    </style>
+
     <main class="main-content">
 
         @error('danger')
@@ -28,7 +35,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">کد</th>
-                                    <th scope="col">قیمت</th>
+                                    <th scope="col">قیمت (تومان)</th>
                                     <th scope="col">کاربر</th>
                                     <th class="text-right" scope="col">مدیریت</th>
                                 </tr>
@@ -37,9 +44,9 @@
                                 @foreach ($factors as $factor)
                                     <tr>
                                         <th scope="row">1</th>
-                                        <td>{{ $factor->code }}</td>
-                                        <td>{{ number_format($factor->price) }}</td>
-                                        <td>{{ $factor->name . " " . $factor->family }}</td>
+                                        <td class="text-right">{{ $factor->code }}</td>
+                                        <td class="text-center">{{ number_format($factor->price) }}</td>
+                                        <td class="text-center">{{ $factor->name . " " . $factor->family }}</td>
                                         <td class="text-right">
                                             <div class="dropdown">
                                                 <a href="#" class="btn btn-light btn-floating btn-icon btn-sm"
