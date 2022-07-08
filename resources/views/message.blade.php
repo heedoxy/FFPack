@@ -31,8 +31,11 @@
                             <h6 class="mb-1 primary-font line-height-18">صورتحساب</h6>
                         </div>
                         <div class="ml-auto d-flex">
-                            <button type="button" class="ml-2 btn btn-sm btn-success btn-floating" id="down">
+                            <button type="button" class="mx-2 btn btn-sm btn-primary btn-floating" id="down">
                                 <i class="fa fa-arrow-circle-down"></i>
+                            </button>
+                            <button type="button" class="ml-2 btn btn-sm btn-danger btn-floating" id="refresh">
+                                <i class="fa fa-refresh"></i>
                             </button>
                         </div>
                     </div>
@@ -47,6 +50,7 @@
                                     $user_id = \Illuminate\Support\Facades\Auth::id();
                                     if ($user_access != 1 && $user_id == $message->user) $me = true;
                                     elseif ($user_access == 1 && $message->user == 0) $me = true;
+                                    elseif ($user_access == 0 && $message->user == 0) $me = true;
                                 @endphp
 
                                 @if($message->file)
@@ -113,13 +117,21 @@
     </main>
 
     <script>
+
         let elem = document.querySelector(".chat-body-messages");
+
         $(document).ready(function () {
             elem.scrollTop = elem.scrollHeight;
         });
+
         $("#down").click(function () {
             elem.scrollTop = elem.scrollHeight;
         });
+
+        $("#refresh").click(function () {
+            location.reload();
+        });
+
     </script>
 
 @endsection
