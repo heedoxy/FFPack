@@ -1,5 +1,5 @@
 @php
-    $factor = $factor ?? true;
+    $factorBTN = $factorBTN ?? true;
 @endphp
 
     <!-- begin::navigation -->
@@ -33,7 +33,7 @@
     <h3 class="alert alert-danger text-center">لطفا با دسکتاپ وارد شوید</h3>
 </div>
 
-@if($factor)
+@if($factorBTN)
 
     <style>
         #factor {
