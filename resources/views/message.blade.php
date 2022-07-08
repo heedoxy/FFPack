@@ -34,7 +34,7 @@
                             <button type="button" class="mx-2 btn btn-sm btn-primary btn-floating" id="down">
                                 <i class="fa fa-arrow-circle-down"></i>
                             </button>
-                            <button type="button" class="ml-2 btn btn-sm btn-danger btn-floating" id="refresh">
+                            <button type="button" class="ml-2 btn btn-sm btn-danger btn-floating refresh">
                                 <i class="fa fa-refresh"></i>
                             </button>
                         </div>
@@ -54,27 +54,13 @@
                                 @endphp
 
                                 @if($message->file)
-                                    <div class="message-item message-item-media">
+                                    <div class="message-item message-item-media {{ $me ? ' text-left' : 'outgoing-message  text-right' }}">
                                         <div class="m-b-0 text-muted text-left">
-                                            <a href="#"
+                                            <a href="/uploads/{{ $message->content }}" download
                                                class="btn btn-outline-light text-left align-items-center justify-content-center">
                                                 <i class="fa fa-download font-size-18 m-r-10"></i>
                                                 <div class="small">
-                                                    <div class="mb-2">example test.txt</div>
-                                                    <div dir="ltr">10 KB</div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <small class="message-item-date text-muted">22.30</small>
-                                    </div>
-                                    <div class="message-item outgoing-message message-item-media">
-                                        <div class="m-b-0 text-muted text-left media-file">
-                                            <a href="#"
-                                               class="btn btn-outline-light text-left align-items-center justify-content-center">
-                                                <i class="fa fa-download font-size-18 m-r-10"></i>
-                                                <div class="small">
-                                                    <div class="mb-2">example file.txt</div>
-                                                    <div class="font-size-13" dir="ltr">5 KB</div>
+                                                    <div class="mb-2">{{ $message->content }}</div>
                                                 </div>
                                             </a>
                                         </div>
@@ -102,13 +88,41 @@
                                     <i class="fa fa-send"></i>
                                 </button>
                                 <div class="dropup">
-                                    <button type="button" data-toggle="dropdown"
-                                            class="ml-3 btn btn-success btn-floating">
+                                    <button type="button"
+                                            class="ml-3 btn btn-success btn-floating"
+                                            data-toggle="modal" data-target="#fileModal">
                                         <i class="fa fa-plus"></i>
                                     </button>
                                 </div>
                             </div>
                         </form>
+                    </div>
+
+                    <div class="modal fade" id="fileModal" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+
+                                    <input type="hidden" name="factor" value="{{ $factor }}">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title text-light">ارسال فایل</h5>
+                                        <button type="button" class="close refresh" data-dismiss="modal" aria-label="بستن">
+                                            <i class="ti-close"></i>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form method="post" action="/factor/message/file" enctype="multipart/form-data"
+                                              class="dropzone" id="dropzone">
+                                            @csrf
+                                            <input type="hidden" name="factor" value="{{ $factor }}">
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary refresh" data-dismiss="modal">بستن
+                                        </button>
+                                        <button type="submit" class="btn btn-primary refresh">ثبت</button>
+                                    </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -128,10 +142,14 @@
             elem.scrollTop = elem.scrollHeight;
         });
 
-        $("#refresh").click(function () {
+        $(".refresh").click(function () {
             location.reload();
         });
 
     </script>
+
+    <!-- Dropzone -->
+    <script src="/assets/vendors/dropzone/dropzone.js"></script>
+    <script src="/assets/js/examples/dropzone.js"></script>
 
 @endsection
