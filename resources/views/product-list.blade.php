@@ -1,6 +1,7 @@
 @php
     $menu_active = 1;
     $sub_active = 5;
+    $counter = 1;
 @endphp
 
 @extends('layouts.master')
@@ -36,7 +37,7 @@
                                 <tbody>
                                 @foreach ($products as $product)
                                     <tr>
-                                        <th scope="row">1</th>
+                                        <th scope="row">{{ $counter++ }}</th>
                                         <td>{{ $product->name }}</td>
                                         <td>{{ $product->barcode }}</td>
                                         <td>{{ number_format($product->price) }}</td>
