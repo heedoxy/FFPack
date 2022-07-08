@@ -14,7 +14,9 @@ class FactorController extends Controller
 {
     public function index()
     {
-        $factors = Factor::all();
+        $factors = DB::table('factors')
+            ->join('users', 'factors.user', '=', 'users.id')
+            ->get();
         return view('factor-list', ['factors' => $factors]);
     }
 
@@ -73,7 +75,7 @@ class FactorController extends Controller
                 'factor' => $id,
                 'status' => 1
             ]);
-        
+
         return redirect('/factor/list')->withErrors(['success' => 'با موفقیت ثبت شد .']);
     }
 
