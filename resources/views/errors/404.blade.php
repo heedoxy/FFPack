@@ -1,18 +1,27 @@
+@php
+    $factorBTN = false;
+@endphp
 
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>فست فوت پک</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-</head>
-<body>
-<div class="container mt-5 pt-5">
-    <div class="alert alert-danger text-center">
-        <h2 class="display-3">404</h2>
-        <p class="display-5">اوپس ! صفحه مورد نظر پیدا نشد</p>
-    </div>
-</div>
-</body>
-</html>
+@extends('layouts.master')
+
+@section('title', 'پیدا نشد !')
+
+@section('main')
+    <main class="main-content">
+        <div class="error-page">
+            <div class="text-center">
+                <div class="row mb-5">
+                    <div class="col-10 offset-1 col-sm-8 offset-sm-2 col-md-6 offset-md-3">
+                        <img src="/assets/image/404.png" class="img-fluid" alt="image" style="width: 80%">
+                    </div>
+                </div>
+                <h1 class="mb-3 font-weight-bold">این صفحه یافت نشد :(</h1>
+                <div class="row">
+                    <div class="col-md-4 offset-md-4">
+                        <a href="/" class="btn btn-outline-behance">بازگشت به خانه</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+@endsection

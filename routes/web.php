@@ -18,6 +18,11 @@ use App\Http\Controllers\Auth\LoginController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::fallback(function(){
+    return view('errors.404');
+});
+
 Route::get('/login', [LoginController::class, 'login_show']);
 Route::post('/login', [LoginController::class, 'login']);
 Route::get('/logout', [LoginController::class, 'logout']);
