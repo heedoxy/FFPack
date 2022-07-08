@@ -75,7 +75,7 @@
                                     <div class="message-item {{ $me ? ' text-left' : 'outgoing-message  text-right' }}">
                                         {{ $message->content }}
                                         <small class="message-item-date text-muted">
-                                            {{ $message->created_at }}
+                                            {{ $message->created_at->format('Y-m-d') }}
                                         </small>
                                     </div>
                                 @endif
