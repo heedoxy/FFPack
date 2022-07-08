@@ -19,7 +19,6 @@
             @endforeach
         @endif
 
-        <form>
             <div class="row">
                 <div class="col-md-6">
                     <div class="card">
@@ -61,8 +60,39 @@
                                             </small>
                                             @php($total += $detail->price)
                                         </div>
-                                        <span class="badge badge-danger ml-auto">حذف</span>
+                                        <button type="button" class="btn btn-sm btn-danger ml-auto" data-toggle="modal"
+                                                data-target="#remove-detail-{{ $detail->id }}">حذف</button>
                                     </li>
+
+                                    <div class="modal fade" tabindex="-1" role="dialog"
+                                         aria-hidden="true" id="remove-detail-{{ $detail->id }}">
+                                        <div class="modal-dialog modal-sm">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h6 class="modal-title text-light">اخطار</h6>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="بستن">
+                                                        <i class="ti-close"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body text-left">
+                                                    آیا مورد حذف شود ؟
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <form method="post" action="/factor/detail/remove/{{ $detail->id }}">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                        <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">بستن
+                                                        </button>
+                                                        <button type="submit"
+                                                                class="btn btn-primary text-light">حذف</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 @endforeach
                             </ul>
                             <div class="row mt-3">
@@ -119,7 +149,6 @@
                 </div>
             </div>
 
-        </form>
 
         <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -131,7 +160,9 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <form method="post" action="">
+                        <form method="post" action="/factor/add">
+                            @csrf
+                            <input type="hidden" name="id" value="{{ $edit ? $id : 0 }}">
                             <div class="form-group">
                                 <label for="product" class="col-form-label">محصول :</label>
                                 <select class="form-control" name="product" id="product" autocomplete="off" required>

@@ -42,11 +42,15 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::prefix('/factor')->group(function () {
+
         Route::get('/list', [FactorController::class, 'index']);
         Route::get('/show/{id?}', [FactorController::class, 'add']);
         Route::post('/add', [FactorController::class, 'store']);
         Route::post('/edit', [FactorController::class, 'update']);
         Route::delete('/remove/{id}', [FactorController::class, 'remove']);
+
+        Route::delete('/detail/remove/{id}', [FactorController::class, 'remove_detail']);
+        
     });
 
 });

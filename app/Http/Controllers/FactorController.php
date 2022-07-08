@@ -54,4 +54,12 @@ class FactorController extends Controller
     {
 
     }
+
+    public function remove_detail($id)
+    {
+        $detail = FactorDetail::find($id);
+        $detail->delete();
+        return redirect('/factor/show')->withErrors(['danger' => 'با موفقیت حذف شد .']);
+    }
+
 }
