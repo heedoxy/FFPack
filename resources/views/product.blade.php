@@ -36,7 +36,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="price">قیمت محصول</label>
-                                <input type="text" class="form-control text-left" name="phone" id="price"
+                                <input type="text" class="form-control text-left" name="price" id="price"
                                        value="{{ $edit ? $product->price : '' }}" required>
                             </div>
                             <div class="form-group">
