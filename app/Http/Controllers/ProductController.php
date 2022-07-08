@@ -32,7 +32,7 @@ class ProductController extends Controller
         $product->name = $request->name;
         $product->barcode = $request->barcode;
         $product->price = $request->price;
-        $product->description = $request->description;
+        $product->comment = $request->description;
         $product->save();
         return redirect('/product/list')->withErrors(['success' => 'با موفقیت ثبت شد .']);
     }
