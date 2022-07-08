@@ -38,8 +38,8 @@
                                     <tr>
                                         <th scope="row">1</th>
                                         <td>{{ $factor->code }}</td>
-                                        <td>{{ $factor->code }}</td>
                                         <td>{{ number_format($factor->price) }}</td>
+                                        <td>{{ $factor->name . " " . $factor->family }}</td>
                                         <td class="text-right">
                                             <div class="dropdown">
                                                 <a href="#" class="btn btn-light btn-floating btn-icon btn-sm"
