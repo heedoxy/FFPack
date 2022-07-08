@@ -30,6 +30,11 @@
                         <div>
                             <h6 class="mb-1 primary-font line-height-18">صورتحساب</h6>
                         </div>
+                        <div class="ml-auto d-flex">
+                            <button type="button" class="ml-2 btn btn-sm btn-success btn-floating" id="down">
+                                <i class="fa fa-arrow-circle-down"></i>
+                            </button>
+                        </div>
                     </div>
 
                     <div class="chat-body-messages">
@@ -108,11 +113,13 @@
     </main>
 
     <script>
+        let elem = document.querySelector(".chat-body-messages");
         $(document).ready(function () {
-            let elem = document.querySelector(".chat-body-messages");
+            elem.scrollTop = elem.scrollHeight;
+        });
+        $("#down").click(function () {
             elem.scrollTop = elem.scrollHeight;
         });
     </script>
-    
-@endsection
 
+@endsection
