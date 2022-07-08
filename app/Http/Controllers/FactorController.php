@@ -15,6 +15,7 @@ class FactorController extends Controller
     public function index()
     {
         $factors = DB::table('factors')
+            ->select('*', 'factors.id as id')
             ->join('users', 'factors.user', '=', 'users.id')
             ->get();
         return view('factor-list', ['factors' => $factors]);
