@@ -115,7 +115,20 @@ class FactorController extends Controller
 
     public function update(Request $request)
     {
+        $id = $request->id;
 
+        $this->validate($request, [
+            'id' => 'required',
+            'user' => 'required',
+            'total' => 'required',
+            'comment' => 'required',
+        ]);
+
+        $factor = Factor::find($id);
+        $factor->price = $request->total;
+        $factor->comment = $request->comment;
+        $factor->save();
+        return redirect('/factor/list')->withErrors(['success' => 'با موفقیت ثبت شد .']);
     }
 
     public function remove($id)
