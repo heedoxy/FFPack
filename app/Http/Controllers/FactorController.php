@@ -119,7 +119,6 @@ class FactorController extends Controller
 
         $this->validate($request, [
             'id' => 'required',
-            'user' => 'required',
             'total' => 'required',
             'comment' => 'required',
         ]);
