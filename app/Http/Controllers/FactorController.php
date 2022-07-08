@@ -31,7 +31,7 @@ class FactorController extends Controller
                 ->get();
         } else {
             $details = DB::table('factor_detail')
-                ->select('*','factor_detail.id as id')
+                ->select('*', 'factor_detail.id as id')
                 ->join('products', 'factor_detail.product', '=', 'products.id')
                 ->where('factor_detail.user', '=', $user)
                 ->where('factor_detail.status', '=', 0)
@@ -51,7 +51,30 @@ class FactorController extends Controller
 
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'user' => 'required',
+            'total' => 'required',
+            'comment' => 'required',
+        ]);
 
+        $factor = new Factor();
+        $factor->code = "FFP-" . rand(1000, 9999);
+        $factor->staff = Auth::id();
+        $factor->user = $request->user;
+        $factor->price = $request->total;
+        $factor->comment = $request->comment;
+        $factor->status = 1;
+        $factor->save();
+
+        $id = $factor->id;
+        $detail = FactorDetail::where('user', '=', Auth::id())
+            ->where('status', '=', 0)
+            ->update([
+                'factor' => $id,
+                'status' => 1
+            ]);
+        
+        return redirect('/factor/list')->withErrors(['success' => 'با موفقیت ثبت شد .']);
     }
 
     public function store_detail(Request $request)
@@ -63,14 +86,14 @@ class FactorController extends Controller
             'number' => 'required',
         ]);
 
-        $detali = new FactorDetail();
-        $detali->user = Auth::id();
-        $detali->factor = $request->factor;
-        $detali->product = $request->product;
-        $detali->price = $request->price;
-        $detali->number = $request->number;
-        $detali->status = 0;
-        $detali->save();
+        $detail = new FactorDetail();
+        $detail->user = Auth::id();
+        $detail->factor = $request->factor;
+        $detail->product = $request->product;
+        $detail->price = $request->price;
+        $detail->number = $request->number;
+        $detail->status = 0;
+        $detail->save();
         return redirect('/factor/show')->withErrors(['success' => 'با موفقیت ثبت شد .']);
     }
 
