@@ -30,6 +30,7 @@ class FactorController extends Controller
         if ($id) {
 
             $details = DB::table('factor_detail')
+                ->select('*', 'factor_detail.id as id')
                 ->join('factors', 'factor_detail.factor', '=', 'factors.id')
                 ->join('products', 'factor_detail.product', '=', 'products.id')
                 ->where('factor', '=', $id)
@@ -95,15 +96,21 @@ class FactorController extends Controller
             'number' => 'required',
         ]);
 
+        $factor = $request->factor;
+
         $detail = new FactorDetail();
         $detail->user = Auth::id();
-        $detail->factor = $request->factor;
+        $detail->factor = $factor;
         $detail->product = $request->product;
         $detail->price = $request->price;
         $detail->number = $request->number;
         $detail->status = 0;
         $detail->save();
-        return redirect('/factor/show')->withErrors(['success' => 'با موفقیت ثبت شد .']);
+
+        if ($factor)
+            return redirect("/factor/show/$factor")->withErrors(['success' => 'با موفقیت ثبت شد .']);
+        else
+            return redirect('/factor/show')->withErrors(['success' => 'با موفقیت ثبت شد .']);
     }
 
     public function update(Request $request)
@@ -119,8 +126,12 @@ class FactorController extends Controller
     public function remove_detail($id)
     {
         $detail = FactorDetail::findOrFail($id);
+        $factor = $detail->factor;
         $detail->delete();
-        return redirect('/factor/show')->withErrors(['danger' => 'با موفقیت حذف شد .']);
+        if ($factor)
+            return redirect("/factor/show/$factor")->withErrors(['danger' => 'با موفقیت حذف شد .']);
+        else
+            return redirect('/factor/show')->withErrors(['danger' => 'با موفقیت حذف شد .']);
     }
 
 }
