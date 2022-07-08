@@ -25,6 +25,7 @@ class FactorTableSeeder extends Seeder
         ]);
 
         DB::table('factor_detail')->insert([
+            "user" => 1,
             "factor" => 0,
             "product" => "1",
             "number" => 3,

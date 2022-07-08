@@ -15,6 +15,7 @@ class CreateFactorDetailTable extends Migration
     {
         Schema::create('factor_detail', function (Blueprint $table) {
             $table->id();
+            $table->integer('user');
             $table->integer('factor');
             $table->integer('product');
             $table->integer('number');
