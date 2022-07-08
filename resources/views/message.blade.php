@@ -73,8 +73,10 @@
                     </div>
 
                     <div class="chat-body-footer">
-                        <form class="d-flex align-items-center">
-                            <input type="text" class="form-control" placeholder="پیام ...">
+                        <form method="post" action="/factor/message/send/text" class="d-flex align-items-center">
+                            @csrf
+                            <input type="hidden" name="factor" value="{{ $factor }}">
+                            <input type="text" name="text" class="form-control" placeholder="پیام ...">
                             <div class="d-flex">
                                 <button type="button" class="ml-3 btn btn-primary btn-floating">
                                     <i class="fa fa-send"></i>
@@ -84,22 +86,6 @@
                                             class="ml-3 btn btn-success btn-floating">
                                         <i class="fa fa-plus"></i>
                                     </button>
-                                    <div class="dropdown-menu dropdown-menu-right">
-                                        <div class="dropdown-menu-body">
-                                            <ul>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        <i class="icon fa fa-picture-o"></i> تصویر
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a class="dropdown-item" href="#">
-                                                        <i class="icon fa fa-video-camera"></i> ویدئو
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </form>
