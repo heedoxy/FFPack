@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
@@ -27,6 +28,7 @@ class MessageController extends Controller
         $message = new Message();
         $message->factor = $factor;
         $message->user = 0;
+        if (Auth::user()->access == 3) $message->user = Auth::id();
         $message->file = 0;
         $message->content = $request->text;
         $message->view = 0;
