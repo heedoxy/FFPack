@@ -45,6 +45,25 @@ class FactorController extends Controller
 
     }
 
+    public function store_detail(Request $request)
+    {
+        $this->validate($request, [
+            'factor' => 'required',
+            'product' => 'required',
+            'price' => 'required',
+            'number' => 'required',
+        ]);
+
+        $detali = new FactorDetail();
+        $detali->factor = $request->factor;
+        $detali->product = $request->product;
+        $detali->price = $request->price;
+        $detali->number = $request->number;
+        $detali->status = 0;
+        $detali->save();
+        return redirect('/factor/show')->withErrors(['success' => 'با موفقیت ثبت شد .']);
+    }
+
     public function update(Request $request)
     {
 

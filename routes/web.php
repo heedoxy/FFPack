@@ -50,7 +50,8 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/remove/{id}', [FactorController::class, 'remove']);
 
         Route::delete('/detail/remove/{id}', [FactorController::class, 'remove_detail']);
-        
+        Route::post('/detail/add', [FactorController::class, 'store_detail']);
+
     });
 
 });
