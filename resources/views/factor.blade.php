@@ -143,12 +143,14 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="user" class="col-form-label">مشتری :</label>
-                                <select class="form-control" name="user" id="user" autocomplete="off" required>
+                                <select class="form-control" name="user" id="user" autocomplete="off" required
+                                    {{ $edit ? 'disabled' : '' }}>
                                     <option value="" data-price="" selected>
                                         مشتری مورد نظر را انتخاب فرمایید .
                                     </option>
                                     @foreach ($users as $user)
-                                        <option value="{{ $user->id }}">
+                                        <option value="{{ $user->id }}"
+                                            {{ $edit && $factor->user == $user->id ? 'selected' : '' }}>
                                             {{ $user->name . " " . $user->family }}
                                         </option>
                                     @endforeach
