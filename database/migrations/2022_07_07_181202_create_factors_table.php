@@ -19,7 +19,7 @@ class CreateFactorsTable extends Migration
             $table->integer('staff');
             $table->integer('user');
             $table->string('price', 15);
-            $table->string('comment', 500);
+            $table->string('comment', 500)->nullable();
             $table->smallInteger('status');
             $table->timestamps();
         });
