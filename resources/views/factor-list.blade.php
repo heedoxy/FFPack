@@ -1,6 +1,7 @@
 @php
     $menu_active = 1;
     $sub_active = 3;
+    $counter = 1;
 @endphp
 
 @extends('layouts.master')
@@ -34,16 +35,16 @@
                                 <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">کد</th>
-                                    <th scope="col">قیمت (تومان)</th>
-                                    <th scope="col">کاربر</th>
+                                    <th class="text-right" scope="col">کد</th>
+                                    <th class="text-center" scope="col">قیمت (تومان)</th>
+                                    <th class="text-center" scope="col">کاربر</th>
                                     <th class="text-right" scope="col">مدیریت</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 @foreach ($factors as $factor)
                                     <tr>
-                                        <th scope="row">1</th>
+                                        <th scope="row">{{ $counter++ }}</th>
                                         <td class="text-right">{{ $factor->code }}</td>
                                         <td class="text-center">{{ number_format($factor->price) }}</td>
                                         <td class="text-center">{{ $factor->name . " " . $factor->family }}</td>
