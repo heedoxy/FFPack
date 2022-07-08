@@ -23,14 +23,19 @@ class FactorController extends Controller
     public function add($id = null)
     {
 
+        $factor = null;
         $user = Auth::id();
 
         if ($id) {
+
             $details = DB::table('factor_detail')
                 ->join('factors', 'factor_detail.factor', '=', 'factors.id')
                 ->join('products', 'factor_detail.product', '=', 'products.id')
                 ->where('factor', '=', $id)
                 ->get();
+
+            $factor = Factor::find($id);
+
         } else {
             $details = DB::table('factor_detail')
                 ->select('*', 'factor_detail.id as id')
@@ -45,6 +50,7 @@ class FactorController extends Controller
 
         return view('factor', [
             'id' => $id,
+            'factor' => $factor,
             'details' => $details,
             'products' => $products,
             'users' => $users
