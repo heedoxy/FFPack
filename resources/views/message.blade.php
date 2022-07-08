@@ -34,41 +34,52 @@
 
                     <div class="chat-body-messages">
                         <div class="message-items">
-                            <div class="message-item">
-                                لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک
-                                است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم
-                                <small class="message-item-date text-muted">22.30</small>
-                            </div>
-                            <div class="message-item message-item-media">
-                                <div class="m-b-0 text-muted text-left">
-                                    <a href="#"
-                                       class="btn btn-outline-light text-left align-items-center justify-content-center">
-                                        <i class="fa fa-download font-size-18 m-r-10"></i>
-                                        <div class="small">
-                                            <div class="mb-2">example test.txt</div>
-                                            <div dir="ltr">10 KB</div>
+                            @foreach ($messages as $message)
+
+                                @php
+                                    $me = false;
+                                    $user_access = \Illuminate\Support\Facades\Auth::user()->access;
+                                    $user_id = \Illuminate\Support\Facades\Auth::id();
+                                    if ($user_access != 1 && $user_id == $message->user) $me = true;
+                                    elseif ($user_access == 1 && $message->user == 0) $me = true;
+                                @endphp
+
+                                @if($message->file)
+                                    <div class="message-item message-item-media">
+                                        <div class="m-b-0 text-muted text-left">
+                                            <a href="#"
+                                               class="btn btn-outline-light text-left align-items-center justify-content-center">
+                                                <i class="fa fa-download font-size-18 m-r-10"></i>
+                                                <div class="small">
+                                                    <div class="mb-2">example test.txt</div>
+                                                    <div dir="ltr">10 KB</div>
+                                                </div>
+                                            </a>
                                         </div>
-                                    </a>
-                                </div>
-                                <small class="message-item-date text-muted">22.30</small>
-                            </div>
-                            <div class="message-item outgoing-message">
-                                لورم ایپسوم متن ساختگی با تولید
-                                <small class="message-item-date text-muted">22.30</small>
-                            </div>
-                            <div class="message-item outgoing-message message-item-media">
-                                <div class="m-b-0 text-muted text-left media-file">
-                                    <a href="#"
-                                       class="btn btn-outline-light text-left align-items-center justify-content-center">
-                                        <i class="fa fa-download font-size-18 m-r-10"></i>
-                                        <div class="small">
-                                            <div class="mb-2">example file.txt</div>
-                                            <div class="font-size-13" dir="ltr">5 KB</div>
+                                        <small class="message-item-date text-muted">22.30</small>
+                                    </div>
+                                    <div class="message-item outgoing-message message-item-media">
+                                        <div class="m-b-0 text-muted text-left media-file">
+                                            <a href="#"
+                                               class="btn btn-outline-light text-left align-items-center justify-content-center">
+                                                <i class="fa fa-download font-size-18 m-r-10"></i>
+                                                <div class="small">
+                                                    <div class="mb-2">example file.txt</div>
+                                                    <div class="font-size-13" dir="ltr">5 KB</div>
+                                                </div>
+                                            </a>
                                         </div>
-                                    </a>
-                                </div>
-                                <small class="message-item-date text-muted">22.30</small>
-                            </div>
+                                        <small class="message-item-date text-muted">22.30</small>
+                                    </div>
+                                @else
+                                    <div class="message-item {{ $me ? ' text-left' : 'outgoing-message  text-right' }}">
+                                        {{ $message->content }}
+                                        <small class="message-item-date text-muted">
+                                            {{ $message->created_at }}
+                                        </small>
+                                    </div>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
 

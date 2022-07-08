@@ -7,8 +7,13 @@ use Illuminate\Http\Request;
 
 class MessageController extends Controller
 {
-    public function list($factor) {
-        return view('message', ['factor'=>$factor]);
+    public function list($factor)
+    {
+        $messages = Message::all()->where('factor', '=', $factor);
+        return view('message', [
+            'factor' => $factor,
+            'messages' => $messages
+        ]);
     }
 
     public function text(Request $request)
