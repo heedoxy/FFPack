@@ -55,7 +55,8 @@ Route::middleware(['auth'])->group(function () {
 
         // MessageController
         Route::get('/message/{id}', [MessageController::class, 'list']);
-        Route::post('/add', [MessageController::class, 'send']);
+        Route::post('message/text', [MessageController::class, 'text']);
+        Route::post('message/file', [MessageController::class, 'file']);
 
     });
 

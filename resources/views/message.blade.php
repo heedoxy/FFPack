@@ -78,7 +78,7 @@
                             <input type="hidden" name="factor" value="{{ $factor }}">
                             <input type="text" name="text" class="form-control" placeholder="پیام ...">
                             <div class="d-flex">
-                                <button type="button" class="ml-3 btn btn-primary btn-floating">
+                                <button type="submit" class="ml-3 btn btn-primary btn-floating">
                                     <i class="fa fa-send"></i>
                                 </button>
                                 <div class="dropup">

@@ -20,7 +20,7 @@ class CreateMessagesTable extends Migration
             $table->smallInteger('file');
             $table->string('content');
             $table->integer('view');
-            $table->timestamp('created_at');
+            $table->timestamps();
         });
     }
 
