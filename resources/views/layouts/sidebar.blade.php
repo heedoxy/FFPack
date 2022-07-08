@@ -49,6 +49,9 @@
             <li><a href="/product/list" class="{{ ($sub_active == 5) ? "active" : "" }}">لیست کالا</a></li>
             <li><a href="/user/show" class="{{ ($sub_active == 6) ? "active" : "" }}">ثبت کاربر</a></li>
             <li><a href="/user/list" class="{{ ($sub_active == 7) ? "active" : "" }}">لیست کاربر</a></li>
+        @elseif($access == 2)
+        @elseif($access == 3)
+            <li><a href="/factor/user" class="{{ ($sub_active == 3) ? "active" : "" }}">فاکتور های من</a></li>
         @endif
     </ul>
 </div>

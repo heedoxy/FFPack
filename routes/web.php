@@ -19,7 +19,7 @@ use App\Http\Controllers\Auth\LoginController;
 |
 */
 
-Route::fallback(function(){
+Route::fallback(function () {
     return view('errors.404');
 });
 
@@ -55,13 +55,16 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/edit', [FactorController::class, 'update']);
         Route::delete('/remove/{id}', [FactorController::class, 'remove']);
 
+        Route::get('/user', [FactorController::class, 'user']);
+
         Route::delete('/detail/remove/{id}', [FactorController::class, 'remove_detail']);
         Route::post('/detail/add', [FactorController::class, 'store_detail']);
 
-        // MessageController
-        Route::get('/message/{id}', [MessageController::class, 'list']);
-        Route::post('message/text', [MessageController::class, 'text']);
-        Route::post('message/file', [MessageController::class, 'file']);
+        Route::prefix('/message')->group(function () {
+            Route::get('/{id}', [MessageController::class, 'list']);
+            Route::post('/text', [MessageController::class, 'text']);
+            Route::post('/file', [MessageController::class, 'file']);
+        });
 
     });
 

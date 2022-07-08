@@ -145,4 +145,15 @@ class FactorController extends Controller
             return redirect('/factor/show')->withErrors(['danger' => 'با موفقیت حذف شد .']);
     }
 
+    public function user()
+    {
+        $user = Auth::id();
+        $factors = DB::table('factors')
+            ->select('*', 'factors.id as id')
+            ->join('users', 'factors.user', '=', 'users.id')
+            ->where('factors.user', '=', $user)
+            ->get();
+        return view('factor-user', ['factors' => $factors]);
+    }
+
 }
