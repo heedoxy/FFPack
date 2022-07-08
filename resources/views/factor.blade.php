@@ -56,9 +56,9 @@
                                         <small class="text-muted">
                                             {{ $detail->number }} عدد
                                             |
-                                            {{ number_format($detail->price) }} تومان
+                                            {{ number_format($detail->number * $detail->price) }} تومان
                                         </small>
-                                        @php($total += $detail->price)
+                                        @php($total += $detail->number * $detail->price)
                                     </div>
                                     <button type="button" class="btn btn-sm btn-danger ml-auto" data-toggle="modal"
                                             data-target="#remove-detail-{{ $detail->id }}">حذف
@@ -130,23 +130,41 @@
         <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title text-light">ثبت فاکتور</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="بستن">
-                            <i class="ti-close"></i>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="message-text" class="col-form-label">یادداشت :</label>
-                            <textarea class="form-control"
-                                      id="message-text">{{ $edit ? $detail->comment : "" }}</textarea>
+                    <form method="post" action="{{ $action }}">
+                        @csrf
+                        <input type="hidden" name="id" value="{{ $edit ? $id : 0 }}">
+                        <input type="hidden" name="total" value="{{ $total }}">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-light">ثبت فاکتور</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="بستن">
+                                <i class="ti-close"></i>
+                            </button>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
-                        <button type="button" class="btn btn-success">ثبت نهایی</button>
-                    </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="user" class="col-form-label">مشتری :</label>
+                                <select class="form-control" name="user" id="user" autocomplete="off" required>
+                                    <option value="" data-price="" selected>
+                                        مشتری مورد نظر را انتخاب فرمایید .
+                                    </option>
+                                    @foreach ($users as $user)
+                                        <option value="{{ $user->id }}">
+                                            {{ $user->name . " " . $user->family }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="col-form-label">یادداشت :</label>
+                                <textarea class="form-control" name="comment"
+                                          id="message-text">{{ $edit ? $detail->comment : "" }}</textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
+                            <button type="submit" class="btn btn-success">ثبت نهایی</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -156,6 +174,8 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <form method="post" action="/factor/detail/add">
+                        @csrf
+                        <input type="hidden" name="factor" value="{{ $edit ? $id : 0 }}">
                         <div class="modal-header">
                             <h5 class="modal-title text-light">افزودن کالا</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="بستن">
@@ -163,8 +183,6 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            @csrf
-                            <input type="hidden" name="factor" value="{{ $edit ? $id : 0 }}">
                             <div class="form-group">
                                 <label for="product" class="col-form-label">محصول :</label>
                                 <select class="form-control" name="product" id="product" autocomplete="off" required>
