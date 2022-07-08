@@ -25,13 +25,15 @@
                     <div class="card-header d-flex justify-content-between">
                         صدور فاکتور
                         <ul class="list-inline">
-                            <li class="list-inline-item mb-0">
-                                <div class="dropdown">
-                                    <a class="btn btn-sm btn-light btn-uppercase" style="margin-left: -10px">
-                                        پیام ها
-                                    </a>
-                                </div>
-                            </li>
+                            @if($edit)
+                                <li class="list-inline-item mb-0">
+                                    <div class="dropdown">
+                                        <a href="/factor/message/{{ $id }}" class="btn btn-sm btn-light btn-uppercase" style="margin-left: -10px">
+                                            پیام ها
+                                        </a>
+                                    </div>
+                                </li>
+                            @endif
                             <li class="list-inline-item mb-0 ml-1">
                                 <div class="dropdown">
                                     <a class="btn btn-sm btn-success" style="margin-left: -10px; color: white"
