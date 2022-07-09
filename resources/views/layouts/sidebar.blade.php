@@ -51,7 +51,7 @@
             <li><a href="/user/list" class="{{ ($sub_active == 7) ? "active" : "" }}">لیست کاربر</a></li>
         @elseif($access == 2)
         @elseif($access == 3)
-            <li><a href="/factor/user" class="{{ ($sub_active == 3) ? "active" : "" }}">فاکتور های من</a></li>
+            <li><a href="/factor/list" class="{{ ($sub_active == 3) ? "active" : "" }}">لیست فاکتور</a></li>
         @endif
     </ul>
 </div>

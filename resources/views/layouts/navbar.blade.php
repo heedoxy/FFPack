@@ -1,5 +1,5 @@
 @php
-    $page_title = $page_title ?? "فست فود پک";
+    $page_title = $title ?? "فست فود پک";
     $cash = $cash ?? 0;
 @endphp
 
@@ -7,7 +7,7 @@
 <div class="header-logo" style="justify-content: right;">
     <a href="/">
         <img class="large-logo" src="/assets/image/logo.png" alt="image" style="width: 50px; margin-right: 20px">
-        <img class="small-logo" src="/assets/image/logo.png" alt="image">
+        <img class="small-logo" src="/assets/image/logo.png" alt="image"  style="width: 50px; margin-right: 20px">
         <img class="dark-logo" src="/assets/image/logo.png" alt="image">
         <p class="d-none d-lg-block d-md-block h4 ml-2">
             {{ Auth::user()->name . " " . Auth::user()->family }}
@@ -21,7 +21,9 @@
 
     <div class="header-body-left">
 
-        <h3 class="page-title">{{ $page_title }}</h3>
+        <h3 class="page-title">
+            <a href="/">{{ $page_title }}</a>
+        </h3>
 
         <!-- begin::breadcrumb -->
         <nav aria-label="breadcrumb">
