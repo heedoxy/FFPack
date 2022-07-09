@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 //use Illuminate\Support\Facades\Request
 
@@ -40,6 +41,7 @@ class UserController extends Controller
         $user->phone = $request->phone;
         $user->password = Hash::make($request->password);
         $user->access = $request->access;
+        $user->token =Str::random(100);
         $user->save();
         return redirect('/user/list')->withErrors(['success' => 'با موفقیت ثبت شد .']);
     }
@@ -72,4 +74,15 @@ class UserController extends Controller
         $user->delete();
         return redirect('/user/list')->withErrors(['danger' => 'با موفقیت حذف شد .']);
     }
+
+    public function user_counter()
+    {
+        return User::all()->where('access', 3)->count();
+    }
+
+    public function producer_counter()
+    {
+        return User::all()->where('access', 2)->count();
+    }
+
 }

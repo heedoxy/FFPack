@@ -7,6 +7,7 @@ use App\Models\FactorDetail;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -154,6 +155,29 @@ class FactorController extends Controller
             ->where('factors.user', '=', $user)
             ->get();
         return view('factor-user', ['factors' => $factors]);
+    }
+
+    public function today()
+    {
+        return Factor::whereDate('created_at', Carbon::today())->get()->sum('price');
+    }
+
+    public function week()
+    {
+        return Factor::whereDate('created_at', '>=',  Carbon::today()->subWeek())->get()->sum('price');
+    }
+
+    public function month()
+    {
+        return Factor::whereDate('created_at', '>=',  Carbon::today()->subMonth())->get()->sum('price');
+    }
+
+    public function factor_counter()
+    {
+        $user = Auth::id();
+        $access = Auth::user()->access;
+        if ($access == 3) return Factor::all()->where('user', $user)->count();
+        else return Factor::all()->count();
     }
 
 }
