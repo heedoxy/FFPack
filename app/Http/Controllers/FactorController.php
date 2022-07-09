@@ -15,10 +15,20 @@ class FactorController extends Controller
 {
     public function index()
     {
-        $factors = DB::table('factors')
-            ->select('*', 'factors.id as id')
-            ->join('users', 'factors.user', '=', 'users.id')
-            ->get();
+        $access = Auth::user()->access;
+        if (in_array($access, [0, 1])) {
+            $factors = DB::table('factors')
+                ->select('*', 'factors.id as id')
+                ->join('users', 'factors.user', '=', 'users.id')
+                ->get();
+        } else {
+            $user = Auth::id();
+            $factors = DB::table('factors')
+                ->select('*', 'factors.id as id')
+                ->join('users', 'factors.user', '=', 'users.id')
+                ->where('factors.user', '=', $user)
+                ->get();
+        }
         return view('factor-list', ['factors' => $factors]);
     }
 
@@ -146,17 +156,6 @@ class FactorController extends Controller
             return redirect('/factor/show')->withErrors(['danger' => 'با موفقیت حذف شد .']);
     }
 
-    public function user()
-    {
-        $user = Auth::id();
-        $factors = DB::table('factors')
-            ->select('*', 'factors.id as id')
-            ->join('users', 'factors.user', '=', 'users.id')
-            ->where('factors.user', '=', $user)
-            ->get();
-        return view('factor-user', ['factors' => $factors]);
-    }
-
     public function today()
     {
         return Factor::whereDate('created_at', Carbon::today())->get()->sum('price');
@@ -164,12 +163,12 @@ class FactorController extends Controller
 
     public function week()
     {
-        return Factor::whereDate('created_at', '>=',  Carbon::today()->subWeek())->get()->sum('price');
+        return Factor::whereDate('created_at', '>=', Carbon::today()->subWeek())->get()->sum('price');
     }
 
     public function month()
     {
-        return Factor::whereDate('created_at', '>=',  Carbon::today()->subMonth())->get()->sum('price');
+        return Factor::whereDate('created_at', '>=', Carbon::today()->subMonth())->get()->sum('price');
     }
 
     public function factor_counter()

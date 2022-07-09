@@ -121,7 +121,7 @@
                     </a>
                 @endif
                 @if(in_array($access, [0, 1, 3]))
-                    <a href="/factor/{{ $access == 3 ? 'user' : 'list' }}">
+                    <a href="/factor/list">
                         <div class="card">
                             <div class="d-flex align-items-center">
                                 <div class="bg-primary text-center p-20">

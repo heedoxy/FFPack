@@ -1,4 +1,5 @@
 @php
+    $access = \Illuminate\Support\Facades\Auth::user()->access;
     $menu_active = 1;
     $sub_active = 3;
     $counter = 1;
@@ -37,7 +38,9 @@
                                     <th scope="col">#</th>
                                     <th class="text-right" scope="col">کد</th>
                                     <th class="text-center" scope="col">قیمت (تومان)</th>
-                                    <th class="text-center" scope="col">کاربر</th>
+                                    @if(in_array($access, [0, 1]))
+                                        <th class="text-center" scope="col">کاربر</th>
+                                    @endif
                                     <th class="text-right" scope="col">مدیریت</th>
                                 </tr>
                                 </thead>
@@ -47,7 +50,9 @@
                                         <th scope="row">{{ $counter++ }}</th>
                                         <td class="text-right">{{ $factor->code }}</td>
                                         <td class="text-center">{{ number_format($factor->price) }}</td>
-                                        <td class="text-center">{{ $factor->name . " " . $factor->family }}</td>
+                                        @if(in_array($access, [0, 1]))
+                                            <td class="text-center">{{ $factor->name . " " . $factor->family }}</td>
+                                        @endif
                                         <td class="text-right">
                                             <div class="dropdown">
                                                 <a href="#" class="btn btn-light btn-floating btn-icon btn-sm"
@@ -82,14 +87,16 @@
                                                             آیا مورد حذف شود ؟
                                                         </div>
                                                         <div class="modal-footer">
-                                                            <form method="post" action="/factor/remove/{{ $factor->id }}">
+                                                            <form method="post"
+                                                                  action="/factor/remove/{{ $factor->id }}">
                                                                 @method('DELETE')
                                                                 @csrf
                                                                 <button type="button" class="btn btn-secondary"
                                                                         data-dismiss="modal">بستن
                                                                 </button>
                                                                 <button type="submit"
-                                                                        class="btn btn-primary text-light">حذف</button>
+                                                                        class="btn btn-primary text-light">حذف
+                                                                </button>
                                                             </form>
                                                         </div>
                                                     </div>

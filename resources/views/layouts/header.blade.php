@@ -1,4 +1,6 @@
 @php
+    $access = \Illuminate\Support\Facades\Auth::user()->access;
+    if (in_array($access, [2, 3])) $factorBTN = false;
     $factorBTN = $factorBTN ?? true;
 @endphp
 

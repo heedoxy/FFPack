@@ -1,4 +1,5 @@
 @php
+    $access = \Illuminate\Support\Facades\Auth::user()->access;
     $menu_active = 1;
     $sub_active = 2;
     $edit = isset($id);
@@ -23,25 +24,28 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
-                        صدور فاکتور
+                        فاکتور
                         <ul class="list-inline">
                             @if($edit)
                                 <li class="list-inline-item mb-0">
                                     <div class="dropdown">
-                                        <a href="/factor/message/{{ $id }}" class="btn btn-sm btn-light btn-uppercase" style="margin-left: -10px">
+                                        <a href="/factor/message/{{ $id }}" class="btn btn-sm btn-light btn-uppercase"
+                                           style="margin-left: -10px">
                                             پیام ها
                                         </a>
                                     </div>
                                 </li>
                             @endif
-                            <li class="list-inline-item mb-0 ml-1">
-                                <div class="dropdown">
-                                    <a class="btn btn-sm btn-success" style="margin-left: -10px; color: white"
-                                       data-toggle="modal" data-target="#addModal">
-                                        افزودن کالا
-                                    </a>
-                                </div>
-                            </li>
+                            @if(in_array($access, [0, 1]))
+                                <li class="list-inline-item mb-0 ml-1">
+                                    <div class="dropdown">
+                                        <a class="btn btn-sm btn-success" style="margin-left: -10px; color: white"
+                                           data-toggle="modal" data-target="#addModal">
+                                            افزودن کالا
+                                        </a>
+                                    </div>
+                                </li>
+                            @endif
                         </ul>
                     </div>
                     <div class="card-body pt-2">
@@ -62,9 +66,11 @@
                                         </small>
                                         @php($total += $detail->number * $detail->price)
                                     </div>
+                                    @if(in_array($access, [0, 1]))
                                     <button type="button" class="btn btn-sm btn-danger ml-auto" data-toggle="modal"
                                             data-target="#remove-detail-{{ $detail->id }}">حذف
                                     </button>
+                                    @endif
                                 </li>
 
                                 <div class="modal fade" tabindex="-1" role="dialog"
@@ -113,7 +119,7 @@
                                     </div>
                                 </div>
                             </div>
-                            @if($details->isNotEmpty())
+                            @if(in_array($access, [0, 1]) && $details->isNotEmpty())
                                 <div class="col-5 col-md-6 text-right mt-4">
                                     <button class="btn btn-primary" type="button"
                                             data-toggle="modal" data-target="#submitModal">
