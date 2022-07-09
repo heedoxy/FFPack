@@ -60,7 +60,7 @@
                                                class="btn btn-outline-light text-left align-items-center justify-content-center">
                                                 <i class="fa fa-download font-size-18 m-r-10"></i>
                                                 <div class="small">
-                                                    <div class="mb-2">{{ $message->content }}</div>
+                                                    <div class="mb-2">{{ explode(' ', $message->content)[3] }}</div>
                                                 </div>
                                             </a>
                                         </div>

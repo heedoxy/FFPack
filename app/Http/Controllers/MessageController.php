@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Factor;
 use App\Models\Message;
+use Hekmatinasser\Verta\Facades\Verta;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
@@ -38,9 +41,15 @@ class MessageController extends Controller
 
     public function file(Request $request)
     {
+        $factor = $request->factor;
+
+        $code = Factor::find($factor)->code;
+        $path = public_path("uploads");
+        if (!file_exists($path)) mkdir($path);
+
         $image = $request->file('file');
-        $imageName = $image->getClientOriginalName();
-        $image->move(public_path('uploads'),$imageName);
+        $imageName = $code . Verta()->format(" Y-m-d H-i-s ") . $image->getClientOriginalName();
+        $image->move($path, $imageName);
 
         $factor = $request->factor;
         $message = new Message();
@@ -52,14 +61,14 @@ class MessageController extends Controller
         $message->view = 0;
         $message->save();
 
-        return response()->json(['success'=>$imageName]);
+        return response()->json(['success' => $imageName]);
     }
 
     public function fileDestroy(Request $request)
     {
-        $filename =  $request->get('filename');
-        ImageUpload::where('filename',$filename)->delete();
-        $path=public_path().'/images/'.$filename;
+        $filename = $request->get('filename');
+        ImageUpload::where('filename', $filename)->delete();
+        $path = public_path() . '/images/' . $filename;
         if (file_exists($path)) {
             unlink($path);
         }
