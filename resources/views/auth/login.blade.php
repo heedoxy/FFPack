@@ -5,12 +5,6 @@
 @section('main')
     <div class="container">
 
-        <div class="row justify-content-center">
-            <div class="col-md-6 text-center mb-3">
-                <img src="assets/image/FastFoodPack.png" style="width: 150px">
-            </div>
-        </div>
-
         @error('danger')
         <p class="text-center text-danger">{{ $message }}</p>
         @enderror
@@ -22,10 +16,10 @@
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-5 text-center">
                 <div class="login-wrap p-4 p-md-5">
-                    <div class="icon d-flex align-items-center justify-content-center">
-                        <span class="fa fa-user-o"></span>
-                    </div>
-                    <h3 class="text-center mb-4">فست فوت پک</h3>
+
+                    <img src="assets/image/FastFoodPack.png" style="width: 150px">
+
+                    <h3 class="text-center my-4">ورود کاربران</h3>
                     <form action="/login" method="post" class="login-form">
                         @csrf
                         <div class="form-group">
@@ -39,7 +33,7 @@
                         <div class="form-group d-flex">
                             <div class="w-50">
                                 <label class="checkbox-wrap checkbox-primary">مرا به خاطر بسپار
-                                    <input type="checkbox" checked>
+                                    <input type="checkbox" name="remember" checked>
                                     <span class="checkmark"></span>
                                 </label>
                             </div>

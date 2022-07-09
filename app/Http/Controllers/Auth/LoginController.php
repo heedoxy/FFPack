@@ -22,10 +22,11 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-
         $credentials = $request->only('phone', 'password');
 
-        if (Auth::attempt($credentials)) {
+        $remember = isset($request->remember);
+
+        if (Auth::attempt($credentials, $remember)) {
             // if success login
             return redirect('/');
         }

@@ -60,6 +60,13 @@
             background: #643e81;
         }
 
+        footer {
+            width: 100%;
+            position: fixed;
+            bottom: 5px;
+            text-align: center;
+        }
+
     </style>
 
 </head>
@@ -67,5 +74,10 @@
 <section class="ftco-section">
     @yield('main')
 </section>
+<footer>
+    <p class="text-center text-muted">
+        توسعه داده شده توسط هادبورد :)
+    </p>
+</footer>
 </body>
 </html>
