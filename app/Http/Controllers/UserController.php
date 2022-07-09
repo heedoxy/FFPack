@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -83,6 +84,29 @@ class UserController extends Controller
     public function producer_counter()
     {
         return User::all()->where('access', 2)->count();
+    }
+
+    public function profile()
+    {
+        return view('profile');
+    }
+
+    public function profile_update(Request $request)
+    {
+        $id = Auth::id();
+
+        $this->validate($request, [
+            'name' => 'required',
+            'family' => 'required',
+        ]);
+
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->family = $request->family;
+        if ($request->password)
+            $user->password = Hash::make($request->password);
+        $user->save();
+        return redirect('/profile')->withErrors(['success' => 'با موفقیت ثبت شد .']);
     }
 
 }

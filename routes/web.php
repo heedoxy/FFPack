@@ -31,6 +31,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/', [HomeController::class, 'index']);
 
+    Route::get('/profile', [UserController::class, 'profile']);
+    Route::post('/profile', [UserController::class, 'profile_update']);
+
     Route::prefix('/user')->group(function () {
         Route::get('/list', [UserController::class, 'index']);
         Route::get('/show/{id?}', [UserController::class, 'add']);
