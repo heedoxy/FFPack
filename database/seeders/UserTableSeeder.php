@@ -26,7 +26,7 @@ class UserTableSeeder extends Seeder
             "token" => Str::random(100),
             "created_at" => now(),
             "updated_at" => now(),
-            "phone_verified_at" => now(),
+            "verified_at" => now(),
         ]);
     }
 }
