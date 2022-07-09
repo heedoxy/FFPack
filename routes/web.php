@@ -25,6 +25,7 @@ Route::fallback(function () {
 
 Route::get('/login', [LoginController::class, 'login_show']);
 Route::post('/login', [LoginController::class, 'login']);
+Route::get('/reset', [LoginController::class, 'reset']);
 Route::get('/logout', [LoginController::class, 'logout']);
 
 Route::middleware(['auth'])->group(function () {

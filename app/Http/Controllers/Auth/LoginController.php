@@ -39,4 +39,9 @@ class LoginController extends Controller
         Auth::logout();
         return redirect('/login')->withErrors(['success' => 'با موفقیت خارج شدید .']);
     }
+
+    public function reset()
+    {
+        return view('auth.reset');
+    }
 }

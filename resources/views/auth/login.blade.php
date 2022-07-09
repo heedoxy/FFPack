@@ -38,7 +38,7 @@
                                 </label>
                             </div>
                             <div class="w-50 text-left">
-                                <a>فراموشی رمز عبور</a>
+                                <a href="/reset">فراموشی رمز عبور</a>
                             </div>
                         </div>
                         <div class="form-group">
