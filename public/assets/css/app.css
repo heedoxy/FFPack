@@ -4070,7 +4070,7 @@ textarea {
 }
 
 .bg-warning {
-    background: #643e81 !important;
+    /*background: #643e81 !important;*/
     color: white !important;
 }
 
