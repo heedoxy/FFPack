@@ -179,4 +179,21 @@ class FactorController extends Controller
         else return Factor::all()->count();
     }
 
+    public function invoice($id)
+    {
+        $factor = DB::table('factors')
+            ->join('users', 'factors.user', '=', 'users.id')
+            ->where('factors.id', '=', $id)
+            ->first();
+        $details = DB::table('factor_detail')
+            ->select('*', 'factor_detail.id as id', 'factor_detail.price as price')
+            ->join('products', 'factor_detail.product', '=', 'products.id')
+            ->where('factor_detail.factor', '=', $id)
+            ->get();
+        return view('invoice', [
+            'factor' => $factor,
+            'details' => $details
+        ]);
+    }
+
 }

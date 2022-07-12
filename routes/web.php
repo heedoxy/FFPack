@@ -55,6 +55,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::get('/list', [FactorController::class, 'index']);
         Route::get('/show/{id?}', [FactorController::class, 'add']);
+        Route::get('/invoice/{id}', [FactorController::class, 'invoice']);
         Route::post('/add', [FactorController::class, 'store']);
         Route::post('/edit', [FactorController::class, 'update']);
         Route::delete('/remove/{id}', [FactorController::class, 'remove']);
