@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\PDF;
 use App\Models\Factor;
 use App\Models\FactorDetail;
 use App\Models\Product;
@@ -194,6 +195,13 @@ class FactorController extends Controller
             'factor' => $factor,
             'details' => $details
         ]);
+    }
+
+    public function pdf($factor)
+    {
+        $pdf = PDF::loadView('pdf');
+        return $pdf->download('sample.pdf');
+//        return view('pdf');
     }
 
 }
