@@ -197,11 +197,27 @@ class FactorController extends Controller
         ]);
     }
 
-    public function pdf($factor)
+    public function pdf($id)
     {
-        $pdf = PDF::loadView('pdf');
-        return $pdf->download('sample.pdf');
-//        return view('pdf');
+        $factor = DB::table('factors')
+            ->join('users', 'factors.user', '=', 'users.id')
+            ->where('factors.id', '=', $id)
+            ->first();
+        $details = DB::table('factor_detail')
+            ->select('*', 'factor_detail.id as id', 'factor_detail.price as price')
+            ->join('products', 'factor_detail.product', '=', 'products.id')
+            ->where('factor_detail.factor', '=', $id)
+            ->get();
+
+        $data = [
+            'factor' => $factor,
+            'details' => $details
+        ];
+
+        $pdf = PDF::loadView('pdf', $data);
+        return $pdf->download('invoice.pdf');
+
+//        return view('pdf', $data);
     }
 
 }

@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+@php
+    $access = \Illuminate\Support\Facades\Auth::user()->access;
+    $helper = new \App\Helpers\Helper();
+    $counter = 1;
+    $total = 0;
+@endphp
+
+    <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 
 <head>
@@ -6,11 +13,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-    <title>فایل پی دی اف ساخته شده با لاراول</title>
+    <title>PDF</title>
 
     <style>
 
-        @font-face{
+        @font-face {
 
             font-family: 'samim';
             src: url('/assets/fonts/farsi-fonts/Samim/Samim.eot'),
@@ -21,133 +28,127 @@
         }
 
         body {
-
             direction: rtl;
             font-family: 'samim';
         }
 
 
-        *{
+        * {
             direction: rtl;
-
-        }
-        html {
-            font: 14px/1.5 Arial, sans-serif;
-
         }
 
         body {
-            background: rgb(231, 231, 231);
             padding: 0 20px;
             width: 920px;
             margin: 0 auto;
         }
-        p{
+
+        p {
             font-size: 16px;
         }
+
         .main-title {
-            text-align  : center;
+            text-align: center;
             margin-top: 20px;
         }
 
         .paragraph {
             text-align: right;
         }
-        .img-container{
+
+        .img-container {
             text-align: center;
         }
 
-        table, th, td{
-            border: 2px solid;
-
+        .img-container .image {
+            width: 10px;
         }
 
-        table{
+        table, th, td {
+            border: 1px solid;
+        }
+
+        table {
             border-collapse: collapse;
             margin-left: auto;
-            margin-right:auto;
+            margin-right: auto;
             margin-bottom: 15px
         }
-        table th, td{
+
+        table th, td {
             padding: 25px
         }
     </style>
-
 
 
 </head>
 
 <body>
 
-<h1 class="main-title">فایل پی دی اف نمونه</h1>
+<div class="img-container">
+    <img class="image" width="100px" src="{{public_path('assets/image/logo.png')}}" alt="">
+</div>
 
-<p class="paragraph">
+<h1 class="main-title">فست فوت پک</h1>
 
-    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه
-    روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف
-    بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان
-    را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان
-    فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به
-    پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد
-    استفاده قرار گیرد.
-    لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه
-    روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع با هدف
-    بهبود ابزارهای کاربردی می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان جامعه و متخصصان
-    را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان
-    فارسی ایجاد کرد. در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها و شرایط سخت تایپ به
-    پایان رسد وزمان مورد نیاز شامل حروفچینی دستاوردهای اصلی و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد
-    استفاده قرار گیرد.
-</p>
+<h2 style="text-align: center">
+    صورتحساب :
+    {{ $factor->code }}
+    #
+</h2>
 
-<h2>فهرست ها</h2>
-<ul>
-    <li>لورم ایپسوم
+<ul style="line-height: 30px">
+    <li>
+        تاریخ :
+        {{ (new \Hekmatinasser\Verta\Verta( $factor->created_at ))->format('j-n-Y') }}
     </li>
     <li>
-        لورم ایپسوم
-
-    </li>
-    <li>
-        لورم ایپسوم
-
-    </li>
-    <li>
-        لورم ایپسوم
-
-    </li>
-    <li>
-        لورم ایپسوم
-
+        آقای / خانم :
+        {{ $factor->name . " " . $factor->family }}
     </li>
 </ul>
-<div style="text-align: center">
-    <table >
-        <thead>
-        <tr>
 
-            <th>عنوان اول</th>
-            <th>عنوان دوم</th>
-            <th>عنوان سوم</th>
-            <th>عنوان چهارم</th>
+<div style="text-align: center">
+    <table>
+        <thead>
+        <tr style="background-color: #b7b7b7">
+            <th>#</th>
+            <th>توضیحات</th>
+            <th>تعداد</th>
+            <th>قیمت</th>
+            <th>جمع</th>
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>محصول 1</td>
-            <td>محصول 2</td>
-            <td> نحصول 3</td>
-            <td> محصول 4</td>
-        </tr>
-        <tr>
-            <td>لورم</td>
-            <td>ایپسوم</td>
-            <td> متن ساختگی</td>
-            <td> برای طراحی وب</td>
-        </tr>
-
+        @foreach($details as $detail)
+            <tr>
+                <td>{{ $counter++ }}</td>
+                <td>{{ $detail->name }}</td>
+                <td>{{ $detail->number }}</td>
+                <td>
+                    {{ $helper->e2p(number_format($detail->price)) }}
+                    تومان
+                </td>
+                <td>
+                    @php($total += $detail->number * $detail->price)
+                    {{ $helper->e2p(number_format($detail->number * $detail->price)) }}
+                    تومان
+                </td>
+            </tr>
+        @endforeach
         </tbody>
 
     </table>
+</div>
+
+<h3 style="font-size: 15px; margin-right: 25px">
+    جمع کل :
+    {{ $helper->e2p(number_format($total)) }}
+    تومان
+</h3>
+
+<div class="paragraph" style="color: gray; text-align: center">
+    از اعتماد شما سپاس گذاریم .
 </div>
 
 </body>

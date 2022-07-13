@@ -86,7 +86,7 @@
                 </div>
                 <div class="text-right d-print-none">
                     <hr class="m-t-b-50">
-                    <a href="#" class="btn btn-primary text-light my-1">
+                    <a href="/factor/pdf/{{ $factor->id }}" download class="btn btn-primary text-light my-1">
                         <i class="fa fa-file-pdf-o m-r-5"></i> دانلود صورتحساب
                     </a>
                     <a href="javascript:window.print()" class="btn btn-success m-l-5 my-1">
