@@ -36,7 +36,9 @@
             left: unset;
         }
         .checkbox-wrap {
+            text-align: right;
             padding-right: 30px;
+            padding-left: 0;
         }
 
         .btn.btn-primary {

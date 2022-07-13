@@ -100,7 +100,7 @@
 <ul style="line-height: 30px">
     <li>
         تاریخ :
-        {{ (new \Hekmatinasser\Verta\Verta( $factor->created_at ))->format('j-n-Y') }}
+        {{ (new \Hekmatinasser\Verta\Verta( $factor->created_at ))->format('j / n / Y') }}
     </li>
     <li>
         آقای / خانم :

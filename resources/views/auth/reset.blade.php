@@ -32,7 +32,7 @@
                     </div>
                     <div class="form-group">
                         <a href="/login" class="btn btn-primary rounded p-3 px-5">ورود</a>
-                        <a target="_blank" href="https://wa.me/989218248954" class="btn btn-whatsapp rounded p-3 px-5">پشتیبانی</a>
+                        <a target="_blank" href="tel:09218248954" class="btn btn-whatsapp rounded p-3 px-5">پشتیبانی</a>
                     </div>
                 </div>
             </div>
