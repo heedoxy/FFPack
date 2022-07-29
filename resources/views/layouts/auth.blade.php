@@ -63,10 +63,7 @@
         }
 
         footer {
-            width: 100%;
-            position: fixed;
-            bottom: 5px;
-            text-align: center;
+            margin-top: 100px;
         }
 
     </style>
