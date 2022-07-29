@@ -148,7 +148,30 @@ class FactorController extends Controller
 
     public function list_detail()
     {
-        return view('details');
+        $user = Auth::id();
+        $access = Auth::user()->access;
+
+        if ($access == 2)
+            $details = DB::table('factor_detail')
+                ->select('*', 'factor_detail.id as id', 'factor_detail.price as price', 'factors.price as code')
+                ->join('products', 'factor_detail.product', '=', 'products.id')
+                ->join('factors', 'factor_detail.factor', '=', 'factors.id')
+                ->where('factor_detail.user', '=', $user)
+                ->where('factor_detail.status', '!=', 0)
+                ->get();
+        else
+            $details = DB::table('factor_detail')
+                ->select('*', 'factor_detail.id as id', 'factor_detail.price as price', 'products.name as pname', 'factors.id as fid')
+                ->join('products', 'factor_detail.product', '=', 'products.id')
+                ->join('factors', 'factor_detail.factor', '=', 'factors.id')
+                ->join('users', 'factors.user', '=', 'users.id')
+                ->where('factor_detail.status', '!=', 0)
+                ->get();
+
+
+        return view('details', [
+            'details' => $details
+        ]);
     }
 
     public function remove_detail($id)
