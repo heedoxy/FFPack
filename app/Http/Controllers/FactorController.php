@@ -146,6 +146,11 @@ class FactorController extends Controller
 
     }
 
+    public function list_detail()
+    {
+        return view('details');
+    }
+
     public function remove_detail($id)
     {
         $detail = FactorDetail::findOrFail($id);
