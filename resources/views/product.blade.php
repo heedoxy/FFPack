@@ -40,6 +40,15 @@
                                        value="{{ $edit ? $product->price : '' }}" required>
                             </div>
                             <div class="form-group">
+                                <label for="producer">تولید کننده ها</label>
+                                <select class="js-example-basic-single" name="producer[]" id="producer" multiple required>
+                                    <option value="">انتخاب کنید</option>
+                                    @foreach($producers as $producer)
+                                        <option value="{{ $producer->id }}">{{ $producer->name . ' ' . $producer->family }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
                                 <label for="description">توضیحات</label>
                                 <textarea class="form-control text-left" name="description" id="description"
                                 >{{ $edit ? $product->description : '' }}</textarea>
