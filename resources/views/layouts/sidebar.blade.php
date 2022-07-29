@@ -45,11 +45,13 @@
         @if(in_array($access, [0, 1]))
             <li><a href="/factor/show" class="{{ ($sub_active == 2) ? "active" : "" }}">ثبت فاکتور</a></li>
             <li><a href="/factor/list" class="{{ ($sub_active == 3) ? "active" : "" }}">لیست فاکتور</a></li>
+            <li><a href="/detail/list" class="{{ ($sub_active == 8) ? "active" : "" }}">لیست موارد</a></li>
             <li><a href="/product/show" class="{{ ($sub_active == 4) ? "active" : "" }}">ثبت کالا</a></li>
             <li><a href="/product/list" class="{{ ($sub_active == 5) ? "active" : "" }}">لیست کالا</a></li>
             <li><a href="/user/show" class="{{ ($sub_active == 6) ? "active" : "" }}">ثبت کاربر</a></li>
             <li><a href="/user/list" class="{{ ($sub_active == 7) ? "active" : "" }}">لیست کاربر</a></li>
         @elseif($access == 2)
+            <li><a href="/detail/list" class="{{ ($sub_active == 8) ? "active" : "" }}">لیست موارد</a></li>
         @elseif($access == 3)
             <li><a href="/factor/list" class="{{ ($sub_active == 3) ? "active" : "" }}">لیست فاکتور</a></li>
         @endif
