@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Produces;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,6 +20,13 @@ class ProductController extends Controller
         $product = null;
         if ($id) $product = Product::find($id);
         $producers = User::all()->where('access', 2);
+        foreach ($producers as $producer) {
+            $exist = Produces::all()
+                ->where('producer', $producer->id)
+                ->where('product', $id)
+                ->first();
+            $producer->selected = (bool)$exist;
+        }
         return view('product', [
             'id' => $id,
             'product' => $product,
@@ -40,6 +48,15 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->comment = $request->description;
         $product->save();
+
+        $producers = $request->producer;
+        foreach ($producers as $p) {
+            $produces = new Produces();
+            $produces->producer = $p;
+            $produces->product = $product->id;
+            $produces->save();
+        }
+
         return redirect('/product/list')->withErrors(['success' => 'با موفقیت ثبت شد .']);
     }
 
@@ -58,8 +75,20 @@ class ProductController extends Controller
         $product->name = $request->name;
         $product->barcode = $request->barcode;
         $product->price = $request->price;
-        $product->description = $request->description;
+        $product->comment = $request->description;
         $product->save();
+
+        $produces = Produces::where('product', $product->id);
+        $produces->delete();
+
+        $producers = $request->producer;
+        foreach ($producers as $p) {
+            $produces = new Produces();
+            $produces->producer = $p;
+            $produces->product = $product->id;
+            $produces->save();
+        }
+
         return redirect('/product/list')->withErrors(['success' => 'با موفقیت ثبت شد .']);
     }
 
