@@ -108,6 +108,7 @@
 <!-- App scripts -->
 <script src="/assets/js/app.js"></script>
 <script src="/assets/vendors/select2/js/select2.min.js"></script>
+<script src="/assets/js/examples/select2.js"></script>
 <script src="/assets/vendors/dataTable/jquery.dataTables.min.js"></script>
 <script src="/assets/vendors/dataTable/dataTables.bootstrap4.min.js"></script>
 <script src="/assets/vendors/dataTable/dataTables.fixedHeader.min.js"></script>
