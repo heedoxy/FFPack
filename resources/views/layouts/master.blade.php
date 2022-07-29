@@ -2,11 +2,14 @@
 <html lang="fa" dir="rtl">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" href="/favicon.ico">
     <title>@yield('title')</title>
+    <meta name="token" content="{{ csrf_token() }}">
+
     <!-- Plugin styles -->
     <link rel="stylesheet" href="/assets/vendors/bundle.css" type="text/css">
     <!-- Datepicker -->

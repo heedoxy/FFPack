@@ -24,7 +24,7 @@
                         <form method="post" action="{{ $action }}">
                             @csrf
                             <input type="hidden" name="id" value="{{ $edit ? $id : 0 }}">
-                            
+
                             @if(! $edit)
                                 <div class="form-group">
                                     <div class="form-check">

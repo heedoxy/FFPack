@@ -73,4 +73,8 @@ Route::middleware(['auth'])->group(function () {
 
     });
 
+    Route::prefix('/ajax')->group(function () {
+        Route::post('/producer/get', [ProductController::class, 'get_producer']);
+    });
+
 });

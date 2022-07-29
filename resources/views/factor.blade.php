@@ -218,6 +218,12 @@
                                        autocomplete="off"
                                        required>
                             </div>
+                            <div class="form-group">
+                                <label for="producer" class="col-form-label">تولید کننده :</label>
+                                <select class="form-control" name="producer" id="producer" autocomplete="off" required>
+                                    <option value="" selected>انتخاب کنید</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
@@ -232,7 +238,25 @@
 
     <script>
         $('#product').change(function (e) {
+
             $('#product-price').val($('#product').find(":selected").data('price'));
+
+            console.log(this.value)
+
+            $.ajax({
+                url: '/ajax/producer/get',
+                type: 'POST',  // http method
+                headers: {'X-CSRF-TOKEN': $('meta[name="token"]').attr('content')},
+                data: { product: this.value},  // data to submit
+                success: function (data) {
+                    $('#producer').html('');
+                    $('#producer').html('').append('<option value="" selected>انتخاب کنید</option>');
+                    data.forEach(function (c) {
+                        $('#producer').append('<option value="' + c['id'] + '">' + c['name'] + ' ' + c['family'] + '</option>');
+                    });
+                }
+            });
+
         });
     </script>
 

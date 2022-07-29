@@ -51,7 +51,7 @@
             <li><a href="/user/show" class="{{ ($sub_active == 6) ? "active" : "" }}">ثبت کاربر</a></li>
             <li><a href="/user/list" class="{{ ($sub_active == 7) ? "active" : "" }}">لیست کاربر</a></li>
         @elseif($access == 2)
-            <li><a href="/detail/list" class="{{ ($sub_active == 8) ? "active" : "" }}">لیست موارد</a></li>
+            <li><a href="/factor/detail/list" class="{{ ($sub_active == 8) ? "active" : "" }}">لیست موارد</a></li>
         @elseif($access == 3)
             <li><a href="/factor/list" class="{{ ($sub_active == 3) ? "active" : "" }}">لیست فاکتور</a></li>
         @endif

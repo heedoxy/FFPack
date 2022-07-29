@@ -6,6 +6,7 @@ use App\Models\Produces;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -96,5 +97,15 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->delete();
         return redirect('/product/list')->withErrors(['danger' => 'با موفقیت حذف شد .']);
+    }
+
+    public function get_producer(Request $request)
+    {
+        $product = $request->product;
+        return DB::table('produces')
+            ->join('products', 'produces.product', '=', 'products.id')
+            ->join('users', 'produces.producer', '=', 'users.id')
+            ->where('produces.product', $product)
+            ->get();
     }
 }

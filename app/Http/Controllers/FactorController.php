@@ -37,7 +37,7 @@ class FactorController extends Controller
     {
 
         $factor = null;
-        $user = Auth::id();
+        $staff = Auth::id();
 
         if ($id) {
 
@@ -54,7 +54,7 @@ class FactorController extends Controller
             $details = DB::table('factor_detail')
                 ->select('*', 'factor_detail.id as id', 'factor_detail.price as price')
                 ->join('products', 'factor_detail.product', '=', 'products.id')
-                ->where('factor_detail.user', '=', $user)
+                ->where('factor_detail.staff', '=', $staff)
                 ->where('factor_detail.status', '=', 0)
                 ->get();
         }
@@ -88,7 +88,7 @@ class FactorController extends Controller
         $factor->save();
 
         $id = $factor->id;
-        $detail = FactorDetail::where('user', '=', Auth::id())
+        $detail = FactorDetail::where('staff', '=', Auth::id())
             ->where('status', '=', 0)
             ->update([
                 'factor' => $id,
@@ -110,7 +110,8 @@ class FactorController extends Controller
         $factor = $request->factor;
 
         $detail = new FactorDetail();
-        $detail->user = Auth::id();
+        $detail->staff = Auth::id();
+        $detail->store = $request->producer;
         $detail->factor = $factor;
         $detail->product = $request->product;
         $detail->price = $request->price;
@@ -153,21 +154,25 @@ class FactorController extends Controller
 
         if ($access == 2)
             $details = DB::table('factor_detail')
-                ->select('*', 'factor_detail.id as id', 'factor_detail.price as price', 'factors.price as code')
+                ->select('*', 'factor_detail.id as id', 'factor_detail.price as price', 'products.name as pname', 'factors.id as fid',
+                    'producers.name as prname', 'producers.family as prfamily', 'users.name as name', 'users.family as family')
                 ->join('products', 'factor_detail.product', '=', 'products.id')
                 ->join('factors', 'factor_detail.factor', '=', 'factors.id')
-                ->where('factor_detail.user', '=', $user)
+                ->join('users', 'factors.user', '=', 'users.id')
+                ->join('users as producers', 'factor_detail.producer', '=', 'producers.id')
+                ->where('factor_detail.producer', '=', $user)
                 ->where('factor_detail.status', '!=', 0)
                 ->get();
         else
             $details = DB::table('factor_detail')
-                ->select('*', 'factor_detail.id as id', 'factor_detail.price as price', 'products.name as pname', 'factors.id as fid')
+                ->select('*', 'factor_detail.id as id', 'factor_detail.price as price', 'products.name as pname', 'factors.id as fid',
+                'producers.name as prname', 'producers.family as prfamily', 'users.name as name', 'users.family as family')
                 ->join('products', 'factor_detail.product', '=', 'products.id')
                 ->join('factors', 'factor_detail.factor', '=', 'factors.id')
                 ->join('users', 'factors.user', '=', 'users.id')
+                ->join('users as producers', 'factor_detail.producer', '=', 'producers.id')
                 ->where('factor_detail.status', '!=', 0)
                 ->get();
-
 
         return view('details', [
             'details' => $details
