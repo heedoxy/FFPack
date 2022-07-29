@@ -24,6 +24,35 @@
                         <form method="post" action="{{ $action }}">
                             @csrf
                             <input type="hidden" name="id" value="{{ $edit ? $id : 0 }}">
+                            
+                            @if(! $edit)
+                                <div class="form-group">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="access"
+                                               id="access1" value="1" checked>
+                                        <label class="form-check-label" for="access1">
+                                            دسترسی فروشنده
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="access"
+                                               id="access2"
+                                               value="2" {{ $edit && $user->access == 2 ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="access2">
+                                            دسترسی تولید کننده
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="access"
+                                               id="access3"
+                                               value="3" {{ $edit && $user->access == 3 ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="access3">
+                                            دسترسی مشتری
+                                        </label>
+                                    </div>
+                                </div>
+                            @endif
+
                             <div class="form-group">
                                 <label for="name">نام</label>
                                 <input type="text" class="form-control text-left" name="name" id="name"
@@ -46,29 +75,6 @@
                                 <label for="password">رمز عبور</label>
                                 <input type="password" class="form-control text-left" name="password" id="password"
                                        placeholder="رمز عبور" {{ $edit ? '' : 'required' }}>
-                            </div>
-                            <div class="form-group">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="access"
-                                           id="access1" value="1" checked>
-                                    <label class="form-check-label" for="access1">
-                                        دسترسی فروشنده
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="access"
-                                           id="access2" value="2" {{ $edit && $user->access == 2 ? 'checked' : '' }}>
-                                    <label class="form-check-label" for="access2">
-                                        دسترسی تولید کننده
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="access"
-                                           id="access3" value="3" {{ $edit && $user->access == 3 ? 'checked' : '' }}>
-                                    <label class="form-check-label" for="access3">
-                                        دسترسی مشتری
-                                    </label>
-                                </div>
                             </div>
                             <button type="submit" class="btn btn-primary">ثبت</button>
                         </form>

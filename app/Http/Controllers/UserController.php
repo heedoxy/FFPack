@@ -56,7 +56,6 @@ class UserController extends Controller
             'name' => 'required',
             'family' => 'required',
             'phone' => "required|unique:users,phone,$id,id",
-            'access' => 'required',
         ]);
 
         $user = User::find($id);
@@ -65,7 +64,6 @@ class UserController extends Controller
         $user->phone = $request->phone;
         if ($request->password)
             $user->password = Hash::make($request->password);
-        $user->access = $request->access;
         $user->save();
         return redirect('/user/list')->withErrors(['success' => 'با موفقیت ثبت شد .']);
     }
