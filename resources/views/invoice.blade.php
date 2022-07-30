@@ -86,10 +86,13 @@
                 </div>
                 <div class="text-right d-print-none">
                     <hr class="m-t-b-50">
-                    <a href="/factor/pdf/{{ $factor->id }}" download class="btn btn-primary text-light my-1">
-                        <i class="fa fa-file-pdf-o m-r-5"></i> دانلود صورتحساب
+                    <a href="/factor/message/{{ $factor->id }}" download class="btn btn-danger text-light mr-2">
+                        <i class="fa fa-envelope m-r-5"></i>پیام ها
                     </a>
-                    <a href="javascript:window.print()" class="btn btn-success m-l-5 my-1">
+                    <a href="/factor/pdf/{{ $factor->id }}" download class="btn btn-primary text-light my-1">
+                        <i class="fa fa-file-pdf-o m-r-5"></i>PDF
+                    </a>
+                    <a href="javascript:window.print()" class="btn btn-success text-light m-l-5 my-1">
                         <i class="fa fa-print m-r-5"></i> چاپ
                     </a>
                 </div>
