@@ -105,20 +105,29 @@ class FactorController extends Controller
             'product' => 'required',
             'price' => 'required',
             'number' => 'required',
+            'producer' => 'required',
         ]);
 
         $factor = $request->factor;
+        $id = $request->detail;
 
-        $detail = new FactorDetail();
-        $detail->staff = Auth::id();
-        $detail->producer = $request->producer;
-        $detail->factor = $factor;
-        $detail->product = $request->product;
-        $detail->price = $request->price;
-        $detail->number = $request->number;
-        $detail->status = 0;
-        $detail->save();
+        if ($id) {
 
+            $detail = FactorDetail::find($id);
+            $detail->number = $request->number;
+            $detail->save();
+
+        } else {
+            $detail = new FactorDetail();
+            $detail->staff = Auth::id();
+            $detail->producer = $request->producer;
+            $detail->factor = $factor;
+            $detail->product = $request->product;
+            $detail->price = $request->price;
+            $detail->number = $request->number;
+            $detail->status = 0;
+            $detail->save();
+        }
         if ($factor)
             return redirect("/factor/show/$factor")->withErrors(['success' => 'با موفقیت ثبت شد .']);
         else
@@ -166,7 +175,7 @@ class FactorController extends Controller
         else
             $details = DB::table('factor_detail')
                 ->select('*', 'factor_detail.id as id', 'factor_detail.price as price', 'products.name as pname', 'factors.id as fid',
-                'producers.name as prname', 'producers.family as prfamily', 'users.name as name', 'users.family as family')
+                    'producers.name as prname', 'producers.family as prfamily', 'users.name as name', 'users.family as family')
                 ->join('products', 'factor_detail.product', '=', 'products.id')
                 ->join('factors', 'factor_detail.factor', '=', 'factors.id')
                 ->join('users', 'factors.user', '=', 'users.id')

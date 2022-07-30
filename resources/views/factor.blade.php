@@ -39,9 +39,9 @@
                             @if(in_array($access, [0, 1]))
                                 <li class="list-inline-item mb-0 ml-1">
                                     <div class="dropdown">
-                                        <a class="btn btn-sm btn-success" style="margin-left: -10px; color: white"
+                                        <a class="bg-secondary rounded-circle p-1 px-2"
                                            data-toggle="modal" data-target="#addModal">
-                                            افزودن کالا
+                                            <i class="fa fa-plus"></i>
                                         </a>
                                     </div>
                                 </li>
@@ -67,11 +67,60 @@
                                         @php($total += $detail->number * $detail->price)
                                     </div>
                                     @if(in_array($access, [0, 1]))
-                                    <button type="button" class="btn btn-sm btn-danger ml-auto" data-toggle="modal"
-                                            data-target="#remove-detail-{{ $detail->id }}">حذف
-                                    </button>
+                                        <button type="button" class="btn btn-sm btn-secondary ml-auto"
+                                                data-toggle="modal"
+                                                data-target="#edit-detail-{{ $detail->id }}">ویرایش
+                                        </button>
+                                        <button type="button" class="btn btn-sm btn-secondary ml-1" data-toggle="modal"
+                                                data-target="#remove-detail-{{ $detail->id }}">حذف
+                                        </button>
                                     @endif
                                 </li>
+
+                                <div class="modal fade" tabindex="-1" role="dialog"
+                                     aria-hidden="true" id="edit-detail-{{ $detail->id }}">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <form method="post" action="/factor/detail/add">
+                                                @csrf
+                                                <input type="hidden" name="factor" value="{{ $edit ? $id : 0 }}">
+                                                <input type="hidden" name="detail" value="{{ $detail->id }}">
+                                                <input type="hidden" name="product" value="{{ $detail->product }}">
+                                                <input type="hidden" name="producer" value="{{ $detail->producer }}">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title text-light">ویرایش کالا</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="بستن">
+                                                        <i class="ti-close"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <label for="product-price" class="col-form-label">قیمت :</label>
+                                                        <input type="text" name="price" class="form-control"
+                                                               id="product-price"
+                                                               autocomplete="off" value="{{ $detail->price }}"
+                                                               required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="product-number" class="col-form-label">تعداد
+                                                            :</label>
+                                                        <input type="text" name="number" class="form-control"
+                                                               id="product-number"
+                                                               autocomplete="off" value="{{ $detail->number }}"
+                                                               required>
+                                                    </div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">بستن
+                                                    </button>
+                                                    <button type="submit" class="btn btn-primary">ثبت</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
 
                                 <div class="modal fade" tabindex="-1" role="dialog"
                                      aria-hidden="true" id="remove-detail-{{ $detail->id }}">
@@ -123,8 +172,7 @@
                                 <div class="col-5 col-md-6 text-right mt-4">
                                     <button class="btn btn-primary" type="button"
                                             data-toggle="modal" data-target="#submitModal">
-                                    <span class="spinner-border spinner-border-sm mr-2" role="status"
-                                          aria-hidden="true"></span>
+                                        <i class="fa fa-check mr-1"></i>
                                         ثبت فاکتور
                                     </button>
                                 </div>
@@ -247,7 +295,7 @@
                 url: '/ajax/producer/get',
                 type: 'POST',  // http method
                 headers: {'X-CSRF-TOKEN': $('meta[name="token"]').attr('content')},
-                data: { product: this.value},  // data to submit
+                data: {product: this.value},  // data to submit
                 success: function (data) {
                     $('#producer').html('');
                     $('#producer').html('').append('<option value="" selected>انتخاب کنید</option>');
