@@ -26,6 +26,7 @@ Route::fallback(function () {
 
 Route::get('/artisan', function () {
     Artisan::call('migrate');
+    Artisan::call('db:seed');
 });
 
 Route::get('/login', [LoginController::class, 'login_show']);
