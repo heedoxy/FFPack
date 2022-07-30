@@ -34,6 +34,8 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::get('/reset', [LoginController::class, 'reset']);
 Route::get('/logout', [LoginController::class, 'logout']);
 
+Route::get('factor/pdf/{id}', [FactorController::class, 'pdf']);
+
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/', [HomeController::class, 'index']);
@@ -62,7 +64,6 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/list', [FactorController::class, 'index']);
         Route::get('/show/{id?}', [FactorController::class, 'add']);
         Route::get('/invoice/{id}', [FactorController::class, 'invoice']);
-        Route::get('/pdf/{id}', [FactorController::class, 'pdf']);
         Route::post('/add', [FactorController::class, 'store']);
         Route::post('/edit', [FactorController::class, 'update']);
         Route::delete('/remove/{id}', [FactorController::class, 'remove']);

@@ -1,5 +1,4 @@
 @php
-    $access = \Illuminate\Support\Facades\Auth::user()->access;
     $helper = new \App\Helpers\Helper();
     $counter = 1;
     $total = 0;
