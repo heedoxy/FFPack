@@ -111,7 +111,7 @@ class FactorController extends Controller
 
         $detail = new FactorDetail();
         $detail->staff = Auth::id();
-        $detail->store = $request->producer;
+        $detail->producer = $request->producer;
         $detail->factor = $factor;
         $detail->product = $request->product;
         $detail->price = $request->price;
