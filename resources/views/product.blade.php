@@ -24,6 +24,9 @@
                         <form method="post" action="{{ $action }}">
                             @csrf
                             <input type="hidden" name="id" value="{{ $edit ? $id : 0 }}">
+                            <small class="form-text text-danger">
+                                ابتدا تولید کننده های مرتبط را ثبت کنید !
+                            </small>
                             <div class="form-group">
                                 <label for="name">نام محصول</label>
                                 <input type="text" class="form-control text-left" name="name" id="name"
