@@ -66,7 +66,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/detail/add', [FactorController::class, 'store_detail']);
 
         Route::prefix('/message')->group(function () {
-            Route::get('/{id}', [MessageController::class, 'list']);
+            Route::get('/{factor}', [MessageController::class, 'list']);
+            Route::get('/{factor}/{detail}', [MessageController::class, 'list']);
             Route::post('/text', [MessageController::class, 'text']);
             Route::post('/file', [MessageController::class, 'file']);
         });

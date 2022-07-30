@@ -70,7 +70,7 @@
                                                            class="dropdown-item"
                                                            type="button">مشاهده صورتحساب</a>
                                                     @endif
-                                                    <a class="dropdown-item"
+                                                    <a href="/factor/message/{{ $detail->fid }}/{{ $detail->id }}" class="dropdown-item"
                                                        type="button">پیام ها</a>
                                                 </div>
                                             </div>

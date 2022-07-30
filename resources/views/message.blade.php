@@ -82,7 +82,8 @@
                         <form method="post" action="/factor/message/text" class="d-flex align-items-center">
                             @csrf
                             <input type="hidden" name="factor" value="{{ $factor }}">
-                            <input type="text" name="text" class="form-control" placeholder="پیام ...">
+                            <input type="hidden" name="detail" value="{{ $detail }}">
+                            <input type="text" name="text" class="form-control" autocomplete="off" placeholder="پیام ...">
                             <div class="d-flex">
                                 <button type="submit" class="ml-3 btn btn-primary btn-floating">
                                     <i class="fa fa-send"></i>

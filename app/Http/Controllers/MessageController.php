@@ -11,11 +11,16 @@ use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
-    public function list($factor)
+    public function list($factor, $detail = 0)
     {
-        $messages = Message::all()->where('factor', '=', $factor);
+        if ($detail)
+            $messages = Message::all()->where('detail', $detail);
+        else
+            $messages = Message::all()->where('factor', $factor)->where('detail', 0);
+
         return view('message', [
             'factor' => $factor,
+            'detail' => $detail,
             'messages' => $messages
         ]);
     }
@@ -24,19 +29,29 @@ class MessageController extends Controller
     {
         $this->validate($request, [
             'factor' => 'required',
+            'detail' => 'required',
             'text' => 'required',
         ]);
 
         $factor = $request->factor;
+        $detail = $request->detail;
+
+        if (in_array(Auth::user()->access, [0, 1])) $user =0;
+        else $user = Auth::id();
+
         $message = new Message();
         $message->factor = $factor;
-        $message->user = 0;
-        if (Auth::user()->access == 3) $message->user = Auth::id();
+        $message->detail = $detail;
+        $message->user = $user;
         $message->file = 0;
         $message->content = $request->text;
         $message->view = 0;
         $message->save();
-        return redirect("/factor/message/$factor");
+
+        if ($detail)
+            return redirect("/factor/message/$factor/$detail");
+        else
+            return redirect("/factor/message/$factor");
     }
 
     public function file(Request $request)
