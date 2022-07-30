@@ -98,7 +98,6 @@
                                                     <div class="form-group">
                                                         <label for="product-price" class="col-form-label">قیمت :</label>
                                                         <input type="text" name="price" class="form-control"
-                                                               id="product-price"
                                                                autocomplete="off" value="{{ $detail->price }}"
                                                                required>
                                                     </div>
@@ -106,7 +105,6 @@
                                                         <label for="product-number" class="col-form-label">تعداد
                                                             :</label>
                                                         <input type="text" name="number" class="form-control"
-                                                               id="product-number"
                                                                autocomplete="off" value="{{ $detail->number }}"
                                                                required>
                                                     </div>
