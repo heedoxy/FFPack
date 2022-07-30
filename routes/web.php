@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use \Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\FactorController;
@@ -21,6 +22,10 @@ use App\Http\Controllers\Auth\LoginController;
 
 Route::fallback(function () {
     return view('errors.404');
+});
+
+Route::get('/artisan', function () {
+    Artisan::call('migrate');
 });
 
 Route::get('/login', [LoginController::class, 'login_show']);
