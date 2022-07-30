@@ -67,10 +67,15 @@ class MessageController extends Controller
         $image->move($path, $imageName);
 
         $factor = $request->factor;
+        $detail = $request->detail;
+
+        if (in_array(Auth::user()->access, [0, 1])) $user =0;
+        else $user = Auth::id();
+
         $message = new Message();
         $message->factor = $factor;
-        $message->user = 0;
-        if (Auth::user()->access == 3) $message->user = Auth::id();
+        $message->detail = $detail;
+        $message->user = $user;
         $message->file = 1;
         $message->content = $imageName;
         $message->view = 0;
