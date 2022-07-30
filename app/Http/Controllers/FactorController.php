@@ -225,6 +225,7 @@ class FactorController extends Controller
     public function invoice($id)
     {
         $factor = DB::table('factors')
+            ->select('*', 'factors.id as id')
             ->join('users', 'factors.user', '=', 'users.id')
             ->where('factors.id', '=', $id)
             ->first();
