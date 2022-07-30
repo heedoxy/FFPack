@@ -5,7 +5,7 @@ Dropzone.autoDiscover = false;
 $(document).ready(function () {
 
     new Dropzone(".dropzone", {
-		dictDefaultMessage:"فایل ها را برای ارسال اینجا بکشید",
+        dictDefaultMessage:"اینجا کلیک کنید .",
 		dictFallbackMessage:"مرورگر شما از کشیدن و رها سازی برای ارسال فایل پشتیبانی نمی کند.",
 		dictFallbackText:"لطفا از فرم زیر برای ارسال فایل های خود مانند گذشته استفاده کنید.",
 		dictFileTooBig:"فایل خیلی بزرگ است ({{filesize}}MiB). حداکثر اندازه مجاز: {{maxFilesize}}MiB.",
