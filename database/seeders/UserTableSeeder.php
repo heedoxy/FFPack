@@ -22,7 +22,7 @@ class UserTableSeeder extends Seeder
             "family" => "رنجبر",
             "phone" => $phone,
             "password" => Hash::make($phone),
-            "access" => 1,
+            "access" => 0,
             "token" => Str::random(100),
             "created_at" => now(),
             "updated_at" => now(),
