@@ -115,6 +115,7 @@
                                               class="dropzone" id="dropzone">
                                             @csrf
                                             <input type="hidden" name="factor" value="{{ $factor }}">
+                                            <input type="hidden" name="detail" value="{{ $detail }}">
                                         </form>
                                     </div>
                                     <div class="modal-footer">
