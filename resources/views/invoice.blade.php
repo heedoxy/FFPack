@@ -86,7 +86,7 @@
                 </div>
                 <div class="text-right d-print-none">
                     <hr class="m-t-b-50">
-                    <a href="/factor/message/{{ $factor->id }}" download class="btn btn-danger text-light mr-2">
+                    <a href="/factor/message/{{ $factor->id }}" class="btn btn-danger text-light mr-2">
                         <i class="fa fa-envelope m-r-5"></i>پیام ها
                     </a>
                     <a href="/factor/pdf/{{ $factor->id }}" download class="btn btn-primary text-light my-1">
