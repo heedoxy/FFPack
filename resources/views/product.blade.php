@@ -33,7 +33,7 @@
                                        value="{{ $edit ? $product->name : '' }}" required>
                             </div>
                             <div class="form-group">
-                                <label for="barcode">بارکد محصول</label>
+                                <label for="barcode">کد محصول</label>
                                 <input type="text" class="form-control text-left" name="barcode" id="barcode"
                                        value="{{ $edit ? $product->barcode : '' }}" required>
                             </div>

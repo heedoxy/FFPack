@@ -31,7 +31,7 @@
                                         <input class="form-check-input" type="radio" name="access"
                                                id="access1" value="1" checked>
                                         <label class="form-check-label" for="access1">
-                                            دسترسی فروشنده
+                                            کارشناس فروش
                                         </label>
                                     </div>
                                     <div class="form-check">
@@ -39,7 +39,7 @@
                                                id="access2"
                                                value="2" {{ $edit && $user->access == 2 ? 'checked' : '' }}>
                                         <label class="form-check-label" for="access2">
-                                            دسترسی تولید کننده
+                                            تامین کننده
                                         </label>
                                     </div>
                                     <div class="form-check">
@@ -47,7 +47,7 @@
                                                id="access3"
                                                value="3" {{ $edit && $user->access == 3 ? 'checked' : '' }}>
                                         <label class="form-check-label" for="access3">
-                                            دسترسی مشتری
+                                            کاربر مشتری
                                         </label>
                                     </div>
                                 </div>

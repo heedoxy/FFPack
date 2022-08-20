@@ -40,13 +40,13 @@
                                         <td>{{ $user->name . " " . $user->family }}</td>
                                         <td>
                                             @if($user->access == 0)
-                                                <span class="badge badge-dark">مدیر کل</span>
+                                                <span class="badge badge-dark">کارشناس ارشد</span>
                                             @elseif($user->access == 1)
-                                                <span class="badge badge-success">فروشنده</span>
+                                                <span class="badge badge-success">کارشناس فروش</span>
                                             @elseif($user->access == 2)
-                                                <span class="badge badge-primary">تولید کننده</span>
+                                                <span class="badge badge-primary">تامین کننده</span>
                                             @else
-                                                <span class="badge badge-info">مشتری</span>
+                                                <span class="badge badge-info">کاربر مشتری</span>
                                             @endif
                                         </td>
                                         <td class="text-right">

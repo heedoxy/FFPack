@@ -41,6 +41,7 @@
                                     @if(in_array($access, [0, 1]))
                                         <th class="text-center" scope="col">کاربر</th>
                                     @endif
+                                    <th class="text-center" scope="col">تاریخ ثبت</th>
                                     <th class="text-right" scope="col">مدیریت</th>
                                 </tr>
                                 </thead>
@@ -53,6 +54,9 @@
                                         @if(in_array($access, [0, 1]))
                                             <td class="text-center">{{ $factor->name . " " . $factor->family }}</td>
                                         @endif
+                                        <td class="text-center">
+                                            {{ (new \Hekmatinasser\Verta\Verta($factor->created_at))->format('Y-n-j') }}
+                                        </td>
                                         <td class="text-right">
                                             <div class="dropdown">
                                                 <a href="#" class="btn btn-light btn-floating btn-icon btn-sm"
