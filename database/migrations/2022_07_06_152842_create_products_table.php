@@ -17,8 +17,8 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('name', 100);
             $table->string('barcode', 20);
-            $table->string('price', 20);
             $table->string('comment', 500)->nullable();
+            $table->integer('unit');
             $table->timestamps();
         });
     }
