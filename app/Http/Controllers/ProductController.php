@@ -20,18 +20,11 @@ class ProductController extends Controller
     {
         $product = null;
         if ($id) $product = Product::find($id);
-        $producers = User::all()->where('access', 2);
-        foreach ($producers as $producer) {
-            $exist = Produces::all()
-                ->where('producer', $producer->id)
-                ->where('product', $id)
-                ->first();
-            $producer->selected = (bool)$exist;
-        }
+        $code = $this->product_code();
         return view('product', [
             'id' => $id,
             'product' => $product,
-            'producers' => $producers,
+            'code' => $code,
         ]);
     }
 
@@ -107,5 +100,18 @@ class ProductController extends Controller
             ->join('users', 'produces.producer', '=', 'users.id')
             ->where('produces.product', $product)
             ->get();
+    }
+
+    public function product_counter()
+    {
+        return Product::all()->count();
+    }
+
+    public function product_code()
+    {
+        $counter = $this->product_counter();
+        $counter++;
+        $code = str_pad($counter, 3, 0, STR_PAD_LEFT);
+        return "P$code";
     }
 }
