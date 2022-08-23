@@ -24,31 +24,23 @@
                         <form method="post" action="{{ $action }}">
                             @csrf
                             <input type="hidden" name="id" value="{{ $edit ? $id : 0 }}">
-                            <small class="form-text text-danger">
-                                ابتدا تولید کننده های مرتبط را ثبت کنید !
-                            </small>
+                            <div class="form-group">
+                                <label for="barcode">کد محصول</label>
+                                <input type="text" class="form-control text-left" name="barcode" id="barcode" readonly
+                                       value="{{ $edit ? $product->barcode : $code }}" required>
+                            </div>
                             <div class="form-group">
                                 <label for="name">نام محصول</label>
                                 <input type="text" class="form-control text-left" name="name" id="name"
                                        value="{{ $edit ? $product->name : '' }}" required>
                             </div>
                             <div class="form-group">
-                                <label for="barcode">کد محصول</label>
-                                <input type="text" class="form-control text-left" name="barcode" id="barcode"
-                                       value="{{ $edit ? $product->barcode : '' }}" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="price">قیمت محصول</label>
-                                <input type="text" class="form-control text-left" name="price" id="price"
-                                       value="{{ $edit ? $product->price : '' }}" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="producer">تولید کننده ها</label>
-                                <select class="js-example-basic-single" name="producer[]" id="producer" multiple required>
+                                <label for="unit">واحد محصول</label>
+                                <select class="js-example-basic-single" name="unit" id="unit" required>
                                     <option value="">انتخاب کنید</option>
-                                    @foreach($producers as $producer)
-                                        <option value="{{ $producer->id }}" {{ $producer->selected ? 'selected' : ''  }}>
-                                            {{ $producer->name . ' ' . $producer->family }}
+                                    @foreach($units as $unit)
+                                        <option value="{{ $unit->id }}" {{ $edit && $product->unit == $unit->id ? 'selected' : ''  }}>
+                                            {{ $unit->title }}
                                         </option>
                                     @endforeach
                                 </select>

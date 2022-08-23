@@ -28,9 +28,8 @@
                                 <thead>
                                 <tr>
                                     <th scope="col">#</th>
+                                    <th scope="col">کد</th>
                                     <th scope="col">عنوان</th>
-                                    <th scope="col">بارکد</th>
-                                    <th scope="col">قیمت</th>
                                     <th class="text-right" scope="col">مدیریت</th>
                                 </tr>
                                 </thead>
@@ -38,9 +37,8 @@
                                 @foreach ($products as $product)
                                     <tr>
                                         <th scope="row">{{ $counter++ }}</th>
-                                        <td>{{ $product->name }}</td>
                                         <td>{{ $product->barcode }}</td>
-                                        <td>{{ number_format($product->price) }}</td>
+                                        <td>{{ $product->name }}</td>
                                         <td class="text-right">
                                             <div class="dropdown">
                                                 <a href="#" class="btn btn-light btn-floating btn-icon btn-sm"

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Produces;
 use App\Models\Product;
+use App\Models\Unit;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -21,35 +22,31 @@ class ProductController extends Controller
         $product = null;
         if ($id) $product = Product::find($id);
         $code = $this->product_code();
+        $units = Unit::all();
         return view('product', [
             'id' => $id,
             'product' => $product,
             'code' => $code,
+            'units' => $units,
         ]);
     }
 
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
             'barcode' => 'required',
-            'price' => 'required',
+            'name' => 'required',
+            'unit' => 'required',
         ]);
 
+        $barcode = $this->product_code();
+
         $product = new Product();
+        $product->barcode = $barcode;
         $product->name = $request->name;
-        $product->barcode = $request->barcode;
-        $product->price = $request->price;
+        $product->unit = $request->unit;
         $product->comment = $request->description;
         $product->save();
-
-        $producers = $request->producer;
-        foreach ($producers as $p) {
-            $produces = new Produces();
-            $produces->producer = $p;
-            $produces->product = $product->id;
-            $produces->save();
-        }
 
         return redirect('/product/list')->withErrors(['success' => 'با موفقیت ثبت شد .']);
     }
@@ -61,27 +58,12 @@ class ProductController extends Controller
         $this->validate($request, [
             'id' => 'required',
             'name' => 'required',
-            'barcode' => 'required',
-            'price' => 'required',
         ]);
 
         $product = Product::find($id);
         $product->name = $request->name;
-        $product->barcode = $request->barcode;
-        $product->price = $request->price;
         $product->comment = $request->description;
         $product->save();
-
-        $produces = Produces::where('product', $product->id);
-        $produces->delete();
-
-        $producers = $request->producer;
-        foreach ($producers as $p) {
-            $produces = new Produces();
-            $produces->producer = $p;
-            $produces->product = $product->id;
-            $produces->save();
-        }
 
         return redirect('/product/list')->withErrors(['success' => 'با موفقیت ثبت شد .']);
     }
