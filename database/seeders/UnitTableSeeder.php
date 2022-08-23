@@ -14,7 +14,7 @@ class UnitTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('units')->insert(
+        DB::table('units')->insert([
             ["title" => "کیلوگرم"],
             ["title" => "گرم"],
             ["title" => "عدد"],
@@ -22,6 +22,6 @@ class UnitTableSeeder extends Seeder
             ["title" => "سانتی متر مکعب"],
             ["title" => "پاکت"],
             ["title" => "کارتن"]
-        );
+        ]);
     }
 }
