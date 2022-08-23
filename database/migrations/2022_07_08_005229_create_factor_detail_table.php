@@ -19,7 +19,8 @@ class CreateFactorDetailTable extends Migration
             $table->integer('producer');
             $table->integer('factor');
             $table->integer('product');
-            $table->integer('number');
+            $table->integer('unit');
+            $table->integer('amount');
             $table->string('price', 15);
             $table->smallInteger('status');
             $table->timestamps();
