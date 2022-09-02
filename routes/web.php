@@ -44,8 +44,8 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/profile', [UserController::class, 'profile_update']);
 
     Route::prefix('/user')->group(function () {
-        Route::get('/list', [UserController::class, 'index']);
-        Route::get('/show/{id?}', [UserController::class, 'add']);
+        Route::get('/list/{access}', [UserController::class, 'index']);
+        Route::get('/show/{access}/{id?}', [UserController::class, 'add']);
         Route::post('/add', [UserController::class, 'store']);
         Route::post('/edit', [UserController::class, 'update']);
         Route::delete('/remove/{id}', [UserController::class, 'remove']);
@@ -79,6 +79,10 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/file', [MessageController::class, 'file']);
         });
 
+    });
+
+    Route::prefix('/message')->group(function () {
+        Route::get('/{user}', [MessageController::class, 'user']);
     });
 
     Route::prefix('/ajax')->group(function () {

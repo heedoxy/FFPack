@@ -1,13 +1,19 @@
 @php
     $menu_active = 1;
+    $access = $access ?? 1;
     $sub_active = 6;
+    if ($access == 3) $sub_active = 9;
+    elseif ($access == 2) $sub_active = 11;
     $edit = isset($id);
+    $type = "کارشناس";
+    if ($access == 3) $type = "مشتری";
+    elseif ($access == 2) $type = "تامین کننده";
     $action = "/user/" . ($edit ? "edit" : "add");
 @endphp
 
 @extends('layouts.master')
 
-@section('title', 'مدیریت کاربر')
+@section('title', " مدیریت $type ")
 
 @section('main')
     <main class="main-content">
@@ -20,38 +26,11 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
-                        <h6 class="card-title text-primary">{{ $edit ? "ویرایش کاربر" : "ثبت کاربر" }}</h6>
+                        <h6 class="card-title text-primary">{{ $edit ? "ویرایش کاربر" : " ثبت $type " }}</h6>
                         <form method="post" action="{{ $action }}">
                             @csrf
                             <input type="hidden" name="id" value="{{ $edit ? $id : 0 }}">
-
-                            @if(! $edit)
-                                <div class="form-group">
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="access"
-                                               id="access1" value="1" checked>
-                                        <label class="form-check-label" for="access1">
-                                            کارشناس فروش
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="access"
-                                               id="access2"
-                                               value="2" {{ $edit && $user->access == 2 ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="access2">
-                                            تامین کننده
-                                        </label>
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="radio" name="access"
-                                               id="access3"
-                                               value="3" {{ $edit && $user->access == 3 ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="access3">
-                                            کاربر مشتری
-                                        </label>
-                                    </div>
-                                </div>
-                            @endif
+                            <input type="hidden" name="access" value="{{ $access }}">
 
                             <div class="form-group">
                                 <label for="name">نام</label>

@@ -13,17 +13,17 @@ use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index($access)
     {
-        $users = User::all()->where('access', '!=', 0);
-        return view('user-list', ['users' => $users]);
+        $users = User::all()->where('access', '=', $access);
+        return view('user-list', ['users' => $users, 'access' => $access]);
     }
 
-    public function add($id = null)
+    public function add($access, $id = null)
     {
         $user = null;
         if ($id) $user = User::find($id);
-        return view('user', ['id' => $id, 'user' => $user]);
+        return view('user', ['id' => $id, 'user' => $user, 'access' => $access]);
     }
 
     public function store(Request $request)
@@ -37,6 +37,7 @@ class UserController extends Controller
         ]);
 
         $user = new User();
+        $access = $request->access;
         $user->name = $request->name;
         $user->family = $request->family;
         $user->phone = $request->phone;
@@ -44,7 +45,8 @@ class UserController extends Controller
         $user->access = $request->access;
         $user->token =Str::random(100);
         $user->save();
-        return redirect('/user/list')->withErrors(['success' => 'با موفقیت ثبت شد .']);
+
+        return redirect("/user/list/$access")->withErrors(['success' => 'با موفقیت ثبت شد .']);
     }
 
     public function update(Request $request)
@@ -59,13 +61,14 @@ class UserController extends Controller
         ]);
 
         $user = User::find($id);
+        $access = $request->access;
         $user->name = $request->name;
         $user->family = $request->family;
         $user->phone = $request->phone;
         if ($request->password)
             $user->password = Hash::make($request->password);
         $user->save();
-        return redirect('/user/list')->withErrors(['success' => 'با موفقیت ثبت شد .']);
+        return redirect("/user/list/$access")->withErrors(['success' => 'با موفقیت ثبت شد .']);
     }
 
     public function remove($id) {

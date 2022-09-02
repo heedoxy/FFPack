@@ -6,6 +6,7 @@ use App\Helpers\PDF;
 use App\Models\Factor;
 use App\Models\FactorDetail;
 use App\Models\Product;
+use App\Models\Unit;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -42,9 +43,16 @@ class FactorController extends Controller
         if ($id) {
 
             $details = DB::table('factor_detail')
-                ->select('*', 'factor_detail.id as id', 'factor_detail.price as price')
+                ->select(
+                    '*',
+                    'factor_detail.id as id',
+                    'factor_detail.price as price',
+                    'factor_detail.unit as unit',
+                    'units.title as unit_title'
+                )
                 ->join('factors', 'factor_detail.factor', '=', 'factors.id')
                 ->join('products', 'factor_detail.product', '=', 'products.id')
+                ->join('units', 'factor_detail.unit', '=', 'units.id')
                 ->where('factor', '=', $id)
                 ->get();
 
@@ -52,13 +60,21 @@ class FactorController extends Controller
 
         } else {
             $details = DB::table('factor_detail')
-                ->select('*', 'factor_detail.id as id', 'factor_detail.price as price')
+                ->select(
+                    '*',
+                    'factor_detail.id as id',
+                    'factor_detail.price as price',
+                    'factor_detail.unit as unit',
+                    'units.title as unit_title'
+                )
                 ->join('products', 'factor_detail.product', '=', 'products.id')
+                ->join('units', 'factor_detail.unit', '=', 'units.id')
                 ->where('factor_detail.staff', '=', $staff)
                 ->where('factor_detail.status', '=', 0)
                 ->get();
         }
 
+        $units = Unit::all();
         $products = Product::all();
         $users = User::all()->where('access', '=', 3);
 
@@ -66,6 +82,7 @@ class FactorController extends Controller
             'id' => $id,
             'factor' => $factor,
             'details' => $details,
+            'units' => $units,
             'products' => $products,
             'users' => $users
         ]);
@@ -105,7 +122,6 @@ class FactorController extends Controller
             'product' => 'required',
             'price' => 'required',
             'number' => 'required',
-            'producer' => 'required',
         ]);
 
         $factor = $request->factor;
@@ -114,17 +130,19 @@ class FactorController extends Controller
         if ($id) {
 
             $detail = FactorDetail::find($id);
-            $detail->number = $request->number;
+            $detail->unit = $request->unit;
+            $detail->amount = $request->number;
             $detail->save();
 
         } else {
             $detail = new FactorDetail();
             $detail->staff = Auth::id();
-            $detail->producer = $request->producer;
+            $detail->producer = 0;
             $detail->factor = $factor;
             $detail->product = $request->product;
             $detail->price = $request->price;
-            $detail->number = $request->number;
+            $detail->unit = $request->unit;
+            $detail->amount = $request->number;
             $detail->status = 0;
             $detail->save();
         }

@@ -42,14 +42,22 @@
 <div class="navigation-menu-body">
     <ul id="navigationDashboards" class="{{ ($menu_active == 1) ? "navigation-active" : "" }}">
         <li><a href="/" class="{{ ($sub_active == 1) ? "active" : "" }}">داشبورد</a></li>
+
+        @if($access == 0)
+            <li><a href="/user/show/1" class="{{ ($sub_active == 6) ? "active" : "" }}">ثبت کارشناس</a></li>
+            <li><a href="/user/list/1" class="{{ ($sub_active == 7) ? "active" : "" }}">لیست کارشناسان</a>
+        @endif
+
         @if(in_array($access, [0, 1]))
             <li><a href="/factor/show" class="{{ ($sub_active == 2) ? "active" : "" }}">ثبت فاکتور</a></li>
             <li><a href="/factor/list" class="{{ ($sub_active == 3) ? "active" : "" }}">لیست فاکتور</a></li>
             <li><a href="/factor/detail/list" class="{{ ($sub_active == 8) ? "active" : "" }}">لیست موارد</a></li>
             <li><a href="/product/show" class="{{ ($sub_active == 4) ? "active" : "" }}">ثبت محصول جدید</a></li>
             <li><a href="/product/list" class="{{ ($sub_active == 5) ? "active" : "" }}">محصولات</a></li>
-            <li><a href="/user/show" class="{{ ($sub_active == 6) ? "active" : "" }}">ثبت کاربر</a></li>
-            <li><a href="/user/list" class="{{ ($sub_active == 7) ? "active" : "" }}">لیست کاربر</a></li>
+            <li><a href="/user/show/2" class="{{ ($sub_active == 11) ? "active" : "" }}">ثبت تامین کننده</a></li>
+            <li><a href="/user/list/2" class="{{ ($sub_active == 12) ? "active" : "" }}">لیست تامین کنندگان</a></li>
+            <li><a href="/user/show/3" class="{{ ($sub_active == 9) ? "active" : "" }}">ثبت مشتری</a></li>
+            <li><a href="/user/list/3" class="{{ ($sub_active == 10) ? "active" : "" }}">لیست مشتریان</a></li>
         @elseif($access == 2)
             <li><a href="/factor/detail/list" class="{{ ($sub_active == 8) ? "active" : "" }}">لیست موارد</a></li>
         @elseif($access == 3)

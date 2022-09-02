@@ -11,6 +11,16 @@ use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
+    public function user($id)
+    {
+        $messages = Message::all()->where('user', $id);
+
+        return view('message', [
+            'user' => $id,
+            'messages' => $messages
+        ]);
+    }
+
     public function list($factor, $detail = 0)
     {
         if ($detail)
@@ -36,17 +46,23 @@ class MessageController extends Controller
         $factor = $request->factor;
         $detail = $request->detail;
 
-        if (in_array(Auth::user()->access, [0, 1])) $user =0;
+        if (in_array(Auth::user()->access, [0, 1])) $user = $request->user;
         else $user = Auth::id();
+
+        if (in_array(Auth::user()->access, [0, 1])) $sender = 0;
+        else $sender = Auth::id();
 
         $message = new Message();
         $message->factor = $factor;
         $message->detail = $detail;
+        $message->sender = $sender;
         $message->user = $user;
         $message->file = 0;
         $message->content = $request->text;
         $message->view = 0;
         $message->save();
+
+        return redirect()->back();
 
         if ($detail)
             return redirect("/factor/message/$factor/$detail");

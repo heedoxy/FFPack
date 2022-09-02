@@ -1,6 +1,9 @@
 @php
     $menu_active = 1;
+    $access = $access ?? 1;
     $sub_active = 7;
+    if ($access == 3) $sub_active = 10;
+    elseif ($access == 2) $sub_active = 12;
     $counter = 1;
 @endphp
 
@@ -37,7 +40,11 @@
                                 @foreach ($users as $user)
                                     <tr>
                                         <th scope="row">{{ $counter++ }}</th>
-                                        <td>{{ $user->name . " " . $user->family }}</td>
+                                        <td>
+                                            <a href="/message/{{ $user->id }}">
+                                                {{ $user->name . " " . $user->family }}
+                                            </a>
+                                        </td>
                                         <td>
                                             @if($user->access == 0)
                                                 <span class="badge badge-dark">کارشناس ارشد</span>
@@ -88,7 +95,8 @@
                                                                         data-dismiss="modal">بستن
                                                                 </button>
                                                                 <button type="submit"
-                                                                   class="btn btn-primary text-light">حذف</button>
+                                                                        class="btn btn-primary text-light">حذف
+                                                                </button>
                                                             </form>
                                                         </div>
                                                     </div>

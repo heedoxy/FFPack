@@ -29,9 +29,9 @@
                             @if($edit)
                                 <li class="list-inline-item mb-0">
                                     <div class="dropdown">
-                                        <a href="/factor/message/{{ $id }}" class="btn btn-sm btn-light btn-uppercase"
+                                        <a href="/message/{{ $factor->user }}" class="btn btn-sm btn-light btn-uppercase"
                                            style="margin-left: -10px">
-                                            پیام ها
+                                            پیام مشتری
                                         </a>
                                     </div>
                                 </li>
@@ -60,11 +60,12 @@
                                     <div>
                                         <h6 class="m-b-0 primary-font">{{ $detail->name }}</h6>
                                         <small class="text-muted">
-                                            {{ $detail->number }} عدد
+                                            {{ $detail->amount }}
+                                            {{ $detail->unit_title }}
                                             |
-                                            {{ number_format($detail->number * $detail->price) }} تومان
+                                            {{ number_format($detail->amount * $detail->price) }} تومان
                                         </small>
-                                        @php($total += $detail->number * $detail->price)
+                                        @php($total += $detail->amount * $detail->price)
                                     </div>
                                     @if(in_array($access, [0, 1]))
                                         <button type="button" class="btn btn-sm btn-secondary ml-auto"
@@ -102,10 +103,21 @@
                                                                required>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="product-number" class="col-form-label">تعداد
+                                                        <label for="product-unit" class="col-form-label">واحد :</label>
+                                                        <select id="product-unit" name="unit" class="form-control" required>
+                                                            <option value="">واحد مورد نظر را انتخاب فرمایید</option>
+                                                            @foreach($units as $unit)
+                                                                <option value="{{ $unit->id }}" {{ $unit->id == $detail->unit ? "selected" : "" }}>
+                                                                    {{ $unit->title }}
+                                                                </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="product-number" class="col-form-label">مقدار
                                                             :</label>
                                                         <input type="text" name="number" class="form-control"
-                                                               autocomplete="off" value="{{ $detail->number }}"
+                                                               autocomplete="off" value="{{ $detail->amount }}"
                                                                required>
                                                     </div>
                                                 </div>
@@ -246,7 +258,7 @@
                                         محصول مورد نظر را انتخاب فرمایید .
                                     </option>
                                     @foreach ($products as $product)
-                                        <option value="{{ $product->id }}" data-price="{{ $product->price }}">
+                                        <option value="{{ $product->id }}" data-unit="{{ $product->unit }}">
                                             {{ $product->name }}
                                         </option>
                                     @endforeach
@@ -259,16 +271,21 @@
                                        required>
                             </div>
                             <div class="form-group">
-                                <label for="product-number" class="col-form-label">تعداد :</label>
+                                <label for="product-unit" class="col-form-label">واحد :</label>
+                                <select id="product-unit" name="unit" class="form-control selDiv" required>
+                                    <option value="">واحد مورد نظر را انتخاب فرمایید</option>
+                                    @foreach($units as $unit)
+                                        <option value="{{ $unit->id }}">
+                                            {{ $unit->title }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="product-number" class="col-form-label">مقدار :</label>
                                 <input type="text" name="number" class="form-control" id="product-number"
                                        autocomplete="off"
                                        required>
-                            </div>
-                            <div class="form-group">
-                                <label for="producer" class="col-form-label">تولید کننده :</label>
-                                <select class="form-control" name="producer" id="producer" autocomplete="off" required>
-                                    <option value="" selected>انتخاب کنید</option>
-                                </select>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -285,23 +302,12 @@
     <script>
         $('#product').change(function (e) {
 
-            $('#product-price').val($('#product').find(":selected").data('price'));
+            let unit = $('#product').find(":selected").data('unit');
 
-            console.log(this.value)
+            console.log(unit)
 
-            $.ajax({
-                url: '/ajax/producer/get',
-                type: 'POST',  // http method
-                headers: {'X-CSRF-TOKEN': $('meta[name="token"]').attr('content')},
-                data: {product: this.value},  // data to submit
-                success: function (data) {
-                    $('#producer').html('');
-                    $('#producer').html('').append('<option value="" selected>انتخاب کنید</option>');
-                    data.forEach(function (c) {
-                        $('#producer').append('<option value="' + c['id'] + '">' + c['name'] + ' ' + c['family'] + '</option>');
-                    });
-                }
-            });
+            $('.selDiv option[value="' + unit + '"]').prop('selected', true)
+
 
         });
     </script>

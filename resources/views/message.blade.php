@@ -1,7 +1,10 @@
 @php
     $menu_active = 1;
-    $sub_active = 3;
+    $sub_active = 0;
     $factorBTN = false;
+    $user = $user ?? 0;
+    $factor = $factor ?? 0;
+    $detail = $detail ?? 0;
 @endphp
 
 @extends('layouts.master')
@@ -51,10 +54,17 @@
                                     if ($user_access != 1 && $user_id == $message->user) $me = true;
                                     elseif ($user_access == 1 && $message->user == 0) $me = true;
                                     elseif ($user_access == 0 && $message->user == 0) $me = true;
+
+                                    if ($user_access == 3 && $message->sender == $user_id) $me = true;
+                                    elseif ($user_access == 2 && $message->sender == $user_id) $me = true;
+                                    elseif ($user_access == 1 && $message->sender == 0) $me = true;
+                                    elseif ($user_access == 0 && $message->sender == 0) $me = true;
+
                                 @endphp
 
                                 @if($message->file)
-                                    <div class="message-item message-item-media {{ $me ? ' text-left' : 'outgoing-message  text-right' }}">
+                                    <div
+                                        class="message-item message-item-media {{ $me ? ' text-left' : 'outgoing-message  text-right' }}">
                                         <div class="m-b-0 text-muted text-left">
                                             <a href="/uploads/{{ $message->content }}" download
                                                class="btn btn-outline-light text-left align-items-center justify-content-center">
@@ -81,9 +91,11 @@
                     <div class="chat-body-footer">
                         <form method="post" action="/factor/message/text" class="d-flex align-items-center">
                             @csrf
+                            <input type="hidden" name="user" value="{{ $user }}">
                             <input type="hidden" name="factor" value="{{ $factor }}">
                             <input type="hidden" name="detail" value="{{ $detail }}">
-                            <input type="text" name="text" class="form-control" autocomplete="off" placeholder="پیام ...">
+                            <input type="text" name="text" class="form-control" autocomplete="off"
+                                   placeholder="پیام ...">
                             <div class="d-flex">
                                 <button type="submit" class="ml-3 btn btn-primary btn-floating">
                                     <i class="fa fa-send"></i>
@@ -102,27 +114,28 @@
                     <div class="modal fade" id="fileModal" tabindex="-1" role="dialog" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
-
-                                    <input type="hidden" name="factor" value="{{ $factor }}">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title text-light">ارسال فایل</h5>
-                                        <button type="button" class="close refresh" data-dismiss="modal" aria-label="بستن">
-                                            <i class="ti-close"></i>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form method="post" action="/factor/message/file" enctype="multipart/form-data"
-                                              class="dropzone" id="dropzone">
-                                            @csrf
-                                            <input type="hidden" name="factor" value="{{ $factor }}">
-                                            <input type="hidden" name="detail" value="{{ $detail }}">
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary refresh" data-dismiss="modal">بستن
-                                        </button>
-                                        <button type="submit" class="btn btn-primary refresh">ثبت</button>
-                                    </div>
+                                <input type="hidden" name="user" value="{{ $user }}">
+                                <input type="hidden" name="factor" value="{{ $factor }}">
+                                <div class="modal-header">
+                                    <h5 class="modal-title text-light">ارسال فایل</h5>
+                                    <button type="button" class="close refresh" data-dismiss="modal" aria-label="بستن">
+                                        <i class="ti-close"></i>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <form method="post" action="/factor/message/file" enctype="multipart/form-data"
+                                          class="dropzone" id="dropzone">
+                                        @csrf
+                                        <input type="hidden" name="user" value="{{ $user }}">
+                                        <input type="hidden" name="factor" value="{{ $factor }}">
+                                        <input type="hidden" name="detail" value="{{ $detail }}">
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary refresh" data-dismiss="modal">بستن
+                                    </button>
+                                    <button type="submit" class="btn btn-primary refresh">ثبت</button>
+                                </div>
                             </div>
                         </div>
                     </div>

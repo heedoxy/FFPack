@@ -68,8 +68,8 @@
                                                        type="button">ویرایش</a>
                                                     <a href="/factor/invoice/{{ $factor->id }}" class="dropdown-item"
                                                        type="button">صورتحساب</a>
-                                                    <a href="/factor/message/{{ $factor->id }}" class="dropdown-item"
-                                                       type="button">پیام ها</a>
+                                                    <a href="/message/{{ $factor->user }}" class="dropdown-item"
+                                                       type="button">پیام مشتری</a>
                                                     <button type="button" class="dropdown-item text-danger"
                                                             data-toggle="modal"
                                                             data-target=".bd-example-modal-sm">حذف
