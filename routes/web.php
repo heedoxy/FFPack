@@ -68,6 +68,8 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/edit', [FactorController::class, 'update']);
         Route::delete('/remove/{id}', [FactorController::class, 'remove']);
 
+        Route::get('/status/{status}', [FactorController::class, 'detail_status_list']);
+
         Route::get('/detail/list', [FactorController::class, 'list_detail']);
         Route::delete('/detail/remove/{id}', [FactorController::class, 'remove_detail']);
         Route::post('/detail/add', [FactorController::class, 'store_detail']);

@@ -8,8 +8,8 @@ use App\Models\FactorDetail;
 use App\Models\Product;
 use App\Models\Unit;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -101,7 +101,7 @@ class FactorController extends Controller
         $factor->user = $request->user;
         $factor->price = $request->total;
         $factor->comment = $request->comment;
-        $factor->status = 1;
+        $factor->status = 2;
         $factor->save();
 
         $id = $factor->id;
@@ -109,10 +109,62 @@ class FactorController extends Controller
             ->where('status', '=', 0)
             ->update([
                 'factor' => $id,
-                'status' => 1
+                'status' => 2
             ]);
 
         return redirect('/factor/list')->withErrors(['success' => 'با موفقیت ثبت شد .']);
+    }
+
+    public function factor_status_update($factor, $status, $reject = 0)
+    {
+        Factor::where('id', '=', $factor)
+            ->update([
+                'status' => $status
+            ]);
+
+        FactorDetail::where('factor', '=', $factor)
+            ->update([
+                'status' => $status,
+                'reject' => $reject
+            ]);
+    }
+
+    public function detail_status_list($status)
+    {
+        $days =  request()->get('days');
+        if (! $days) $days = 30;
+
+        $details = DB::table('factor_detail')
+            ->select('*', 'factor_detail.id as id', 'factor_detail.price as price', 'products.name as pname', 'factors.id as fid',
+                'producers.name as prname', 'producers.family as prfamily', 'users.name as name', 'users.family as family')
+            ->join('products', 'factor_detail.product', '=', 'products.id')
+            ->join('factors', 'factor_detail.factor', '=', 'factors.id')
+            ->join('users', 'factors.user', '=', 'users.id')
+            ->leftJoin('users as producers', 'factor_detail.producer', '=', 'producers.id')
+            ->where('factor_detail.status', $status)
+            ->where('factor_detail.created_at', '>', now()->subDays($days)->endOfDay())
+            ->get();
+        return view('details',
+            [
+                'days' => $days,
+                'status' => $status,
+                'details' => $details
+            ]
+        );
+    }
+
+    public function detail_status_update($detail, $status, $reject = 0)
+    {
+        FactorDetail::where('id', '=', $detail)
+            ->update([
+                'status' => $status,
+                'reject' => $reject
+            ]);
+    }
+
+    public function detail_status_counter($status)
+    {
+         return FactorDetail::all()->where('status', $status)->count();
     }
 
     public function store_detail(Request $request)
@@ -144,6 +196,7 @@ class FactorController extends Controller
             $detail->unit = $request->unit;
             $detail->amount = $request->number;
             $detail->status = 0;
+            $detail->reject = 0;
             $detail->save();
         }
         if ($factor)

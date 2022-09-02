@@ -8,19 +8,26 @@ use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     public function index() {
-        $today = (new FactorController())->today();
-        $week = (new FactorController())->week();
-        $month = (new FactorController())->month();
-        $factor = (new FactorController())->factor_counter();
-        $user = (new UserController())->user_counter();
-        $producer = (new UserController())->producer_counter();
+
+        $factor = new FactorController();
+
+        $today = $factor->today();
+        $week = $factor->week();
+        $month = $factor->month();
+
+        $status_2 = $factor->detail_status_counter(2);
+        $status_6 = $factor->detail_status_counter(6);
+        $status_7 = $factor->detail_status_counter(7);
+        $status_8 = $factor->detail_status_counter(8);
+
         return view('index', [
             'today' => $today,
             'week' => $week,
             'month' => $month,
-            'factor' => $factor,
-            'user' => $user,
-            'producer' => $producer,
+            'status_2' => $status_2,
+            'status_6' => $status_6,
+            'status_7' => $status_7,
+            'status_8' => $status_8,
         ]);
     }
 }

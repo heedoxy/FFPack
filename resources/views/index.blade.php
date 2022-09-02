@@ -9,9 +9,78 @@
 @section('title', 'داشبورد')
 
 @section('main')
+    <style>
+        .icon-block.icon-block-outline-warning {
+            border: 2px solid orange !important;
+            color: orange !important;
+            background: none !important;
+        }
+    </style>
     <main class="main-content">
         <div class="row">
             @if(in_array($access, [0, 1]))
+                <div class="col-xl-4">
+                    <a href="/factor/status/2">
+                        <div class="card">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-primary text-center p-20">
+                                    <i class="fa fa-user font-size-40"></i>
+                                </div>
+                                <div class="p-l-20">
+                                    <h2 class="mb-2 font-weight-bold primary-font line-height-32">
+                                        {{ $status_2 }}
+                                    </h2>
+                                    <p class="m-0 font-size-13 text-primary">در انتظار ارجاع به تامین کننده</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/factor/status/6">
+                        <div class="card">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-primary text-center p-20">
+                                    <i class="fa fa-users font-size-28"></i>
+                                </div>
+                                <div class="p-l-20">
+                                    <h2 class="mb-2 font-weight-bold primary-font line-height-32">
+                                        {{ $status_6 }}
+                                    </h2>
+                                    <p class="m-0 font-size-13 text-primary">در انتظار تولید</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/factor/status/7">
+                        <div class="card">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-primary text-center p-20">
+                                    <i class="fa fa-sticky-note font-size-40"></i>
+                                </div>
+                                <div class="p-l-20">
+                                    <h2 class="mb-2 font-weight-bold primary-font line-height-32">
+                                        {{ $status_7 }}
+                                    </h2>
+                                    <p class="m-0 font-size-13 text-primary">در انتظار تحویل تامین کننده</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/factor/status/8">
+                        <div class="card">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-primary text-center p-20">
+                                    <i class="fa fa-sticky-note font-size-40"></i>
+                                </div>
+                                <div class="p-l-20">
+                                    <h2 class="mb-2 font-weight-bold primary-font line-height-32">
+                                        {{ $status_8 }}
+                                    </h2>
+                                    <p class="m-0 font-size-13 text-primary">تحویل داده شده توسط تامین کننده</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
                 <div class="col-xl-4">
                     <div class="card">
                         <div class="card-body">
@@ -20,7 +89,7 @@
                                 <div class="col-12">
                                     <div class="d-flex align-items-center m-b-20">
                                         <div
-                                            class="icon-block m-r-15 icon-block-lg icon-block-outline-success text-success">
+                                            class="icon-block m-r-15 icon-block-lg icon-block-outline-warning text-warning">
                                             <i class="fa fa-dollar"></i>
                                         </div>
                                         <div>
@@ -35,7 +104,7 @@
                                 <div class="col-12">
                                     <div class="d-flex align-items-center m-b-20">
                                         <div
-                                            class="icon-block m-r-15 icon-block-lg icon-block-outline-danger  text-danger">
+                                            class="icon-block m-r-15 icon-block-lg icon-block-outline-warning  text-warning">
                                             <i class="fa fa-dollar"></i>
                                         </div>
                                         <div>
@@ -85,59 +154,6 @@
                     </div>
                 </div>
             @endif
-            <div class="col-xl-4">
-                @if(in_array($access, [0, 1]))
-                    <a href="/user/list">
-                        <div class="card">
-                            <div class="d-flex align-items-center">
-                                <div class="bg-warning text-center p-20">
-                                    <i class="fa fa-user font-size-40"></i>
-                                </div>
-                                <div class="p-l-20">
-                                    <h2 class="mb-2 font-weight-bold primary-font line-height-32">
-                                        {{ $user }}
-                                    </h2>
-                                    <p class="m-0 font-size-13 text-warning">کاربران</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                @endif
-                @if(in_array($access, [0, 1]))
-                    <a href="/user/list">
-                        <div class="card">
-                            <div class="d-flex align-items-center">
-                                <div class="bg-danger text-center p-20">
-                                    <i class="fa fa-users font-size-28"></i>
-                                </div>
-                                <div class="p-l-20">
-                                    <h2 class="mb-2 font-weight-bold primary-font line-height-32">
-                                        {{ $producer }}
-                                    </h2>
-                                    <p class="m-0 font-size-13 text-danger">تولید کنندگان</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                @endif
-                @if(in_array($access, [0, 1, 3]))
-                    <a href="/factor/list">
-                        <div class="card">
-                            <div class="d-flex align-items-center">
-                                <div class="bg-primary text-center p-20">
-                                    <i class="fa fa-sticky-note font-size-40"></i>
-                                </div>
-                                <div class="p-l-20">
-                                    <h2 class="mb-2 font-weight-bold primary-font line-height-32">
-                                        {{ $factor }}
-                                    </h2>
-                                    <p class="m-0 font-size-13 text-primary">فاکتور های ثبت شده</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                @endif
-            </div>
         </div>
     </main>
 @endsection

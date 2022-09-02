@@ -24,20 +24,60 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
+
+                        <form action="/factor/status/{{ $status }}/">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <div class="input-group ">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group row">
+                                                    <label for="input-ss" class="col-form-label mr-2">بازه زمانی
+                                                        : </label>
+                                                    <div class="col-form-label">
+                                                        <select class="form-control text-left" id="input-ss"
+                                                                name="days">
+                                                            <option value="10" {{ $days == 10 ? 'selected' : '' }}>بازه
+                                                                10 روزه
+                                                            </option>
+                                                            <option value="30" {{ $days == 30 ? 'selected' : '' }}>بازه
+                                                                30 روزه
+                                                            </option>
+                                                            <option value="60" {{ $days == 60 ? 'selected' : '' }}>بازه
+                                                                60 روزه
+                                                            </option>
+                                                            <option value="90" {{ $days == 90 ? 'selected' : '' }}>بازه
+                                                                90 روزه
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-row justify-content-end ">
+                                        <div class="col-auto">
+                                            <button type="submit" class="btn btn-primary mb-2">نمایش</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
                                 <tr>
                                     <th scope="col">#</th>
                                     <th class="text-right" scope="col">محصول</th>
-                                    @if(in_array($access, [0, 1]))
-                                        <th class="text-right" scope="col">فاکتور</th>
-                                    @endif
+                                    <th class="text-right" scope="col">فاکتور</th>
                                     <th class="text-center" scope="col">قیمت (تومان)</th>
-                                    @if(in_array($access, [0, 1]))
+                                    @if($status > 3)
                                         <th class="text-center" scope="col">تولید کننده</th>
-                                        <th class="text-center" scope="col">کاربر</th>
                                     @endif
+                                    <th class="text-center" scope="col">کاربر</th>
                                     <th class="text-center" scope="col">وضعیت</th>
                                     <th class="text-right" scope="col">مدیریت</th>
                                 </tr>
@@ -47,14 +87,13 @@
                                     <tr>
                                         <th scope="row">{{ $counter++ }}</th>
                                         <td class="text-right">{{ $detail->pname }}</td>
-                                        @if(in_array($access, [0, 1]))
-                                            <td class="text-right">{{ $detail->code }}</td>
-                                        @endif
+                                        <td class="text-right">{{ $detail->code }}</td>
                                         <td class="text-center">{{ number_format($detail->price) }}</td>
-                                        @if(in_array($access, [0, 1]))
+                                        @if($status > 3)
                                             <td class="text-center">{{ $detail->prname . " " . $detail->prfamily }}</td>
-                                            <td class="text-center">{{ $detail->name . " " . $detail->family }}</td>
                                         @endif
+
+                                        <td class="text-center">{{ $detail->name . " " . $detail->family }}</td>
                                         <td class="text-center">ثبت شده</td>
                                         <td class="text-right">
                                             <div class="dropdown">
@@ -70,7 +109,8 @@
                                                            class="dropdown-item"
                                                            type="button">مشاهده صورتحساب</a>
                                                     @endif
-                                                    <a href="/factor/message/{{ $detail->fid }}/{{ $detail->id }}" class="dropdown-item"
+                                                    <a href="/factor/message/{{ $detail->fid }}/{{ $detail->id }}"
+                                                       class="dropdown-item"
                                                        type="button">پیام ها</a>
                                                 </div>
                                             </div>
