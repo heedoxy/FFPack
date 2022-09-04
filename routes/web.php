@@ -73,6 +73,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/detail/list', [FactorController::class, 'list_detail']);
         Route::delete('/detail/remove/{id}', [FactorController::class, 'remove_detail']);
         Route::post('/detail/add', [FactorController::class, 'store_detail']);
+        Route::post('/detail/producer', [FactorController::class, 'store_producer']);
 
         Route::prefix('/message')->group(function () {
             Route::get('/{factor}', [MessageController::class, 'list']);

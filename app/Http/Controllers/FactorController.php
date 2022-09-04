@@ -6,10 +6,11 @@ use App\Helpers\PDF;
 use App\Models\Factor;
 use App\Models\FactorDetail;
 use App\Models\Product;
+use App\Models\Status;
 use App\Models\Unit;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -17,7 +18,9 @@ class FactorController extends Controller
 {
     public function index()
     {
+        $statuses = Status::all();
         $access = Auth::user()->access;
+
         if (in_array($access, [0, 1])) {
             $factors = DB::table('factors')
                 ->select('*', 'factors.id as id')
@@ -31,7 +34,10 @@ class FactorController extends Controller
                 ->where('factors.user', '=', $user)
                 ->get();
         }
-        return view('factor-list', ['factors' => $factors]);
+        return view('factor-list', [
+            'factors' => $factors,
+            'statuses' => $statuses,
+        ]);
     }
 
     public function add($id = null)
@@ -39,6 +45,7 @@ class FactorController extends Controller
 
         $factor = null;
         $staff = Auth::id();
+        $producers = User::all()->where('access', '=', 2);
 
         if ($id) {
 
@@ -84,6 +91,7 @@ class FactorController extends Controller
             'details' => $details,
             'units' => $units,
             'products' => $products,
+            'producers' => $producers,
             'users' => $users
         ]);
     }
@@ -101,7 +109,7 @@ class FactorController extends Controller
         $factor->user = $request->user;
         $factor->price = $request->total;
         $factor->comment = $request->comment;
-        $factor->status = 2;
+        $factor->status = 3;
         $factor->save();
 
         $id = $factor->id;
@@ -109,7 +117,7 @@ class FactorController extends Controller
             ->where('status', '=', 0)
             ->update([
                 'factor' => $id,
-                'status' => 2
+                'status' => 3
             ]);
 
         return redirect('/factor/list')->withErrors(['success' => 'با موفقیت ثبت شد .']);
@@ -131,24 +139,42 @@ class FactorController extends Controller
 
     public function detail_status_list($status)
     {
-        $days =  request()->get('days');
-        if (! $days) $days = 30;
+        $producers = User::all()->where('access', '=', 2);
+        $statuses = Status::all();
+
+        $days = 30;
+        if (request()->has('days')) $days = request()->get('days');
+        if (request()->has('s')) $status = request()->get('s');
 
         $details = DB::table('factor_detail')
-            ->select('*', 'factor_detail.id as id', 'factor_detail.price as price', 'products.name as pname', 'factors.id as fid',
-                'producers.name as prname', 'producers.family as prfamily', 'users.name as name', 'users.family as family')
+            ->select(
+                '*',
+                'factor_detail.id as id',
+                'factor_detail.price as price',
+                'factor_detail.status as status',
+                'products.name as pname',
+                'factors.id as fid',
+                'producer.name as prname',
+                'producer.family as prfamily',
+                'users.name as name',
+                'users.family as family'
+            )
             ->join('products', 'factor_detail.product', '=', 'products.id')
             ->join('factors', 'factor_detail.factor', '=', 'factors.id')
             ->join('users', 'factors.user', '=', 'users.id')
-            ->leftJoin('users as producers', 'factor_detail.producer', '=', 'producers.id')
-            ->where('factor_detail.status', $status)
+            ->leftJoin('users as producer', 'factor_detail.producer', '=', 'producer.id')
+            ->when($status, function ($query) use ($status) {
+                $query->where('factor_detail.status', $status);
+            })
             ->where('factor_detail.created_at', '>', now()->subDays($days)->endOfDay())
             ->get();
         return view('details',
             [
                 'days' => $days,
                 'status' => $status,
-                'details' => $details
+                'details' => $details,
+                'producers' => $producers,
+                'statuses' => $statuses,
             ]
         );
     }
@@ -160,11 +186,24 @@ class FactorController extends Controller
                 'status' => $status,
                 'reject' => $reject
             ]);
+
+
+        $detail = FactorDetail::find($detail);
+        $factor = $detail->factor;
+
+        if (
+            FactorDetail::all()->where('factor', $factor)->where('status', $status)->count()
+                ==
+            FactorDetail::all()->where('factor', $factor)->count()
+        ) {
+            $this->factor_status_update($factor, $status);
+        }
+
     }
 
     public function detail_status_counter($status)
     {
-         return FactorDetail::all()->where('status', $status)->count();
+        return FactorDetail::all()->where('status', $status)->count();
     }
 
     public function store_detail(Request $request)
@@ -184,6 +223,10 @@ class FactorController extends Controller
             $detail = FactorDetail::find($id);
             $detail->unit = $request->unit;
             $detail->amount = $request->number;
+            if ($request->producer) {
+                $detail->producer = $request->producer;
+                $detail->status = 4;
+            }
             $detail->save();
 
         } else {
@@ -195,14 +238,35 @@ class FactorController extends Controller
             $detail->price = $request->price;
             $detail->unit = $request->unit;
             $detail->amount = $request->number;
-            $detail->status = 0;
+            $detail->status = 3;
             $detail->reject = 0;
+            if ($request->producer) {
+                $detail->producer = $request->producer;
+                $detail->status = 4;
+            }
             $detail->save();
         }
         if ($factor)
             return redirect("/factor/show/$factor")->withErrors(['success' => 'با موفقیت ثبت شد .']);
         else
             return redirect('/factor/show')->withErrors(['success' => 'با موفقیت ثبت شد .']);
+    }
+
+    public function store_producer(Request $request)
+    {
+        $this->validate($request, [
+            'detail' => 'required',
+            'producer' => 'required',
+        ]);
+
+        $detail = FactorDetail::find($request->detail);
+        $detail->producer = $request->producer;
+        $detail->comment = $request->comment;
+        $detail->save();
+
+        $this->detail_status_update($request->detail, 4);
+
+        return redirect()->back()->withErrors(['success' => 'سفارش با موفقیت منتقل شد .']);
     }
 
     public function update(Request $request)

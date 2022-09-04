@@ -8750,7 +8750,7 @@ button.toast-close-button {
 }
 
 main.main-content {
-    margin-right: 300px;
+    margin-right: 350px;
     -webkit-transition: margin-right .2s;
     -o-transition: margin-right .2s;
     -moz-transition: margin-right .2s;
@@ -9228,7 +9228,7 @@ body.form-membership .form-wrapper hr {
 }
 
 .header .header-logo {
-    width: 300px;
+    width: 350px;
     background-color: white;
     height: 90px;
     display: -webkit-box;
@@ -9495,7 +9495,7 @@ body.form-membership .form-wrapper hr {
     height: -moz-calc(100vh - 90px);
     height: calc(100vh - 90px);
     top: 90px;
-    width: 300px;
+    width: 350px;
     padding-bottom: 15px;
     background: white;
     z-index: 998;
@@ -9798,7 +9798,7 @@ body.form-membership .form-wrapper hr {
     opacity: 0;
     top: 0;
     bottom: 0;
-    width: 300px;
+    width: 350px;
     background: white;
     z-index: 1000;
     -webkit-transition: all .2s;

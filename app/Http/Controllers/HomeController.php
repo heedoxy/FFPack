@@ -15,7 +15,7 @@ class HomeController extends Controller
         $week = $factor->week();
         $month = $factor->month();
 
-        $status_2 = $factor->detail_status_counter(2);
+        $status_3 = $factor->detail_status_counter(3);
         $status_6 = $factor->detail_status_counter(6);
         $status_7 = $factor->detail_status_counter(7);
         $status_8 = $factor->detail_status_counter(8);
@@ -24,7 +24,7 @@ class HomeController extends Controller
             'today' => $today,
             'week' => $week,
             'month' => $month,
-            'status_2' => $status_2,
+            'status_3' => $status_3,
             'status_6' => $status_6,
             'status_7' => $status_7,
             'status_8' => $status_8,

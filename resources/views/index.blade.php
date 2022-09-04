@@ -20,7 +20,7 @@
         <div class="row">
             @if(in_array($access, [0, 1]))
                 <div class="col-xl-4">
-                    <a href="/factor/status/2">
+                    <a href="/factor/status/3">
                         <div class="card">
                             <div class="d-flex align-items-center">
                                 <div class="bg-primary text-center p-20">
@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="p-l-20">
                                     <h2 class="mb-2 font-weight-bold primary-font line-height-32">
-                                        {{ $status_2 }}
+                                        {{ $status_3 }}
                                     </h2>
                                     <p class="m-0 font-size-13 text-primary">در انتظار ارجاع به تامین کننده</p>
                                 </div>

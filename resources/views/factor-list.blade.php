@@ -36,7 +36,7 @@
                                 <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th class="text-right" scope="col">کد</th>
+                                    <th class="text-left" scope="col">کد</th>
                                     <th class="text-center" scope="col">قیمت (تومان)</th>
                                     @if(in_array($access, [0, 1]))
                                         <th class="text-center" scope="col">کاربر</th>
@@ -49,7 +49,15 @@
                                 @foreach ($factors as $factor)
                                     <tr>
                                         <th scope="row">{{ $counter++ }}</th>
-                                        <td class="text-right">{{ $factor->code }}</td>
+                                        <td class="text-left">
+                                            <a href="/factor/show/{{ $factor->id }}">
+                                                {{ $factor->code }}
+                                                <br>
+                                                <small class="form-text text-{{ $statuses[$factor->status]->label }}">
+                                                    {{ $statuses[$factor->status]->text }}
+                                                </small>
+                                            </a>
+                                        </td>
                                         <td class="text-center">{{ number_format($factor->price) }}</td>
                                         @if(in_array($access, [0, 1]))
                                             <td class="text-center">{{ $factor->name . " " . $factor->family }}</td>
@@ -66,8 +74,8 @@
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     <a href="/factor/show/{{ $factor->id }}" class="dropdown-item"
                                                        type="button">ویرایش</a>
-                                                    <a href="/factor/invoice/{{ $factor->id }}" class="dropdown-item"
-                                                       type="button">صورتحساب</a>
+{{--                                                    <a href="/factor/invoice/{{ $factor->id }}" class="dropdown-item"--}}
+{{--                                                       type="button">صورتحساب</a>--}}
                                                     <a href="/message/{{ $factor->user }}" class="dropdown-item"
                                                        type="button">پیام مشتری</a>
                                                     <button type="button" class="dropdown-item text-danger"

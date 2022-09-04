@@ -29,7 +29,8 @@
                             @if($edit)
                                 <li class="list-inline-item mb-0">
                                     <div class="dropdown">
-                                        <a href="/message/{{ $factor->user }}" class="btn btn-sm btn-light btn-uppercase"
+                                        <a href="/message/{{ $factor->user }}"
+                                           class="btn btn-sm btn-light btn-uppercase"
                                            style="margin-left: -10px">
                                             پیام مشتری
                                         </a>
@@ -57,16 +58,18 @@
                                         <i class="fa fa-chevron-left"></i>
                                     </span>
                                     </figure>
-                                    <div>
-                                        <h6 class="m-b-0 primary-font">{{ $detail->name }}</h6>
-                                        <small class="text-muted">
-                                            {{ $detail->amount }}
-                                            {{ $detail->unit_title }}
-                                            |
-                                            {{ number_format($detail->amount * $detail->price) }} تومان
-                                        </small>
-                                        @php($total += $detail->amount * $detail->price)
-                                    </div>
+                                    <a data-toggle="modal" data-target="#edit-detail-{{ $detail->id }}">
+                                        <div>
+                                            <h6 class="m-b-0 primary-font">{{ $detail->name }}</h6>
+                                            <small class="text-muted">
+                                                {{ $detail->amount }}
+                                                {{ $detail->unit_title }}
+                                                |
+                                                {{ number_format($detail->amount * $detail->price) }} تومان
+                                            </small>
+                                            @php($total += $detail->amount * $detail->price)
+                                        </div>
+                                    </a>
                                     @if(in_array($access, [0, 1]))
                                         <button type="button" class="btn btn-sm btn-secondary ml-auto"
                                                 data-toggle="modal"
@@ -104,10 +107,12 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <label for="product-unit" class="col-form-label">واحد :</label>
-                                                        <select id="product-unit" name="unit" class="form-control" required>
+                                                        <select id="product-unit" name="unit" class="form-control"
+                                                                required>
                                                             <option value="">واحد مورد نظر را انتخاب فرمایید</option>
                                                             @foreach($units as $unit)
-                                                                <option value="{{ $unit->id }}" {{ $unit->id == $detail->unit ? "selected" : "" }}>
+                                                                <option
+                                                                    value="{{ $unit->id }}" {{ $unit->id == $detail->unit ? "selected" : "" }}>
                                                                     {{ $unit->title }}
                                                                 </option>
                                                             @endforeach
@@ -120,6 +125,23 @@
                                                                autocomplete="off" value="{{ $detail->amount }}"
                                                                required>
                                                     </div>
+
+                                                    @if($access == 0)
+                                                        <div class="form-group">
+                                                            <label for="product-unit" class="col-form-label">تامین کننده :</label>
+                                                            <select id="product-unit" name="producer" class="form-control"
+                                                                    required>
+                                                                <option value="">تامین کننده مورد نظر را انتخاب فرمایید</option>
+                                                                @foreach($producers as $producer)
+                                                                    <option
+                                                                        value="{{ $producer->id }}" {{ $producer->id == $detail->producer ? "selected" : "" }}>
+                                                                        {{ $producer->name . " " . $producer->family }}
+                                                                    </option>
+                                                                @endforeach
+                                                            </select>
+                                                        </div>
+                                                    @endif
+
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary"
