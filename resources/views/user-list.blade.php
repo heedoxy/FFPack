@@ -1,9 +1,12 @@
 @php
     $menu_active = 1;
     $access = $access ?? 1;
-    $sub_active = 7;
+
     if ($access == 3) $sub_active = 10;
     elseif ($access == 2) $sub_active = 12;
+    elseif ($access == 1) $sub_active = 7;
+    else $sub_active = 0;
+
     $counter = 1;
 @endphp
 
@@ -63,7 +66,7 @@
                                                     <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right">
-                                                    <a href="/user/show/{{ $user->id }}" class="dropdown-item"
+                                                    <a href="/user/show/{{ $user->access }}/{{ $user->id }}" class="dropdown-item"
                                                        type="button">ویرایش</a>
                                                     <button type="button" class="dropdown-item text-danger"
                                                             data-toggle="modal"

@@ -1,13 +1,20 @@
 @php
     $menu_active = 1;
     $access = $access ?? 1;
-    $sub_active = 6;
+
     if ($access == 3) $sub_active = 9;
     elseif ($access == 2) $sub_active = 11;
+    elseif ($access == 1) $sub_active = 6;
+    else $sub_active = 6;
+
     $edit = isset($id);
-    $type = "کارشناس";
+
     if ($access == 3) $type = "مشتری";
     elseif ($access == 2) $type = "تامین کننده";
+    elseif ($access == 1) $type = "کارشناس";
+    elseif ($access == 0) $type = "کارشناس ارشد";
+    else $type = "کارشناس";
+
     $action = "/user/" . ($edit ? "edit" : "add");
 @endphp
 

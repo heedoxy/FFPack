@@ -265,12 +265,6 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="product-price" class="col-form-label">قیمت :</label>
-                                <input type="text" name="price" class="form-control" id="product-price"
-                                       autocomplete="off"
-                                       required>
-                            </div>
-                            <div class="form-group">
                                 <label for="product-unit" class="col-form-label">واحد :</label>
                                 <select id="product-unit" name="unit" class="form-control selDiv" required>
                                     <option value="">واحد مورد نظر را انتخاب فرمایید</option>
@@ -284,6 +278,12 @@
                             <div class="form-group">
                                 <label for="product-number" class="col-form-label">مقدار :</label>
                                 <input type="text" name="number" class="form-control" id="product-number"
+                                       autocomplete="off"
+                                       required>
+                            </div>
+                            <div class="form-group">
+                                <label for="product-price" class="col-form-label">قیمت واحد :</label>
+                                <input type="text" name="price" class="form-control" id="product-price"
                                        autocomplete="off"
                                        required>
                             </div>

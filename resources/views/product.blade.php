@@ -48,7 +48,7 @@
                             <div class="form-group">
                                 <label for="description">توضیحات</label>
                                 <textarea class="form-control text-left" name="description" id="description"
-                                >{{ $edit ? $product->description : '' }}</textarea>
+                                >{{ $edit ? $product->comment : '' }}</textarea>
                                 <small class="form-text text-warning">
                                     توضیحات محصول اختیاری میباشد !
                                 </small>
