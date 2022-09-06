@@ -40,8 +40,8 @@ class UserController extends Controller
         $access = $request->access;
         $user->name = $request->name;
         $user->family = $request->family;
-        $user->phone = $request->phone;
-        $user->password = Hash::make($request->password);
+        $user->phone = $this->p2e($request->phone);
+        $user->password = Hash::make($this->p2e($request->password));
         $user->access = $request->access;
         $user->token =Str::random(100);
         if($access == 3) {
@@ -68,9 +68,9 @@ class UserController extends Controller
         $access = $request->access;
         $user->name = $request->name;
         $user->family = $request->family;
-        $user->phone = $request->phone;
+        $user->phone = $this->p2e($request->phone);
         if ($request->password)
-            $user->password = Hash::make($request->password);
+            $user->password = Hash::make($this->p2e($request->password));
         if($access == 3) {
             $user->title = $request->title;
             $user->address = $request->address;
@@ -113,7 +113,7 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->family = $request->family;
         if ($request->password)
-            $user->password = Hash::make($request->password);
+            $user->password = Hash::make($this->p2e($request->password));
         $user->save();
         return redirect('/profile')->withErrors(['success' => 'با موفقیت ثبت شد .']);
     }
