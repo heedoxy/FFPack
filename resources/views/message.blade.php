@@ -31,7 +31,9 @@
                             </figure>
                         </div>
                         <div>
-                            <h6 class="mb-1 primary-font line-height-18">صورتحساب</h6>
+                            <h6 class="mb-1 primary-font line-height-18">
+                                {{ $user->name . " " . $user->family }}
+                            </h6>
                         </div>
                         <div class="ml-auto d-flex">
                             <button type="button" class="mx-2 btn btn-sm btn-primary btn-floating" id="down">
@@ -79,8 +81,10 @@
                                 @else
                                     <div class="message-item {{ $me ? ' text-left' : 'outgoing-message  text-right' }}">
                                         {{ $message->content }}
-                                        <small class="message-item-date text-muted">
+                                        <small class="message-item-date text-muted" style="display: block ruby">
                                             {{ (new \Hekmatinasser\Verta\Verta($message->created_at))->format('Y-n-j') }}
+                                            -
+                                            {{ (new \Hekmatinasser\Verta\Verta($message->created_at))->format('H:i') }}
                                         </small>
                                     </div>
                                 @endif
@@ -91,7 +95,7 @@
                     <div class="chat-body-footer">
                         <form method="post" action="/factor/message/text" class="d-flex align-items-center">
                             @csrf
-                            <input type="hidden" name="user" value="{{ $user }}">
+                            <input type="hidden" name="user" value="{{ $user->id }}">
                             <input type="hidden" name="factor" value="{{ $factor }}">
                             <input type="hidden" name="detail" value="{{ $detail }}">
                             <input type="text" name="text" class="form-control" autocomplete="off"
@@ -114,7 +118,7 @@
                     <div class="modal fade" id="fileModal" tabindex="-1" role="dialog" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
-                                <input type="hidden" name="user" value="{{ $user }}">
+                                <input type="hidden" name="user" value="{{ $user->id }}">
                                 <input type="hidden" name="factor" value="{{ $factor }}">
                                 <div class="modal-header">
                                     <h5 class="modal-title text-light">ارسال فایل</h5>
@@ -126,7 +130,7 @@
                                     <form method="post" action="/factor/message/file" enctype="multipart/form-data"
                                           class="dropzone" id="dropzone">
                                         @csrf
-                                        <input type="hidden" name="user" value="{{ $user }}">
+                                        <input type="hidden" name="user" value="{{ $user->id }}">
                                         <input type="hidden" name="factor" value="{{ $factor }}">
                                         <input type="hidden" name="detail" value="{{ $detail }}">
                                     </form>

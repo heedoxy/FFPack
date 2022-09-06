@@ -35,6 +35,21 @@
                             </div>
                         </div>
                     </a>
+                    <a href="/factor/status/4">
+                        <div class="card">
+                            <div class="d-flex align-items-center">
+                                <div class="bg-primary text-center p-20">
+                                    <i class="fa fa-user font-size-40"></i>
+                                </div>
+                                <div class="p-l-20">
+                                    <h2 class="mb-2 font-weight-bold primary-font line-height-32">
+                                        {{ $status_4 }}
+                                    </h2>
+                                    <p class="m-0 font-size-13 text-primary">در انتظار تایید تامین کننده</p>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
                     <a href="/factor/status/6">
                         <div class="card">
                             <div class="d-flex align-items-center">
@@ -45,7 +60,7 @@
                                     <h2 class="mb-2 font-weight-bold primary-font line-height-32">
                                         {{ $status_6 }}
                                     </h2>
-                                    <p class="m-0 font-size-13 text-primary">در انتظار تولید</p>
+                                    <p class="m-0 font-size-13 text-primary">در حال تولید</p>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +75,7 @@
                                     <h2 class="mb-2 font-weight-bold primary-font line-height-32">
                                         {{ $status_7 }}
                                     </h2>
-                                    <p class="m-0 font-size-13 text-primary">در انتظار تحویل تامین کننده</p>
+                                    <p class="m-0 font-size-13 text-primary">در انتظار ارسال</p>
                                 </div>
                             </div>
                         </div>
@@ -73,7 +88,7 @@
                                 </div>
                                 <div class="p-l-20">
                                     <h2 class="mb-2 font-weight-bold primary-font line-height-32">
-                                        {{ $status_8 }}
+                                        {{ $status_7 }}
                                     </h2>
                                     <p class="m-0 font-size-13 text-primary">تحویل داده شده توسط تامین کننده</p>
                                 </div>

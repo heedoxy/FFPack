@@ -44,6 +44,10 @@ class UserController extends Controller
         $user->password = Hash::make($request->password);
         $user->access = $request->access;
         $user->token =Str::random(100);
+        if($access == 3) {
+            $user->title = $request->title;
+            $user->address = $request->address;
+        }
         $user->save();
 
         return redirect("/user/list/$access")->withErrors(['success' => 'با موفقیت ثبت شد .']);
@@ -67,6 +71,10 @@ class UserController extends Controller
         $user->phone = $request->phone;
         if ($request->password)
             $user->password = Hash::make($request->password);
+        if($access == 3) {
+            $user->title = $request->title;
+            $user->address = $request->address;
+        }
         $user->save();
         return redirect("/user/list/$access")->withErrors(['success' => 'با موفقیت ثبت شد .']);
     }

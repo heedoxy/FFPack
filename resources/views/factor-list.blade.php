@@ -53,8 +53,8 @@
                                             <a href="/factor/show/{{ $factor->id }}">
                                                 {{ $factor->code }}
                                                 <br>
-                                                <small class="form-text text-{{ $statuses[$factor->status]->label }}">
-                                                    {{ $statuses[$factor->status]->text }}
+                                                <small class="form-text text-{{ $statuses[$factor->status - 1]->label }}">
+                                                    {{ $statuses[$factor->status - 1]->text }}
                                                 </small>
                                             </a>
                                         </td>

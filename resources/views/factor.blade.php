@@ -100,12 +100,6 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <div class="form-group">
-                                                        <label for="product-price" class="col-form-label">قیمت :</label>
-                                                        <input type="text" name="price" class="form-control"
-                                                               autocomplete="off" value="{{ $detail->price }}"
-                                                               required>
-                                                    </div>
-                                                    <div class="form-group">
                                                         <label for="product-unit" class="col-form-label">واحد :</label>
                                                         <select id="product-unit" name="unit" class="form-control"
                                                                 required>
@@ -119,10 +113,16 @@
                                                         </select>
                                                     </div>
                                                     <div class="form-group">
-                                                        <label for="product-number" class="col-form-label">مقدار
+                                                        <label for="product-amount" class="col-form-label">مقدار
                                                             :</label>
-                                                        <input type="text" name="number" class="form-control"
+                                                        <input type="text" name="amount" class="form-control"
                                                                autocomplete="off" value="{{ $detail->amount }}"
+                                                               required>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="product-price" class="col-form-label">قیمت :</label>
+                                                        <input type="text" name="price" class="form-control"
+                                                               autocomplete="off" value="{{ $detail->price }}"
                                                                required>
                                                     </div>
 
@@ -298,8 +298,8 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="product-number" class="col-form-label">مقدار :</label>
-                                <input type="text" name="number" class="form-control" id="product-number"
+                                <label for="product-amount" class="col-form-label">مقدار :</label>
+                                <input type="text" name="amount" class="form-control" id="product-amount"
                                        autocomplete="off"
                                        required>
                             </div>
@@ -309,6 +309,21 @@
                                        autocomplete="off"
                                        required>
                             </div>
+                            @if($access == 0)
+                                <div class="form-group">
+                                    <label for="product-unit" class="col-form-label">تامین کننده :</label>
+                                    <select id="product-unit" name="producer" class="form-control"
+                                            required>
+                                        <option value="">تامین کننده مورد نظر را انتخاب فرمایید</option>
+                                        @foreach($producers as $producer)
+                                            <option
+                                                value="{{ $producer->id }}">
+                                                {{ $producer->name . " " . $producer->family }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            @endif
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>

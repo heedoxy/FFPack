@@ -18,7 +18,7 @@ class FactorController extends Controller
 {
     public function index()
     {
-        $statuses = Status::all();
+        $statuses = Status::all()->where('id', '>', '2');
         $access = Auth::user()->access;
 
         if (in_array($access, [0, 1])) {
@@ -103,13 +103,16 @@ class FactorController extends Controller
             'total' => 'required',
         ]);
 
+        $status = 3;
+        if (Auth::user()->access == 0) $status = 4;
+
         $factor = new Factor();
         $factor->code = "FFP-" . rand(1000, 9999);
         $factor->staff = Auth::id();
         $factor->user = $request->user;
         $factor->price = $request->total;
         $factor->comment = $request->comment;
-        $factor->status = 3;
+        $factor->status = $status;
         $factor->save();
 
         $id = $factor->id;
@@ -117,7 +120,7 @@ class FactorController extends Controller
             ->where('status', '=', 0)
             ->update([
                 'factor' => $id,
-                'status' => 3
+                'status' => $status
             ]);
 
         return redirect('/factor/list')->withErrors(['success' => 'با موفقیت ثبت شد .']);
@@ -140,7 +143,7 @@ class FactorController extends Controller
     public function detail_status_list($status)
     {
         $producers = User::all()->where('access', '=', 2);
-        $statuses = Status::all();
+        $statuses = Status::all()->where('id', '>', '2');
 
         $days = 30;
         if (request()->has('days')) $days = request()->get('days');
@@ -212,7 +215,7 @@ class FactorController extends Controller
             'factor' => 'required',
             'product' => 'required',
             'price' => 'required',
-            'number' => 'required',
+            'amount' => 'required',
         ]);
 
         $factor = $request->factor;
@@ -222,10 +225,11 @@ class FactorController extends Controller
 
             $detail = FactorDetail::find($id);
             $detail->unit = $request->unit;
-            $detail->amount = $request->number;
+            $detail->amount = $this->p2e($request->amount);
+            $detail->price = $this->p2e($request->price);
             if ($request->producer) {
                 $detail->producer = $request->producer;
-                $detail->status = 4;
+                $detail->status = 0;
             }
             $detail->save();
 
@@ -235,14 +239,13 @@ class FactorController extends Controller
             $detail->producer = 0;
             $detail->factor = $factor;
             $detail->product = $request->product;
-            $detail->price = $request->price;
+            $detail->price = $this->p2e($request->price);
             $detail->unit = $request->unit;
-            $detail->amount = $request->number;
-            $detail->status = 3;
+            $detail->amount = $this->p2e($request->amount);
+            $detail->status = 0;
             $detail->reject = 0;
             if ($request->producer) {
                 $detail->producer = $request->producer;
-                $detail->status = 4;
             }
             $detail->save();
         }

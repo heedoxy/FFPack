@@ -62,6 +62,21 @@
                                 <input type="password" class="form-control text-left" name="password" id="password"
                                        placeholder="رمز عبور" {{ $edit ? '' : 'required' }}>
                             </div>
+
+                            @if($access == 3)
+                                <div class="form-group">
+                                    <label for="title">عنوان مجموعه</label>
+                                    <input type="text" class="form-control text-left" name="title" id="title"
+                                           placeholder="عنوان مجموعه" value="{{ $edit ? $user->title : '' }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="address" class="col-form-label">آدرس</label>
+                                    <textarea class="form-control" name="address"
+                                              id="address">{{ $edit ? $user->address : "" }}</textarea>
+                                </div>
+                            @endif
+
                             <button type="submit" class="btn btn-primary">ثبت</button>
                         </form>
                     </div>

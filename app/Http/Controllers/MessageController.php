@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Factor;
 use App\Models\Message;
+use App\Models\User;
 use Hekmatinasser\Verta\Facades\Verta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -14,9 +15,10 @@ class MessageController extends Controller
     public function user($id)
     {
         $messages = Message::all()->where('user', $id);
+        $user = User::all()->find($id);
 
         return view('message', [
-            'user' => $id,
+            'user' => $user,
             'messages' => $messages
         ]);
     }
