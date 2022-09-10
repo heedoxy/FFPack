@@ -25,6 +25,7 @@ class FactorController extends Controller
             $factors = DB::table('factors')
                 ->select('*', 'factors.id as id')
                 ->join('users', 'factors.user', '=', 'users.id')
+                ->where('factors.type', '=', 1)
                 ->get();
         } else {
             $user = Auth::id();
@@ -32,11 +33,27 @@ class FactorController extends Controller
                 ->select('*', 'factors.id as id')
                 ->join('users', 'factors.user', '=', 'users.id')
                 ->where('factors.user', '=', $user)
+                ->where('factors.type', '=', 1)
                 ->get();
         }
         return view('factor-list', [
             'factors' => $factors,
             'statuses' => $statuses,
+        ]);
+    }
+
+    public function temp()
+    {
+        $access = Auth::user()->access;
+
+        $factors = DB::table('factors')
+            ->select('*', 'factors.id as id')
+            ->join('users', 'factors.user', '=', 'users.id')
+            ->where('factors.type', '=', 0)
+            ->get();
+
+        return view('factor-temp', [
+            'factors' => $factors,
         ]);
     }
 
@@ -111,6 +128,7 @@ class FactorController extends Controller
         $factor->staff = Auth::id();
         $factor->user = $request->user;
         $factor->price = $request->total;
+        $factor->type = $request->type;
         $factor->comment = $request->comment;
         $factor->status = $status;
         $factor->save();
@@ -123,7 +141,10 @@ class FactorController extends Controller
                 'status' => $status
             ]);
 
-        return redirect('/factor/list')->withErrors(['success' => 'با موفقیت ثبت شد .']);
+        if ($request->type)
+            return redirect('/factor/list')->withErrors(['success' => 'با موفقیت ثبت شد .']);
+
+        return redirect('/factor/temp')->withErrors(['success' => 'با موفقیت ثبت شد .']);
     }
 
     public function factor_status_update($factor, $status, $reject = 0)
@@ -170,6 +191,7 @@ class FactorController extends Controller
                 $query->where('factor_detail.status', $status);
             })
             ->where('factor_detail.created_at', '>', now()->subDays($days)->endOfDay())
+            ->where('factors.type', '=', 1)
             ->get();
         return view('details',
             [
@@ -196,7 +218,7 @@ class FactorController extends Controller
 
         if (
             FactorDetail::all()->where('factor', $factor)->where('status', $status)->count()
-                ==
+            ==
             FactorDetail::all()->where('factor', $factor)->count()
         ) {
             $this->factor_status_update($factor, $status);
@@ -206,7 +228,11 @@ class FactorController extends Controller
 
     public function detail_status_counter($status)
     {
-        return FactorDetail::all()->where('status', $status)->count();
+        return FactorDetail::query()
+            ->join('factors', 'factor_detail.factor', '=', 'factors.id')
+            ->where('factors.type', 1)
+            ->where('factor_detail.status', $status)
+            ->count();
     }
 
     public function store_detail(Request $request)
@@ -356,7 +382,7 @@ class FactorController extends Controller
     {
         $user = Auth::id();
         $access = Auth::user()->access;
-        if ($access == 3) return Factor::all()->where('user', $user)->count();
+        if ($access == 3) return Factor::all()->where('user', $user)->where('type', 1)->count();
         else return Factor::all()->count();
     }
 

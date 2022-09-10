@@ -128,10 +128,14 @@
 
                                                     @if($access == 0)
                                                         <div class="form-group">
-                                                            <label for="product-unit" class="col-form-label">تامین کننده :</label>
-                                                            <select id="product-unit" name="producer" class="form-control"
+                                                            <label for="product-unit" class="col-form-label">تامین کننده
+                                                                :</label>
+                                                            <select id="product-unit" name="producer"
+                                                                    class="form-control"
                                                                     required>
-                                                                <option value="">تامین کننده مورد نظر را انتخاب فرمایید</option>
+                                                                <option value="">تامین کننده مورد نظر را انتخاب
+                                                                    فرمایید
+                                                                </option>
                                                                 @foreach($producers as $producer)
                                                                     <option
                                                                         value="{{ $producer->id }}" {{ $producer->id == $detail->producer ? "selected" : "" }}>
@@ -229,6 +233,18 @@
                             </button>
                         </div>
                         <div class="modal-body">
+                            <div class="form-group">
+                                <label for="type" class="col-form-label">صدور :</label>
+                                <select class="form-control" name="type" id="type" autocomplete="off" required>
+                                    <option value="1" selected>
+                                        صدور فاکتور
+                                    </option>
+                                    <option value="0"
+                                        {{ $edit && !$factor->type ? 'selected' : '' }}>
+                                        صدور پیش فاکتور
+                                    </option>
+                                </select>
+                            </div>
                             <div class="form-group">
                                 <label for="user" class="col-form-label">مشتری :</label>
                                 <select class="form-control" name="user" id="user" autocomplete="off" required

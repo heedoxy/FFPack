@@ -62,6 +62,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('/factor')->group(function () {
 
         Route::get('/list', [FactorController::class, 'index']);
+        Route::get('/temp', [FactorController::class, 'temp']);
         Route::get('/show/{id?}', [FactorController::class, 'add']);
         Route::get('/invoice/{id}', [FactorController::class, 'invoice']);
         Route::post('/add', [FactorController::class, 'store']);
