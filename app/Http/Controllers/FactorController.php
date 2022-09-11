@@ -228,11 +228,28 @@ class FactorController extends Controller
 
     public function detail_status_counter($status)
     {
-        return FactorDetail::query()
-            ->join('factors', 'factor_detail.factor', '=', 'factors.id')
-            ->where('factors.type', 1)
-            ->where('factor_detail.status', $status)
-            ->count();
+        $user = Auth::user()->id;
+        $access = Auth::user()->access;
+        if ($access == 0)
+            return FactorDetail::query()
+                ->join('factors', 'factor_detail.factor', '=', 'factors.id')
+                ->where('factors.type', 1)
+                ->where('factor_detail.status', $status)
+                ->count();
+        if ($access == 1)
+            return FactorDetail::query()
+                ->join('factors', 'factor_detail.factor', '=', 'factors.id')
+                ->where('factors.type', 1)
+                ->where('factor_detail.status', $status)
+                ->count();
+        if ($access == 2)
+            return FactorDetail::query()
+                ->join('factors', 'factor_detail.factor', '=', 'factors.id')
+                ->where('factors.type', 1)
+                ->where('factor_detail.status', $status)
+                ->where('factor_detail.status', $status)
+                ->where('factor_detail.producer', $user)
+                ->count();
     }
 
     public function store_detail(Request $request)

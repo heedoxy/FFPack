@@ -151,6 +151,71 @@
                     </div>
                 </div>
             @endif
+            @if(in_array($access, [2]))
+                <div class="col-xl-4">
+                    <div class="card">
+                        <img src="/assets/image/profile-background.jpg" class="card-img-top" alt="...">
+                        <div class="card-body text-center m-t-70-minus">
+                            <figure class="avatar avatar-xl m-b-20">
+                                <img src="/assets/image/profile.webp" class="rounded-circle" alt="...">
+                            </figure>
+                            <h5>{{ Auth::user()->name . " " . Auth::user()->family }}</h5>
+                            <p class="text-muted small">خوش آمدید</p>
+                            <a href="/profile" class="btn btn-outline-primary">
+                                <i class="fa fa-pencil m-r-5"></i> ویرایش پروفایل
+                            </a>
+                        </div>
+                        <hr class="m-0">
+                    </div>
+                </div>
+                    <div class="col-xl-4">
+                        <a href="/factor/status/4">
+                            <div class="card">
+                                <div class="d-flex align-items-center">
+                                    <div class="bg-primary text-center p-20">
+                                        <i class="fa fa-user font-size-40"></i>
+                                    </div>
+                                    <div class="p-l-20">
+                                        <h2 class="mb-2 font-weight-bold primary-font line-height-32">
+                                            {{ $status_4 }}
+                                        </h2>
+                                        <p class="m-0 font-size-13 text-primary">در انتظار تایید</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="/factor/status/6">
+                            <div class="card">
+                                <div class="d-flex align-items-center">
+                                    <div class="bg-primary text-center p-20">
+                                        <i class="fa fa-users font-size-28"></i>
+                                    </div>
+                                    <div class="p-l-20">
+                                        <h2 class="mb-2 font-weight-bold primary-font line-height-32">
+                                            {{ $status_6 }}
+                                        </h2>
+                                        <p class="m-0 font-size-13 text-primary">در حال تولید</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="/factor/status/7">
+                            <div class="card">
+                                <div class="d-flex align-items-center">
+                                    <div class="bg-primary text-center p-20">
+                                        <i class="fa fa-sticky-note font-size-40"></i>
+                                    </div>
+                                    <div class="p-l-20">
+                                        <h2 class="mb-2 font-weight-bold primary-font line-height-32">
+                                            {{ $status_7 }}
+                                        </h2>
+                                        <p class="m-0 font-size-13 text-primary">در انتظار ارسال</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+            @endif
             @if(in_array($access, [3]))
                 <div class="col-xl-4">
                     <div class="card">
