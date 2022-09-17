@@ -77,7 +77,7 @@ class MessageController extends Controller
         $factor = $request->factor;
 
         $code = Factor::find($factor)->code;
-        $path = public_path("uploads");
+        $path = public_path("../uploads");
         if (!file_exists($path)) mkdir($path);
 
         $image = $request->file('file');

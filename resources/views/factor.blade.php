@@ -126,6 +126,22 @@
                                                                required>
                                                     </div>
 
+                                                    <div class="form-group">
+                                                        <label for="product-file" class="col-form-label">انتخاب فایل :</label>
+                                                        @if($detail->file)
+                                                            <a class="small text-primary" download=""
+                                                               href="/uploads/{{ $detail->file }}">
+                                                                مشاهده
+                                                            </a>
+                                                        @endif
+                                                        <input type="file" name="file" class="form-control" id="product-file"
+                                                               autocomplete="off"
+                                                               required>
+                                                            <a class="small text-danger">
+                                                                تنها در صورت نیاز به تغییر فایل این فیلد تکمیل شود
+                                                            </a>
+                                                    </div>
+
                                                     @if($access == 0)
                                                         <div class="form-group">
                                                             <label for="product-unit" class="col-form-label">تامین کننده
@@ -279,7 +295,7 @@
         <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <form method="post" action="/factor/detail/add">
+                    <form method="post" action="/factor/detail/add" enctype="multipart/form-data">
                         @csrf
                         <input type="hidden" name="factor" value="{{ $edit ? $id : 0 }}">
                         <div class="modal-header">
@@ -322,6 +338,12 @@
                             <div class="form-group">
                                 <label for="product-price" class="col-form-label">قیمت واحد :</label>
                                 <input type="text" name="price" class="form-control" id="product-price"
+                                       autocomplete="off"
+                                       required>
+                            </div>
+                            <div class="form-group">
+                                <label for="product-file" class="col-form-label">انتخاب فایل :</label>
+                                <input type="file" name="file" class="form-control" id="product-file"
                                        autocomplete="off"
                                        required>
                             </div>

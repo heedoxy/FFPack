@@ -108,7 +108,8 @@
                                         <th class="text-center" scope="col">تامین کننده</th>
                                     @endif
                                     <th class="text-left" scope="col">فاکتور</th>
-                                    <th class="text-center" scope="col">قیمت (تومان)</th>
+                                    <th class="text-left" scope="col">مقدار</th>
+                                    <th class="text-center" scope="col">قیمت واحد (تومان)</th>
                                     @if(in_array($access, [0, 1]))
                                         <th class="text-center" scope="col">کاربر</th>
                                         <th class="text-center" scope="col">وضعیت</th>
@@ -126,13 +127,13 @@
                                                 {{ $detail->pname }}
                                             </a>
 
-                                            @if($access  == 0)
+                                            @if($access == 0 && in_array($detail->status, [3]))
                                                 <div class="modal fade" id="detailModal{{ $detail->id }}" tabindex="-1"
                                                      role="dialog"
                                                      aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
-                                                            <form method="post" action="/factor/detail/producer">
+                                                            <form method="post" action="/factor/detail/producer" enctype="multipart/form-data">
                                                                 @csrf
                                                                 <input type="hidden" name="detail"
                                                                        value="{{ $detail->id }}">
@@ -146,6 +147,23 @@
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body">
+
+                                                                    <div class="form-group">
+                                                                        <label for="product-file" class="col-form-label">انتخاب فایل :</label>
+                                                                        @if($detail->file)
+                                                                            <a class="small text-primary" download=""
+                                                                               href="/uploads/{{ $detail->file }}">
+                                                                                مشاهده
+                                                                            </a>
+                                                                        @endif
+                                                                        <input type="file" name="file" class="form-control text-left" id="product-file"
+                                                                               autocomplete="off"
+                                                                               required>
+                                                                        <a class="small text-danger">
+                                                                            تنها در صورت نیاز به تغییر فایل این فیلد تکمیل شود
+                                                                        </a>
+                                                                    </div>
+
                                                                     <div class="form-group text-left">
                                                                         <label for="producer" class="col-form-label">تامین
                                                                             کننده :</label>
@@ -163,6 +181,17 @@
                                                                             @endforeach
                                                                         </select>
                                                                     </div>
+
+                                                                    @if($detail->comment2)
+                                                                        <div class="form-group  text-left">
+                                                                            <label for="comment"
+                                                                                   class="col-form-label">یادداشت تامین کننده
+                                                                                :</label>
+                                                                            <textarea class="form-control" name="comment" readonly disabled
+                                                                                      id="message-text">{{ $detail->comment2 }}</textarea>
+                                                                        </div>
+                                                                    @endif
+
                                                                     <div class="form-group  text-left">
                                                                         <label for="comment"
                                                                                class="col-form-label">یادداشت
@@ -185,13 +214,13 @@
                                                 </div>
                                             @endif
 
-                                            @if($access  == 2)
+                                            @if($access == 2 && in_array($detail->status, [4, 5]))
                                                 <div class="modal fade" id="detailModal{{ $detail->id }}" tabindex="-1"
                                                      role="dialog"
                                                      aria-hidden="true">
                                                     <div class="modal-dialog" role="document">
                                                         <div class="modal-content">
-                                                            <form method="post" action="/factor/detail/producer">
+                                                            <form method="post" action="/factor/detail/status">
                                                                 @csrf
                                                                 <input type="hidden" name="detail"
                                                                        value="{{ $detail->id }}">
@@ -206,11 +235,40 @@
                                                                     </button>
                                                                 </div>
                                                                 <div class="modal-body">
+
+                                                                    @if($detail->file)
+                                                                        <div class="form-group  text-left">
+                                                                            <label for="detail_price"
+                                                                                   class="col-form-label">فایل پیوست
+                                                                                :</label>
+                                                                            <a class="btn btn-primary text-light" download=""
+                                                                               href="/uploads/{{ $detail->file }}">
+                                                                                مشاهده
+                                                                            </a>
+                                                                        </div>
+                                                                    @endif
+
+                                                                    <div class="form-group  text-left">
+                                                                        <label for="detail_price"
+                                                                               class="col-form-label">قیمت درخواستی
+                                                                            :</label>
+                                                                        <input type="text" class="form-control text-left" name="price2"
+                                                                               value="{{ $detail->price2 ? $detail->price2 : '' }}"
+                                                                                  id="detail_price">
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="detail_date"
+                                                                               class="col-form-label">تاریخ تحویل
+                                                                            :</label>
+                                                                        <input type="text" class="form-control text-left" name="jalali"
+                                                                               value="{{ $detail->end_at ? verta($detail->end_at)->format("Y/m/d") : '' }}"
+                                                                               id="detail_date">
+                                                                    </div>
                                                                     <div class="form-group  text-left">
                                                                         <label for="comment"
                                                                                class="col-form-label">توضیحات
                                                                             :</label>
-                                                                        <textarea class="form-control" name="comment"
+                                                                        <textarea class="form-control" name="comment2"
                                                                                   id="message-text">{{ $detail->comment2 }}</textarea>
                                                                     </div>
                                                                 </div>
@@ -218,11 +276,53 @@
                                                                     <button type="button" class="btn btn-secondary"
                                                                             data-dismiss="modal">بستن
                                                                     </button>
-                                                                    <button type="submit" name="submit" value="0" class="btn btn-danger">
+                                                                    <button type="submit" name="status" value="5" class="btn btn-danger">
                                                                         رد سفارش
                                                                     </button>
-                                                                    <button type="submit" name="submit" value="1" class="btn btn-success">
+                                                                    <button type="submit" name="status" value="6" class="btn btn-success">
                                                                         تایید سفارش
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            @endif
+
+                                            @if($access == 2 && $detail->status == 6)
+                                                <div class="modal fade" id="detailModal{{ $detail->id }}" tabindex="-1"
+                                                     role="dialog"
+                                                     aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <form method="post" action="/factor/detail/status">
+                                                                @csrf
+                                                                <input type="hidden" name="detail"
+                                                                       value="{{ $detail->id }}">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title text-light">
+                                                                        اتمام تولید
+                                                                    </h5>
+                                                                    <button type="button" class="close"
+                                                                            data-dismiss="modal"
+                                                                            aria-label="بستن">
+                                                                        <i class="ti-close"></i>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <div class="form-group  text-left">
+                                                                        <label for="detail_price"
+                                                                               class="col-form-label">
+                                                                            آیا تولید این محصول به پایان رسیده است ؟
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                            data-dismiss="modal">بستن
+                                                                    </button>
+                                                                    <button type="submit" name="status" value="7" class="btn btn-success">
+                                                                        اتمام تولید
                                                                     </button>
                                                                 </div>
                                                             </form>
@@ -244,6 +344,7 @@
                                         <td class="text-left">
                                             {{ $detail->code }}
                                         </td>
+                                        <td class="text-center">{{ $detail->amount }}</td>
                                         <td class="text-center">{{ number_format($detail->price) }}</td>
 
                                         @if(in_array($access, [0, 1]))

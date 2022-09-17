@@ -1,10 +1,11 @@
 @php
     $menu_active = 1;
-    $sub_active = 0;
+    $sub_active = 80;
     $factorBTN = false;
     $user = $user ?? 0;
     $factor = $factor ?? 0;
     $detail = $detail ?? 0;
+    $access = \Illuminate\Support\Facades\Auth::user()->access;
 @endphp
 
 @extends('layouts.master')
@@ -32,7 +33,11 @@
                         </div>
                         <div>
                             <h6 class="mb-1 primary-font line-height-18">
-                                {{ $user->name . " " . $user->family }}
+                                @if($access == 2)
+                                    چت پشتیبانی
+                                @else
+                                    {{ $user->name . " " . $user->family }}
+                                @endif
                             </h6>
                         </div>
                         <div class="ml-auto d-flex">
@@ -53,9 +58,6 @@
                                     $me = false;
                                     $user_access = \Illuminate\Support\Facades\Auth::user()->access;
                                     $user_id = \Illuminate\Support\Facades\Auth::id();
-                                    if ($user_access != 1 && $user_id == $message->user) $me = true;
-                                    elseif ($user_access == 1 && $message->user == 0) $me = true;
-                                    elseif ($user_access == 0 && $message->user == 0) $me = true;
 
                                     if ($user_access == 3 && $message->sender == $user_id) $me = true;
                                     elseif ($user_access == 2 && $message->sender == $user_id) $me = true;
@@ -81,9 +83,9 @@
                                 @else
                                     <div class="message-item {{ $me ? ' text-left' : 'outgoing-message  text-right' }}">
                                         {{ $message->content }}
-                                        <small class="message-item-date text-muted" style="display: block ruby">
+                                        <small class="message-item-date text-muted" style="white-space: nowrap;">
                                             {{ (new \Hekmatinasser\Verta\Verta($message->created_at))->format('Y-n-j') }}
-                                            -
+                                            &nbsp;
                                             {{ (new \Hekmatinasser\Verta\Verta($message->created_at))->format('H:i') }}
                                         </small>
                                     </div>

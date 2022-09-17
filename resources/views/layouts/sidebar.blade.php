@@ -68,7 +68,12 @@
             <li><a href="/factor/status/0">همه سفارشات</a></li>
             {{--            <li><a href="/factor/detail/list" class="{{ ($sub_active == 8) ? "active" : "" }}">لیست موارد</a></li>--}}
         @elseif($access == 2)
-            <li><a href="/factor/detail/list" class="{{ ($sub_active == 8) ? "active" : "" }}">لیست موارد</a></li>
+            @php($user_id = \Illuminate\Support\Facades\Auth::id())
+            <li><a href="/message/{{ $user_id }}" class="{{ ($sub_active == 80) ? "active" : "" }}">چت پشتیبانی</a></li>
+            <li><a href="/factor/status/4" class="{{ ($sub_active == 80) ? "active" : "" }}">در انتظار تایید</a></li>
+            <li><a href="/factor/status/5" class="{{ ($sub_active == 80) ? "active" : "" }}">رد شده</a></li>
+            <li><a href="/factor/status/6" class="{{ ($sub_active == 80) ? "active" : "" }}">درحال تولید</a></li>
+            <li><a href="/factor/status/7" class="{{ ($sub_active == 80) ? "active" : "" }}">در انتظار ارسال</a></li>
         @elseif($access == 3)
             <li><a href="/factor/list" class="{{ ($sub_active == 3) ? "active" : "" }}">لیست فاکتور</a></li>
         @endif

@@ -13,6 +13,16 @@ $(document).ready(function () {
         showButtonPanel: true
     });
 
+    $('input[name="jalali"]').datepicker({
+        dateFormat: "yy/mm/dd",
+        showOtherMonths: true,
+        selectOtherMonths: true,
+        changeMonth: true,
+        changeYear: true,
+        yearRange: "-70:+10",
+        showButtonPanel: true
+    });
+
     $('input[name="date-picker-shamsi-list"]').datepicker({
         dateFormat: "yy/mm/dd",
         showOtherMonths: true,

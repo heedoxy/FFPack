@@ -163,6 +163,8 @@ class FactorController extends Controller
 
     public function detail_status_list($status)
     {
+        $access = Auth::user()->access;
+        $user = Auth::id();
         $producers = User::all()->where('access', '=', 2);
         $statuses = Status::all()->where('id', '>', '2');
 
@@ -190,6 +192,9 @@ class FactorController extends Controller
             ->when($status, function ($query) use ($status) {
                 $query->where('factor_detail.status', $status);
             })
+            ->when($access == 2, function ($query) use ($user) {
+                $query->where('factor_detail.producer', $user);
+            })
             ->where('factor_detail.created_at', '>', now()->subDays($days)->endOfDay())
             ->where('factors.type', '=', 1)
             ->get();
@@ -202,6 +207,34 @@ class FactorController extends Controller
                 'statuses' => $statuses,
             ]
         );
+    }
+
+    public function store_status(Request $request){
+        $this->validate($request, [
+            'detail' => 'required',
+        ]);
+
+        $status = $request->status;
+
+        $detail = FactorDetail::find($request->detail);
+
+        if ($status == 5) {
+            $detail->comment2 = $request->comment2;
+        }
+
+        if ($status == 6) {
+            $date = $request->jalali;
+            $detail->end_at = $this->j2m($date);
+            $detail->comment2 = $request->comment2;
+            if ($request->price2)
+                $detail->price2 = $request->price2;
+        }
+
+        $detail->save();
+
+        $this->detail_status_update($request->detail, $status);
+
+        return redirect()->back()->withErrors(['success' => 'با موفقیت ثبت شد .']);
     }
 
     public function detail_status_update($detail, $status, $reject = 0)
@@ -274,6 +307,16 @@ class FactorController extends Controller
                 $detail->producer = $request->producer;
                 $detail->status = 0;
             }
+
+            if($request->hasFile('file')) {
+                $code = rand(100, 999);
+                $path = public_path("../uploads");
+                $file = $request->file('file');
+                $fileName = $code . Verta()->format(" Y-m-d H-i-s ") . $file->getClientOriginalName();
+                $file->move($path, $fileName);
+                $detail->file = $fileName;
+            }
+
             $detail->save();
 
         } else {
@@ -290,6 +333,16 @@ class FactorController extends Controller
             if ($request->producer) {
                 $detail->producer = $request->producer;
             }
+
+            if($request->hasFile('file')) {
+                $code = rand(100, 999);
+                $path = public_path("../uploads");
+                $file = $request->file('file');
+                $fileName = $code . Verta()->format(" Y-m-d H-i-s ") . $file->getClientOriginalName();
+                $file->move($path, $fileName);
+                $detail->file = $fileName;
+            }
+
             $detail->save();
         }
         if ($factor)
@@ -308,6 +361,16 @@ class FactorController extends Controller
         $detail = FactorDetail::find($request->detail);
         $detail->producer = $request->producer;
         $detail->comment = $request->comment;
+
+        if($request->hasFile('file')) {
+            $code = rand(100, 999);
+            $path = public_path("../uploads");
+            $file = $request->file('file');
+            $fileName = $code . Verta()->format(" Y-m-d H-i-s ") . $file->getClientOriginalName();
+            $file->move($path, $fileName);
+            $detail->file = $fileName;
+        }
+
         $detail->save();
 
         $this->detail_status_update($request->detail, 4);

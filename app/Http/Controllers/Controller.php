@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Hekmatinasser\Verta\Verta;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -22,4 +23,11 @@ class Controller extends BaseController
         $english = range(0, 9);
         return str_replace($persian, $english, $string);
     }
+
+    public function j2m($date) {
+        $date = explode('/', $date);
+        $date = implode('-', $date);
+        return Verta::parse("$date 00:00:00")->datetime()->format("Y-m-d H:i:s");
+    }
+
 }
