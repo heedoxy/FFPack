@@ -19,7 +19,7 @@ return [
     'display_mode' => 'fullpage',
     'watermark_text_alpha' => 0.1,
     'directionality' => 'rtl',
-    'custom_font_dir' => public_path('/assets/fonts/farsi-fonts/Samim'),
+    'custom_font_dir' => public_path('/../assets/fonts/farsi-fonts/Samim'),
     'custom_font_data' => [
         'iransans' => [
             'R' => 'Samim-FD.ttf',    // regular font

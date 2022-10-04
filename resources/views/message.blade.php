@@ -136,6 +136,9 @@
                                         <input type="hidden" name="factor" value="{{ $factor }}">
                                         <input type="hidden" name="detail" value="{{ $detail }}">
                                     </form>
+                                    <small class="form-text text-danger">
+                                        حداکثر حجم آپلود فایل 40MB میباشد !
+                                    </small>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary refresh" data-dismiss="modal">بستن

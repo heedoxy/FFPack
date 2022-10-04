@@ -74,25 +74,25 @@ class MessageController extends Controller
 
     public function file(Request $request)
     {
-        $factor = $request->factor;
+        $user = $request->user;
 
-        $code = Factor::find($factor)->code;
         $path = public_path("../uploads");
         if (!file_exists($path)) mkdir($path);
 
         $image = $request->file('file');
-        $imageName = $code . Verta()->format(" Y-m-d H-i-s ") . $image->getClientOriginalName();
+        $imageName = $user . "-" . Verta()->format(" Y-m-d H-i-s ") . $image->getClientOriginalName();
         $image->move($path, $imageName);
 
-        $factor = $request->factor;
-        $detail = $request->detail;
-
-        if (in_array(Auth::user()->access, [0, 1])) $user =0;
+        if (in_array(Auth::user()->access, [0, 1])) $user = $request->user;
         else $user = Auth::id();
 
+        if (in_array(Auth::user()->access, [0, 1])) $sender = 0;
+        else $sender = Auth::id();
+
         $message = new Message();
-        $message->factor = $factor;
-        $message->detail = $detail;
+        $message->factor = 0;
+        $message->detail = 0;
+        $message->sender = $sender;
         $message->user = $user;
         $message->file = 1;
         $message->content = $imageName;

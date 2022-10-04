@@ -57,6 +57,16 @@ class FactorController extends Controller
         ]);
     }
 
+    public function temp_change($id)
+    {
+        Factor::where('id', '=', $id)
+            ->update([
+                'type' => 1,
+            ]);
+
+        return redirect('/factor/list')->withErrors(['success' => 'تایید با موفقیت انجام شد .']);
+    }
+
     public function add($id = null)
     {
 
@@ -297,6 +307,12 @@ class FactorController extends Controller
         $factor = $request->factor;
         $id = $request->detail;
 
+        $status = 0;
+
+        if ($factor) {
+            $status = Factor::find($factor)->status;
+        }
+
         if ($id) {
 
             $detail = FactorDetail::find($id);
@@ -305,7 +321,7 @@ class FactorController extends Controller
             $detail->price = $this->p2e($request->price);
             if ($request->producer) {
                 $detail->producer = $request->producer;
-                $detail->status = 0;
+                $detail->status = $status;
             }
 
             if($request->hasFile('file')) {
@@ -328,7 +344,7 @@ class FactorController extends Controller
             $detail->price = $this->p2e($request->price);
             $detail->unit = $request->unit;
             $detail->amount = $this->p2e($request->amount);
-            $detail->status = 0;
+            $detail->status = $status;
             $detail->reject = 0;
             if ($request->producer) {
                 $detail->producer = $request->producer;
@@ -385,14 +401,19 @@ class FactorController extends Controller
         $this->validate($request, [
             'id' => 'required',
             'total' => 'required',
-            'comment' => 'required',
         ]);
 
         $factor = Factor::find($id);
         $factor->price = $request->total;
         $factor->comment = $request->comment;
+        $factor->type = $request->type;
         $factor->save();
-        return redirect('/factor/list')->withErrors(['success' => 'با موفقیت ثبت شد .']);
+
+
+        if ($request->type)
+            return redirect('/factor/list')->withErrors(['success' => 'با موفقیت ثبت شد .']);
+
+        return redirect('/factor/temp')->withErrors(['success' => 'با موفقیت ثبت شد .']);
     }
 
     public function remove($id)
@@ -474,8 +495,9 @@ class FactorController extends Controller
             ->where('factors.id', '=', $id)
             ->first();
         $details = DB::table('factor_detail')
-            ->select('*', 'factor_detail.id as id', 'factor_detail.price as price')
+            ->select('*', 'factor_detail.id as id', 'factor_detail.price as price', 'units.title as utitle')
             ->join('products', 'factor_detail.product', '=', 'products.id')
+            ->join('units', 'factor_detail.unit', '=', 'units.id')
             ->where('factor_detail.factor', '=', $id)
             ->get();
         return view('invoice', [
@@ -491,8 +513,10 @@ class FactorController extends Controller
             ->where('factors.id', '=', $id)
             ->first();
         $details = DB::table('factor_detail')
-            ->select('*', 'factor_detail.id as id', 'factor_detail.price as price')
+            ->select('*', 'factor_detail.id as id', 'factor_detail.price as price', 'units.title as utitle')
             ->join('products', 'factor_detail.product', '=', 'products.id')
+            ->join('units', 'factor_detail.unit', '=', 'units.id')
+
             ->where('factor_detail.factor', '=', $id)
             ->get();
 

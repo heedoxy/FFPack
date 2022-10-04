@@ -44,7 +44,8 @@
                             <tr class="bg-dark text-white">
                                 <th>#</th>
                                 <th>توضیحات</th>
-                                <th class="text-right">تعداد</th>
+                                <th class="text-right">مقدار</th>
+                                <th class="text-right">واحد</th>
                                 <th class="text-right">قیمت</th>
                                 <th class="text-right">جمع</th>
                             </tr>
@@ -54,14 +55,15 @@
                             <tr class="text-right">
                                 <td class="text-left">{{ $counter++ }}</td>
                                 <td class="text-left">{{ $detail->name }}</td>
-                                <td>{{ $detail->number }}</td>
+                                <td>{{ $detail->amount }}</td>
+                                <td>{{ $detail->utitle }}</td>
                                 <td>
                                     {{ number_format($detail->price) }}
                                     تومان
                                 </td>
                                 <td>
-                                    @php($total += $detail->number * $detail->price)
-                                    {{ number_format($detail->number * $detail->price) }}
+                                    @php($total += $detail->amount * $detail->price)
+                                    {{ number_format($detail->amount * $detail->price) }}
                                     تومان
                                 </td>
                             </tr>

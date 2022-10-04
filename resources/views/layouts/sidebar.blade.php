@@ -52,9 +52,9 @@
             <li><a href="/user/list/3" class="{{ ($sub_active == 10) ? "active" : "" }}">لیست مشتریان</a></li>
             <li><a href="/product/show" class="{{ ($sub_active == 4) ? "active" : "" }}">ثبت محصول جدید</a></li>
             <li><a href="/product/list" class="{{ ($sub_active == 5) ? "active" : "" }}">محصولات</a></li>
-            <li><a href="/factor/show" class="{{ ($sub_active == 2) ? "active" : "" }}">ثبت فاکتور</a></li>
-            <li><a href="/factor/list" class="{{ ($sub_active == 3) ? "active" : "" }}">لیست فاکتور ها</a></li>
+            <li><a href="/factor/show" class="{{ ($sub_active == 2) ? "active" : "" }}">ثبت پیش فاکتور</a></li>
             <li><a href="/factor/temp" class="{{ ($sub_active == 30) ? "active" : "" }}">لیست پیش فاکتور ها</a></li>
+            <li><a href="/factor/list" class="{{ ($sub_active == 3) ? "active" : "" }}">لیست فاکتور ها</a></li>
             <li><a href="/factor/status/0">همه سفارشات</a></li>
             <li><a href="/factor/status/3">انتقال سفارش به تامین کننده</a></li>
         @elseif($access == 1)
@@ -62,9 +62,9 @@
             <li><a href="/user/list/3" class="{{ ($sub_active == 10) ? "active" : "" }}">لیست مشتریان</a></li>
             <li><a href="/product/show" class="{{ ($sub_active == 4) ? "active" : "" }}">ثبت محصول جدید</a></li>
             <li><a href="/product/list" class="{{ ($sub_active == 5) ? "active" : "" }}">محصولات</a></li>
-            <li><a href="/factor/show" class="{{ ($sub_active == 2) ? "active" : "" }}">ثبت فاکتور</a></li>
-            <li><a href="/factor/list" class="{{ ($sub_active == 3) ? "active" : "" }}">لیست فاکتور ها</a></li>
+            <li><a href="/factor/show" class="{{ ($sub_active == 2) ? "active" : "" }}">ثبت پیش فاکتور</a></li>
             <li><a href="/factor/temp" class="{{ ($sub_active == 30) ? "active" : "" }}">لیست پیش فاکتور ها</a></li>
+            <li><a href="/factor/list" class="{{ ($sub_active == 3) ? "active" : "" }}">لیست فاکتور ها</a></li>
             <li><a href="/factor/status/0">همه سفارشات</a></li>
             {{--            <li><a href="/factor/detail/list" class="{{ ($sub_active == 8) ? "active" : "" }}">لیست موارد</a></li>--}}
         @elseif($access == 2)
@@ -75,6 +75,9 @@
             <li><a href="/factor/status/6" class="{{ ($sub_active == 80) ? "active" : "" }}">درحال تولید</a></li>
             <li><a href="/factor/status/7" class="{{ ($sub_active == 80) ? "active" : "" }}">در انتظار ارسال</a></li>
         @elseif($access == 3)
+            @php($user_id = \Illuminate\Support\Facades\Auth::id())
+            <li><a href="/message/{{ $user_id }}" class="{{ ($sub_active == 80) ? "active" : "" }}">چت پشتیبانی</a></li>
+            <li><a href="/factor/temp" class="{{ ($sub_active == 30) ? "active" : "" }}">لیست پیش فاکتور ها</a></li>
             <li><a href="/factor/list" class="{{ ($sub_active == 3) ? "active" : "" }}">لیست فاکتور</a></li>
         @endif
 

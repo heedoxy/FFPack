@@ -32,7 +32,7 @@
                                         <a href="/message/{{ $factor->user }}"
                                            class="btn btn-sm btn-light btn-uppercase"
                                            style="margin-left: -10px">
-                                            پیام مشتری
+                                            چت مشتری
                                         </a>
                                     </div>
                                 </li>
@@ -140,6 +140,9 @@
                                                             <a class="small text-danger">
                                                                 تنها در صورت نیاز به تغییر فایل این فیلد تکمیل شود
                                                             </a>
+                                                        <small class="form-text text-danger">
+                                                            حداکثر حجم آپلود فایل 40MB میباشد !
+                                                        </small>
                                                     </div>
 
                                                     @if($access == 0)
@@ -346,6 +349,9 @@
                                 <input type="file" name="file" class="form-control" id="product-file"
                                        autocomplete="off"
                                        required>
+                                <small class="form-text text-danger">
+                                    حداکثر حجم آپلود فایل 40MB میباشد !
+                                </small>
                             </div>
                             @if($access == 0)
                                 <div class="form-group">

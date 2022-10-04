@@ -25,11 +25,13 @@
                             <div class="form-group">
                                 <label for="name">نام</label>
                                 <input type="text" class="form-control text-left" name="name" id="name"
+                                       {{ $user->access == 3 ? 'readonly' : '' }}
                                        placeholder="نام" value="{{ $user->name }}" required>
                             </div>
                             <div class="form-group">
                                 <label for="family">نام خانوادگی</label>
                                 <input type="text" class="form-control text-left" name="family" id="family"
+                                       {{ $user->access == 3 ? 'readonly' : '' }}
                                        placeholder="نام خانوادگی" value="{{ $user->family }}" required>
                             </div>
                             <div class="form-group">

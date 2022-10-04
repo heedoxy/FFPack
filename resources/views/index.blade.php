@@ -18,7 +18,7 @@
     </style>
     <main class="main-content">
         <div class="row">
-            @if(in_array($access, [0, 1]))
+            @if($access == 0)
                 <div class="col-xl-4">
                     <a href="/factor/status/3">
                         <div class="card">

@@ -85,7 +85,7 @@
 <body>
 
 <div class="img-container">
-    <img class="image" width="100px" src="{{public_path('assets/image/logo.png')}}" alt="">
+    <img class="image" width="100px" src="{{public_path('../assets/image/logo.png')}}" alt="">
 </div>
 
 <h1 class="main-title">فست فوت پک</h1>
@@ -113,7 +113,8 @@
         <tr style="background-color: #b7b7b7">
             <th>#</th>
             <th>توضیحات</th>
-            <th>تعداد</th>
+            <th>مقدار</th>
+            <th>واحد</th>
             <th>قیمت</th>
             <th>جمع</th>
         </tr>
@@ -123,14 +124,15 @@
             <tr>
                 <td>{{ $counter++ }}</td>
                 <td>{{ $detail->name }}</td>
-                <td>{{ $detail->number }}</td>
+                <td>{{ $detail->amount }}</td>
+                <td>{{ $detail->utitle }}</td>
                 <td>
                     {{ $helper->e2p(number_format($detail->price)) }}
                     تومان
                 </td>
                 <td>
-                    @php($total += $detail->number * $detail->price)
-                    {{ $helper->e2p(number_format($detail->number * $detail->price)) }}
+                    @php($total += $detail->amount * $detail->price)
+                    {{ $helper->e2p(number_format($detail->amount * $detail->price)) }}
                     تومان
                 </td>
             </tr>

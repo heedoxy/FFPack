@@ -72,16 +72,21 @@
                                                     <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right">
+                                                    @if(in_array($access, [0, 1]))
                                                     <a href="/factor/show/{{ $factor->id }}" class="dropdown-item"
                                                        type="button">ویرایش</a>
-{{--                                                    <a href="/factor/invoice/{{ $factor->id }}" class="dropdown-item"--}}
-{{--                                                       type="button">صورتحساب</a>--}}
+                                                    <a href="/factor/invoice/{{ $factor->id }}" class="dropdown-item"
+                                                       type="button">صورتحساب</a>
                                                     <a href="/message/{{ $factor->user }}" class="dropdown-item"
                                                        type="button">پیام مشتری</a>
                                                     <button type="button" class="dropdown-item text-danger"
                                                             data-toggle="modal"
                                                             data-target=".bd-example-modal-sm">حذف
                                                     </button>
+                                                    @else
+                                                        <a href="/factor/show/{{ $factor->id }}" class="dropdown-item"
+                                                           type="button">مشاهده</a>
+                                                    @endif
                                                 </div>
                                             </div>
 
