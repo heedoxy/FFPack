@@ -109,7 +109,7 @@
                                     @endif
                                     <th class="text-left" scope="col">فاکتور</th>
                                     <th class="text-left" scope="col">مقدار</th>
-                                    <th class="text-center" scope="col">قیمت واحد (تومان)</th>
+                                    <th class="text-center" scope="col">قیمت واحد (ریال)</th>
                                     @if(in_array($access, [0, 1]))
                                         <th class="text-center" scope="col">کاربر</th>
                                         <th class="text-center" scope="col">وضعیت</th>

@@ -59,12 +59,12 @@
                                 <td>{{ $detail->utitle }}</td>
                                 <td>
                                     {{ number_format($detail->price) }}
-                                    تومان
+                                    ریال
                                 </td>
                                 <td>
                                     @php($total += $detail->amount * $detail->price)
                                     {{ number_format($detail->amount * $detail->price) }}
-                                    تومان
+                                    ریال
                                 </td>
                             </tr>
                             @endforeach
@@ -75,7 +75,7 @@
                         <h4 class="primary-font">
                             جمع :
                             {{ number_format($total) }}
-                            تومان
+                            ریال
                         </h4>
                     </div>
                     <p class="text-center small text-muted  m-t-50">

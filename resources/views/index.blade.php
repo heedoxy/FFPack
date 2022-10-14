@@ -111,7 +111,7 @@
                                             <h6 class="font-size-13 primary-font">امروز</h6>
                                             <h4 class="m-b-0 primary-font line-height-28">
                                                 {{ number_format($today) }}
-                                                تومان
+                                                ریال
                                             </h4>
                                         </div>
                                     </div>
@@ -126,7 +126,7 @@
                                             <h6 class="font-size-13 primary-font">7 روز اخیر</h6>
                                             <h4 class="m-b-0 primary-font line-height-28">
                                                 {{ number_format($week) }}
-                                                تومان
+                                                ریال
                                             </h4>
                                         </div>
                                     </div>
@@ -141,7 +141,7 @@
                                             <h6 class="font-size-13 primary-font">30 روز اخیر</h6>
                                             <h4 class="m-b-0 primary-font line-height-28">
                                                 {{ number_format($month) }}
-                                                تومان
+                                                ریال
                                             </h4>
                                         </div>
                                     </div>

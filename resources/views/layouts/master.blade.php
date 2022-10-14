@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="/assets/vendors/clockpicker/bootstrap-clockpicker.min.css" type="text/css">
 
     <!--  -->
-    <link rel="stylesheet" href="https://rawcdn.githack.com/easylogic/colorpicker/main/dist/EasyLogicColorPicker.css">
+{{--    <link rel="stylesheet" href="https://rawcdn.githack.com/easylogic/colorpicker/main/dist/EasyLogicColorPicker.css">--}}
     <!-- Light Box -->
     <link rel="stylesheet" href="/assets/vendors/lightbox/magnific-popup.css" type="text/css">
     <!-- App styles -->

@@ -128,12 +128,12 @@
                 <td>{{ $detail->utitle }}</td>
                 <td>
                     {{ $helper->e2p(number_format($detail->price)) }}
-                    تومان
+                    ریال
                 </td>
                 <td>
                     @php($total += $detail->amount * $detail->price)
                     {{ $helper->e2p(number_format($detail->amount * $detail->price)) }}
-                    تومان
+                    ریال
                 </td>
             </tr>
         @endforeach
@@ -145,7 +145,7 @@
 <h3 style="font-size: 15px; margin-right: 25px">
     جمع کل :
     {{ $helper->e2p(number_format($total)) }}
-    تومان
+    ریال
 </h3>
 
 <div class="paragraph" style="color: gray; text-align: center">

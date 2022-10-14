@@ -130,9 +130,6 @@ class FactorController extends Controller
             'total' => 'required',
         ]);
 
-        $status = 3;
-        if (Auth::user()->access == 0) $status = 4;
-
         $factor = new Factor();
         $factor->code = "FFP-" . rand(1000, 9999);
         $factor->staff = Auth::id();
@@ -140,7 +137,7 @@ class FactorController extends Controller
         $factor->price = $request->total;
         $factor->type = $request->type;
         $factor->comment = $request->comment;
-        $factor->status = $status;
+        $factor->status = 3;
         $factor->save();
 
         $id = $factor->id;
@@ -148,7 +145,7 @@ class FactorController extends Controller
             ->where('status', '=', 0)
             ->update([
                 'factor' => $id,
-                'status' => $status
+                'status' => 3
             ]);
 
         if ($request->type)

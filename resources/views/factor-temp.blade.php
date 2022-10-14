@@ -37,7 +37,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th class="text-left" scope="col">کد</th>
-                                    <th class="text-center" scope="col">قیمت (تومان)</th>
+                                    <th class="text-center" scope="col">قیمت (ریال)</th>
                                     @if(in_array($access, [0, 1]))
                                         <th class="text-center" scope="col">کاربر</th>
                                     @endif

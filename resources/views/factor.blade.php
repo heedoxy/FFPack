@@ -65,7 +65,7 @@
                                                 {{ $detail->amount }}
                                                 {{ $detail->unit_title }}
                                                 |
-                                                {{ number_format($detail->amount * $detail->price) }} تومان
+                                                {{ number_format($detail->amount * $detail->price) }} ریال
                                             </small>
                                             @php($total += $detail->amount * $detail->price)
                                         </div>
@@ -136,7 +136,7 @@
                                                         @endif
                                                         <input type="file" name="file" class="form-control" id="product-file"
                                                                autocomplete="off"
-                                                               required>
+                                                               >
                                                             <a class="small text-danger">
                                                                 تنها در صورت نیاز به تغییر فایل این فیلد تکمیل شود
                                                             </a>
@@ -219,7 +219,7 @@
                                     <div>
                                         <h6 class="font-size-13 primary-font">قیمت کل</h6>
                                         <h4 class="m-b-0 primary-font line-height-28">{{ number_format($total) }}
-                                            تومان </h4>
+                                            ریال </h4>
                                     </div>
                                 </div>
                             </div>
@@ -339,7 +339,10 @@
                                        required>
                             </div>
                             <div class="form-group">
-                                <label for="product-price" class="col-form-label">قیمت واحد :</label>
+                                <label for="product-price" class="col-form-label">
+                                    قیمت واحد :
+                                    <small>( ریال )</small>
+                                </label>
                                 <input type="text" name="price" class="form-control" id="product-price"
                                        autocomplete="off"
                                        required>
@@ -347,27 +350,11 @@
                             <div class="form-group">
                                 <label for="product-file" class="col-form-label">انتخاب فایل :</label>
                                 <input type="file" name="file" class="form-control" id="product-file"
-                                       autocomplete="off"
-                                       required>
+                                       autocomplete="off">
                                 <small class="form-text text-danger">
                                     حداکثر حجم آپلود فایل 40MB میباشد !
                                 </small>
                             </div>
-                            @if($access == 0)
-                                <div class="form-group">
-                                    <label for="product-unit" class="col-form-label">تامین کننده :</label>
-                                    <select id="product-unit" name="producer" class="form-control"
-                                            required>
-                                        <option value="">تامین کننده مورد نظر را انتخاب فرمایید</option>
-                                        @foreach($producers as $producer)
-                                            <option
-                                                value="{{ $producer->id }}">
-                                                {{ $producer->name . " " . $producer->family }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            @endif
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">بستن</button>
