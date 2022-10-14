@@ -111,7 +111,7 @@
                                     <th class="text-left" scope="col">مقدار</th>
                                     <th class="text-center" scope="col">قیمت واحد (ریال)</th>
                                     @if(in_array($access, [0, 1]))
-                                        <th class="text-center" scope="col">کاربر</th>
+                                        <th class="text-center" scope="col">مشتری</th>
                                         <th class="text-center" scope="col">وضعیت</th>
                                     @endif
                                     <th class="text-right" scope="col">مدیریت</th>
@@ -363,7 +363,7 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     @if($access  == 0)
-                                                        <a href="" data-toggle="modal" data-target="#detailModal"
+                                                        <a href="" data-toggle="modal" data-target="#detailModal{{ $detail->id }}"
                                                            type="button" class="dropdown-item">انتقال به تامین کننده</a>
                                                     @endif
                                                     @if(in_array($access, [0, 1]))

@@ -9,6 +9,7 @@ use Hekmatinasser\Verta\Facades\Verta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class MessageController extends Controller
 {
@@ -16,6 +17,26 @@ class MessageController extends Controller
     {
         $messages = Message::all()->where('user', $id);
         $user = User::all()->find($id);
+
+        $me = Auth::user();
+        $access = $me->access;
+        $userid = $me->id;
+
+        if (in_array($access, [2, 3])) {
+            Message::where('view', '0')
+                ->where('user', $userid)
+                ->where('sender', '0')
+                ->update([
+                    'view' => 1,
+                ]);
+        } else {
+            Message::where('view', '0')
+                ->where('user', $id)
+                ->where('sender', $id)
+                ->update([
+                    'view' => 1,
+                ]);
+        }
 
         return view('message', [
             'user' => $user,
@@ -111,6 +132,56 @@ class MessageController extends Controller
             unlink($path);
         }
         return $filename;
+    }
+
+    public function unread_counter()
+    {
+        $user = Auth::user();
+        $access = (int)$user->access;
+        $id = $user->id;
+        $count = 0;
+
+        if (in_array($access, [2, 3])) {
+            $count = Message::all()
+                ->where('view', '0')
+                ->where('user', $id)
+                ->where('sender', '0')
+                ->count();
+        } else {
+            $count = DB::table('messages')
+                ->join('users', 'users.id', 'messages.user')
+                ->where('view', '0')
+                ->where('sender', '!=', '0')
+                ->where(function ($query) use ($id) {
+                    $query->where('users.access', '2')
+                        ->orWhere('users.adder', $id);
+                })
+                ->get()
+                ->count();
+        }
+
+        return $count;
+    }
+
+    public function unread()
+    {
+        $user = Auth::user();
+        $access = (int)$user->access;
+        $id = $user->id;
+
+        $users = DB::table('messages')
+            ->distinct()
+            ->select('users.*')
+            ->join('users', 'users.id', 'messages.user')
+            ->where('view', 0)
+            ->where('sender', '!=', '0')
+            ->where(function ($query) use ($id) {
+                $query->where('users.access', '2')
+                    ->orWhere('users.adder', $id);
+            })
+            ->get();
+
+        return view('unread', ['users' => $users]);
     }
 
 }

@@ -9373,12 +9373,27 @@ body.form-membership .form-wrapper hr {
     box-shadow: none !important;
 }
 
+.header .header-body .message-toggler,
 .header .header-body .navigation-toggler,
 .header .header-body .navbar-toggler {
     padding: 0;
     margin-right: 12px;
 }
 
+.header .header-body .message-toggler a .badge {
+    position: absolute;
+    margin: 0 auto;
+    text-indent: -9999px;
+    width: 8px;
+    height: 8px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    padding: 0;
+    background-color: red !important;
+}
+
+.header .header-body .message-toggler a,
 .header .header-body .navigation-toggler a,
 .header .header-body .navbar-toggler a {
     display: -webkit-box;

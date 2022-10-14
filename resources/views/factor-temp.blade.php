@@ -39,7 +39,8 @@
                                     <th class="text-left" scope="col">کد</th>
                                     <th class="text-center" scope="col">قیمت (ریال)</th>
                                     @if(in_array($access, [0, 1]))
-                                        <th class="text-center" scope="col">کاربر</th>
+                                        <th class="text-center" scope="col">مشتری</th>
+                                        <th class="text-center" scope="col">کارشناس ثبت</th>
                                     @endif
                                     <th class="text-center" scope="col">تاریخ ثبت</th>
                                     <th class="text-right" scope="col">مدیریت</th>
@@ -57,6 +58,7 @@
                                         <td class="text-center">{{ number_format($factor->price) }}</td>
                                         @if(in_array($access, [0, 1]))
                                             <td class="text-center">{{ $factor->name . " " . $factor->family }}</td>
+                                            <td class="text-center">{{ $factor->sname . " " . $factor->sfamily }}</td>
                                         @endif
                                         <td class="text-center">
                                             {{ (new \Hekmatinasser\Verta\Verta($factor->created_at))->format('Y-n-j') }}

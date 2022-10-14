@@ -84,12 +84,12 @@ Route::middleware(['auth'])->group(function () {
             Route::post('/text', [MessageController::class, 'text']);
             Route::post('/file', [MessageController::class, 'file']);
         });
-
     });
 
     Route::prefix('/message')->group(function () {
         Route::get('/{user}', [MessageController::class, 'user']);
     });
+    Route::get('/unread', [MessageController::class, 'unread']);
 
     Route::prefix('/ajax')->group(function () {
         Route::post('/producer/get', [ProductController::class, 'get_producer']);

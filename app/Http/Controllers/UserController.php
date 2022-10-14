@@ -15,7 +15,13 @@ class UserController extends Controller
 {
     public function index($access)
     {
-        $users = User::all()->where('access', '=', $access);
+        $my_access = Auth::user()->access;
+        $my_id = Auth::id();
+        if ($access==3 && $my_access==1) {
+            $users = User::all()->where('access', '=', $access)->where('adder', '=', $my_id);
+        } else {
+            $users = User::all()->where('access', '=', $access);
+        }
         return view('user-list', ['users' => $users, 'access' => $access]);
     }
 
@@ -38,6 +44,7 @@ class UserController extends Controller
 
         $user = new User();
         $access = $request->access;
+        $user->adder = Auth::id();
         $user->name = $request->name;
         $user->family = $request->family;
         $user->phone = $this->p2e($request->phone);

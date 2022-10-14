@@ -39,7 +39,8 @@
                                     <th class="text-left" scope="col">کد</th>
                                     <th class="text-center" scope="col">قیمت (ریال)</th>
                                     @if(in_array($access, [0, 1]))
-                                        <th class="text-center" scope="col">کاربر</th>
+                                        <th class="text-center" scope="col">مشتری</th>
+                                        <th class="text-center" scope="col">کارشناس ثبت</th>
                                     @endif
                                     <th class="text-center" scope="col">تاریخ ثبت</th>
                                     <th class="text-right" scope="col">مدیریت</th>
@@ -53,14 +54,18 @@
                                             <a href="/factor/show/{{ $factor->id }}">
                                                 {{ $factor->code }}
                                                 <br>
-                                                <small class="form-text text-{{ $statuses[$factor->status - 1]->label }}">
-                                                    {{ $statuses[$factor->status - 1]->text }}
-                                                </small>
+                                                @if(in_array($access, [0, 1]))
+                                                    <small
+                                                        class="form-text text-{{ $statuses[$factor->status - 1]->label }}">
+                                                        {{ $statuses[$factor->status - 1]->text }}
+                                                    </small>
+                                                @endif
                                             </a>
                                         </td>
                                         <td class="text-center">{{ number_format($factor->price) }}</td>
                                         @if(in_array($access, [0, 1]))
                                             <td class="text-center">{{ $factor->name . " " . $factor->family }}</td>
+                                            <td class="text-center">{{ $factor->sname . " " . $factor->sfamily }}</td>
                                         @endif
                                         <td class="text-center">
                                             {{ (new \Hekmatinasser\Verta\Verta($factor->created_at))->format('Y-n-j') }}
@@ -73,16 +78,20 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right">
                                                     @if(in_array($access, [0, 1]))
-                                                    <a href="/factor/show/{{ $factor->id }}" class="dropdown-item"
-                                                       type="button">ویرایش</a>
-                                                    <a href="/factor/invoice/{{ $factor->id }}" class="dropdown-item"
-                                                       type="button">صورتحساب</a>
-                                                    <a href="/message/{{ $factor->user }}" class="dropdown-item"
-                                                       type="button">پیام مشتری</a>
-                                                    <button type="button" class="dropdown-item text-danger"
-                                                            data-toggle="modal"
-                                                            data-target=".bd-example-modal-sm">حذف
-                                                    </button>
+                                                        <a href="/factor/show/{{ $factor->id }}" class="dropdown-item"
+                                                           type="button">ویرایش</a>
+                                                        <a href="/factor/pdf/{{ $factor->id }}" class="dropdown-item"
+                                                           download>دریافت PDF
+                                                        </a>
+{{--                                                        <a href="/factor/invoice/{{ $factor->id }}"--}}
+{{--                                                           class="dropdown-item"--}}
+{{--                                                           type="button">صورتحساب</a>--}}
+                                                        <a href="/message/{{ $factor->user }}" class="dropdown-item"
+                                                           type="button">پیام مشتری</a>
+                                                        <button type="button" class="dropdown-item text-danger"
+                                                                data-toggle="modal"
+                                                                data-target=".bd-example-modal-sm">حذف
+                                                        </button>
                                                     @else
                                                         <a href="/factor/show/{{ $factor->id }}" class="dropdown-item"
                                                            type="button">مشاهده</a>

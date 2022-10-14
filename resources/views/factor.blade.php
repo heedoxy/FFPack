@@ -228,7 +228,7 @@
                                     <button class="btn btn-primary" type="button"
                                             data-toggle="modal" data-target="#submitModal">
                                         <i class="fa fa-check mr-1"></i>
-                                        ثبت فاکتور
+                                        ثبت پیش فاکتور
                                     </button>
                                 </div>
                             @endif

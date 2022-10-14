@@ -23,14 +23,16 @@ class FactorController extends Controller
 
         if (in_array($access, [0, 1])) {
             $factors = DB::table('factors')
-                ->select('*', 'factors.id as id')
+                ->select('*', 'factors.id as id', 'staff.name as sname', 'staff.family as sfamily')
+                ->join('users as staff', 'factors.staff', '=', 'staff.id')
                 ->join('users', 'factors.user', '=', 'users.id')
                 ->where('factors.type', '=', 1)
                 ->get();
         } else {
             $user = Auth::id();
             $factors = DB::table('factors')
-                ->select('*', 'factors.id as id')
+                ->select('*', 'factors.id as id', 'staff.name as sname', 'staff.family as sfamily')
+                ->join('users as staff', 'factors.staff', '=', 'staff.id')
                 ->join('users', 'factors.user', '=', 'users.id')
                 ->where('factors.user', '=', $user)
                 ->where('factors.type', '=', 1)
@@ -47,8 +49,9 @@ class FactorController extends Controller
         $access = Auth::user()->access;
 
         $factors = DB::table('factors')
-            ->select('*', 'factors.id as id')
+            ->select('*', 'factors.id as id', 'staff.name as sname', 'staff.family as sfamily')
             ->join('users', 'factors.user', '=', 'users.id')
+            ->join('users as staff', 'factors.staff', '=', 'staff.id')
             ->where('factors.type', '=', 0)
             ->get();
 
@@ -131,7 +134,7 @@ class FactorController extends Controller
         ]);
 
         $factor = new Factor();
-        $factor->code = "FFP-" . rand(1000, 9999);
+        $factor->code = "FFP-" . (3000 + (int)Factor::all()->count());
         $factor->staff = Auth::id();
         $factor->user = $request->user;
         $factor->price = $request->total;
@@ -216,7 +219,8 @@ class FactorController extends Controller
         );
     }
 
-    public function store_status(Request $request){
+    public function store_status(Request $request)
+    {
         $this->validate($request, [
             'detail' => 'required',
         ]);
@@ -321,7 +325,7 @@ class FactorController extends Controller
                 $detail->status = $status;
             }
 
-            if($request->hasFile('file')) {
+            if ($request->hasFile('file')) {
                 $code = rand(100, 999);
                 $path = public_path("../uploads");
                 $file = $request->file('file');
@@ -347,7 +351,7 @@ class FactorController extends Controller
                 $detail->producer = $request->producer;
             }
 
-            if($request->hasFile('file')) {
+            if ($request->hasFile('file')) {
                 $code = rand(100, 999);
                 $path = public_path("../uploads");
                 $file = $request->file('file');
@@ -375,7 +379,7 @@ class FactorController extends Controller
         $detail->producer = $request->producer;
         $detail->comment = $request->comment;
 
-        if($request->hasFile('file')) {
+        if ($request->hasFile('file')) {
             $code = rand(100, 999);
             $path = public_path("../uploads");
             $file = $request->file('file');
@@ -513,7 +517,6 @@ class FactorController extends Controller
             ->select('*', 'factor_detail.id as id', 'factor_detail.price as price', 'units.title as utitle')
             ->join('products', 'factor_detail.product', '=', 'products.id')
             ->join('units', 'factor_detail.unit', '=', 'units.id')
-
             ->where('factor_detail.factor', '=', $id)
             ->get();
 
